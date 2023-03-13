@@ -1,5 +1,5 @@
 const HomeTemplate = () => {
-  return <>Home Template</>;
+  return <>Home Template: testing deploy</>;
 };
 
 export default HomeTemplate;
