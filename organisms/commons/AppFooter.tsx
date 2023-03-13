@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 const AppFooter = () => {
   return (
-    <footer id="footer" className="w-full relative z-30 text-primary">
+    <footer id="footer" className="">
       Footer
     </footer>
   );

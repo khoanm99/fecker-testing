@@ -24,7 +24,7 @@ export type updateState<T> = (_newState: T) => void;
 export interface IAppState {
   curLang: string;
   isSticky: boolean;
-  isFormOpen: boolean;
+  // isFormOpen: boolean;
   isMenuOpen: boolean;
   skippedToContent: boolean;
 }
