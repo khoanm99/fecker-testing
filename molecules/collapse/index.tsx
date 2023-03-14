@@ -44,7 +44,7 @@ const Collapse = ({ content }: { content: string[] }) => {
         className={`overflow-hidden transition-all duration-300`}
         style={{ maxHeight: maxHeight }}
       >
-        <div ref={refContent}>
+        <div ref={refContent} className={`space-y-6 lg:space-y-7`}>
           {content.length > 0 &&
             content.map((item, key) => (
               <Text size={`text`} renderAs={`p`} content={item} key={key} />
@@ -52,7 +52,7 @@ const Collapse = ({ content }: { content: string[] }) => {
         </div>
       </div>
       {showExpand && (
-        <div onClick={() => handleClick()} className={`mt-7 cursor-pointer`}>
+        <div onClick={() => handleClick()} className={`mt-2 cursor-pointer`}>
           <Text
             size={`number`}
             content={expanded ? '... weniger lesen' : '... mehr lesen'}
