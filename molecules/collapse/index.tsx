@@ -1,5 +1,4 @@
 import Text from '@/atoms/Typo/text';
-import { rePosition } from '@/utils/rePosition';
 import { useEffect, useRef, useState } from 'react';
 
 const Collapse = ({ content }: { content: string[] }) => {
@@ -25,7 +24,6 @@ const Collapse = ({ content }: { content: string[] }) => {
         setMaxHeight(maxHeightContent);
       }
       setExpand(!expanded);
-      rePosition({ scrollItem: refContent.current });
     }
   };
 
