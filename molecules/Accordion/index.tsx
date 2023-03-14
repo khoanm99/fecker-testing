@@ -1,7 +1,7 @@
 import Plus from '@/atoms/Svg/plus';
 import Text from '@/atoms/Typo/text';
 import { IAccordion } from '@/Model/organisms';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 const Accordion = ({ list }: IAccordion) => {
@@ -16,6 +16,7 @@ const Accordion = ({ list }: IAccordion) => {
     expanded: false | number;
     setExpand: Function;
   }) => {
+    const isOpen = index === expanded;
     return (
       <div className={`relative flex items-center pt-3 pb-4`}>
         <div className={`lg:pr-5`}>
@@ -31,7 +32,7 @@ const Accordion = ({ list }: IAccordion) => {
             expanded ? ' rotate-180' : 'rotate-0'
           }`}
           onClick={() => {
-            setExpand(expanded ? false : index);
+            setExpand(isOpen ? false : index);
           }}
         >
           <Plus className={`h-[32px] w-[32px]`} />
@@ -52,17 +53,18 @@ const Accordion = ({ list }: IAccordion) => {
     const isExpanded = index === isOpen;
     return (
       <>
-        <motion.div
-          key={'content'}
-          animate={{
-            height: isExpanded ? 'auto' : 0,
-            opacity: isExpanded ? 1 : 0,
-            visibility: isExpanded ? 'visible' : 'hidden'
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          <div dangerouslySetInnerHTML={{ __html: data }} />
-        </motion.div>
+        <AnimatePresence initial={false}>
+          <motion.div
+            key="content"
+            animate={{
+              height: isExpanded ? 'auto' : 0
+            }}
+            transition={{ duration: 0.3 }}
+            className={`overflow-hidden`}
+          >
+            <div dangerouslySetInnerHTML={{ __html: data }} />
+          </motion.div>
+        </AnimatePresence>
       </>
     );
   };
