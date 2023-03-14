@@ -2,14 +2,14 @@ import clsx from 'clsx';
 import { ElementType, memo, ReactNode } from 'react';
 
 interface Props {
-  renderAs: ElementType;
+  renderAs: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   cls?: string;
   title: string;
   children?: ReactNode;
 }
 
 const Heading = ({
-  renderAs = 'div',
+  renderAs = 'h1',
   cls = '',
   title = '',
   children
@@ -28,7 +28,7 @@ const Heading = ({
         cls
       )}
     >
-      {title != '' && <span dangerouslySetInnerHTML={{ __html: title }}></span>}
+      {title != '' && title}
       {children && <>{children}</>}
     </Element>
   );
