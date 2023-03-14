@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { AppProvider } from '../contexts/appContext';
 import { MouseProvider } from '@/contexts/mouseContext';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+// import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Script from 'next/script';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -24,13 +24,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       />
       <AppProvider>
-        <GoogleReCaptchaProvider
+        {/* <GoogleReCaptchaProvider
           reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY ?? ''}
-        >
-          <MouseProvider>
-            <Component {...pageProps} />
-          </MouseProvider>
-        </GoogleReCaptchaProvider>
+        > */}
+        {/* <MouseProvider> */}
+        <Component {...pageProps} />
+        {/* </MouseProvider> */}
+        {/* </GoogleReCaptchaProvider> */}
       </AppProvider>
     </>
   );

@@ -5,7 +5,7 @@ import { IAppContext, IAppState, IAppStateChange } from '../types';
 const appState: IAppState = {
   curLang: 'de',
   isSticky: false,
-  isFormOpen: false,
+  // isFormOpen: false,
   isMenuOpen: false,
   skippedToContent: false
 };

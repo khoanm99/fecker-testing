@@ -11,13 +11,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#28482f',
-        lime: '#FFFE9A',
-        bright: '#FAF3EF',
-        warning: '#FA4B6A'
+        beige: '#ebe9e3',
+        primary: '#ff003d',
+        secondary: '#1d1d1d',
+        green: '#39c66b'
       },
       fontFamily: {
-        poppins: `'Poppins', sans-serif;`
+        poppins: `'Poppins', sans-serif;`,
+        baskervville: `'Baskervville', serif`
       },
       fontSize: {},
       screens: {
