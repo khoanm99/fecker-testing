@@ -1,3 +1,5 @@
+import Plus from '@/atoms/Svg/plus';
+import Text from '@/atoms/Typo/text';
 import { IAccordion } from '@/Model/organisms';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
@@ -15,15 +17,26 @@ const Accordion = ({ list }: IAccordion) => {
     setExpand: Function;
   }) => {
     return (
-      <motion.div
-        initial={false}
-        animate={{}}
-        onClick={() => {
-          setExpand(expanded ? false : index);
-        }}
-      >
-        {title}
-      </motion.div>
+      <div className={`relative flex items-center pt-3 pb-4`}>
+        <div className={`lg:pr-5`}>
+          <Text
+            size={`number`}
+            title={`${index < 10 ? '0' + (index + 1) : index}`}
+            cls={`text-black`}
+          />
+        </div>
+        <Text title={title} size={`listFormularMenu`} />
+        <div
+          className={`absolute right-0 cursor-pointer transition-transform duration-500 ${
+            expanded ? ' rotate-180' : 'rotate-0'
+          }`}
+          onClick={() => {
+            setExpand(expanded ? false : index);
+          }}
+        >
+          <Plus className={`h-[32px] w-[32px]`} />
+        </div>
+      </div>
     );
   };
 
@@ -39,32 +52,31 @@ const Accordion = ({ list }: IAccordion) => {
     const isExpanded = index === isOpen;
     return (
       <>
-        {isExpanded && (
-          <motion.div
-            key={'content'}
-            initial="collapsed"
-            animate="open"
-            exit={`collapsed`}
-            variants={{
-              open: { opacity: 1, height: 'auto' },
-              collapsed: { opacity: 0, height: 0 }
-            }}
-            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
-          >
-            <div dangerouslySetInnerHTML={{ __html: data }} />
-          </motion.div>
-        )}
+        <motion.div
+          key={'content'}
+          animate={{
+            height: isExpanded ? 'auto' : 0,
+            opacity: isExpanded ? 1 : 0,
+            visibility: isExpanded ? 'visible' : 'hidden'
+          }}
+          transition={{ duration: 0.5 }}
+        >
+          <div dangerouslySetInnerHTML={{ __html: data }} />
+        </motion.div>
       </>
     );
   };
 
-  const [expanded, setExpand] = useState<false | number>(0);
+  const [expanded, setExpand] = useState<false | number>(false);
   return (
     <>
       {list && list.length > 0 && (
         <div>
           {list.map((item, key) => (
-            <div key={key}>
+            <div
+              key={key}
+              className={`border-b-[1px] border-solid border-black first-of-type:border-t-[1px]`}
+            >
               {item.title &&
                 renderHeader({
                   title: item.title,

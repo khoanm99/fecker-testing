@@ -1,4 +1,5 @@
-import Typo from '@/atoms/Typo';
+import Heading from '@/atoms/Typo/heading';
+import Text from '@/atoms/Typo/text';
 import { IAccordionList } from '@/Model/organisms';
 import Accordion from '@/molecules/Accordion';
 
@@ -13,24 +14,24 @@ const StyleGuideTemplate = () => {
   return (
     <>
       <div className={`space-y-10 p-8`}>
-        <Typo size={`h1`} renderAs={`h1`} title={`Headline 1`} />
-        <Typo size={`h2`} renderAs={`h2`} title={`Heading 2 / Names`} />
+        <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
+        <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 / Names`} />
         <div>
-          <Typo
+          <Heading
             size={`h2`}
             renderAs={`h2`}
             title={`Heading 2 Row 1`}
             cls={`italic`}
           />
-          <Typo size={`h2`} renderAs={`h2`} title={`Heading 2 Row 2`} />
+          <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 Row 2`} />
         </div>
-        <Typo size={`listFormularMenu`} title={`List / Formular / Menu`} />
-        <Typo size={`descBig`} title={`Description Big`} />
-        <Typo size={`text`} title={`Copy Text`} />
-        <Typo size={`number`} title={`Numbers`} />
-        <Typo size={`btn`} title={`Button`} />
-        <Typo size={`textSmall`} title={`Copy Text Small`} />
-        <Typo size={`descSmall`} title={`Description Small`} />
+        <Text size={`listFormularMenu`} title={`List / Formular / Menu`} />
+        <Text size={`descBig`} title={`Description Big`} />
+        <Text size={`text`} title={`Copy Text`} />
+        <Text size={`number`} title={`Numbers`} />
+        <Text size={`btn`} title={`Button`} />
+        <Text size={`textSmall`} title={`Copy Text Small`} />
+        <Text size={`descSmall`} title={`Description Small`} />
 
         <div>
           <div>Primary Colors</div>
