@@ -1,4 +1,4 @@
-import { SVGProps } from '@/Model/common';
+import { SVGProps } from '@/model/common';
 
 const Plus = ({ color = '#39c66b', className = '', ...props }: SVGProps) => {
   return (

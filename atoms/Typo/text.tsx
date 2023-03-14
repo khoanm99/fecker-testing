@@ -1,5 +1,5 @@
 import Typo from '@/components/foundation/typo';
-import { IKeyString } from '@/Model/common';
+import { IKeyString } from '@/model/common';
 import { ElementType, memo, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
