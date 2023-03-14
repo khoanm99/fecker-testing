@@ -1,6 +1,6 @@
 import Plus from '@/atoms/Svg/plus';
 import Text from '@/atoms/Typo/text';
-import { IAccordion } from '@/model/molecules/accordions';
+import { IAccordion } from '@/models/molecules/accordions';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MouseEvent, useState } from 'react';
 
@@ -41,11 +41,11 @@ const Accordion = ({ list }: IAccordion) => {
         <div className={`pr-3 lg:pr-5`}>
           <Text
             size={`number`}
-            title={`${index < 10 ? '0' + (index + 1) : index}`}
+            content={`${index < 10 ? '0' + (index + 1) : index}`}
             cls={`text-black`}
           />
         </div>
-        <Text title={title} size={`listFormularMenu`} />
+        <Text content={title} size={`listFormularMenu`} />
         <div
           className={`absolute right-0 cursor-pointer`}
           onClick={e => {

@@ -12,7 +12,7 @@ const HomeTemplate = () => {
       />
       <Text
         renderAs={'p'}
-        title={'Content: Cras et massa congue, cursus est et, lacinia nisi.'}
+        content={'Content: Cras et massa congue, cursus est et, lacinia nisi.'}
       />
     </div>
   );
