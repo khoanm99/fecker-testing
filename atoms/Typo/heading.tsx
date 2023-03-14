@@ -8,15 +8,13 @@ interface Props {
   size?: 'h1' | 'h2';
   cls?: string;
   title: string;
-  children?: ReactNode;
 }
 
 const Heading = ({
   renderAs = 'h1',
   size = 'h1',
   cls = '',
-  title = '',
-  children
+  title = ''
 }: Props) => {
   const listSize: IKeyString = {
     h1: 'font-baskervville italic lg:text-[80px] lg:leading-normal uppercase',
@@ -24,9 +22,11 @@ const Heading = ({
   };
 
   return (
-    <Typo title={title} renderAs={renderAs} cls={twMerge(listSize[size], cls)}>
-      {children}
-    </Typo>
+    <Typo
+      title={title}
+      renderAs={renderAs}
+      cls={twMerge(listSize[size], cls)}
+    />
   );
 };
 
