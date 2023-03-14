@@ -1,6 +1,6 @@
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
-import { IAccordionList } from '@/model/molecules/accordions';
+import { IAccordionList } from '@/models/molecules/accordions';
 import Accordion from '@/molecules/accordions';
 
 const StyleGuideTemplate = () => {

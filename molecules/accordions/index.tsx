@@ -1,6 +1,6 @@
 import Plus from '@/atoms/Svg/plus';
 import Text from '@/atoms/Typo/text';
-import { IAccordion } from '@/model/molecules/accordions';
+import { IAccordion } from '@/models/molecules/accordions';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MouseEvent, useState } from 'react';
 
