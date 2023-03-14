@@ -1,11 +1,12 @@
 import Plus from '@/atoms/Svg/plus';
 import Text from '@/atoms/Typo/text';
 import { IAccordion } from '@/models/molecules/accordions';
+import { rePosition } from '@/utils/rePosition';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MouseEvent, useState } from 'react';
+import { useRef, useState } from 'react';
 
 const Accordion = ({ list }: IAccordion) => {
-  const renderHeader = ({
+  const RenderHeader = ({
     title,
     index,
     expanded,
@@ -13,31 +14,19 @@ const Accordion = ({ list }: IAccordion) => {
   }: {
     title: string;
     index: number;
-    expanded: false | number;
+    expanded: number;
     setExpand: Function;
   }) => {
     const isOpen = index === expanded;
-    const scrollToOpenSection = (
-      e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
-    ) => {
-      e.preventDefault();
-      const scrollItem = document.getElementById(`accordion-${index}`);
-      if (scrollItem) {
-        setTimeout(() => {
-          window.scrollTo({
-            top:
-              scrollItem.getBoundingClientRect().top -
-              document.body.getBoundingClientRect().top -
-              30,
-            left: 0,
-            behavior: 'smooth'
-          });
-        }, 500);
-      }
+    const refContent = useRef<HTMLDivElement>(null);
+
+    const handleClick = () => {
+      setExpand(isOpen ? -1 : index);
+      if (refContent.current) rePosition({ scrollItem: refContent.current });
     };
 
     return (
-      <div className={`relative flex items-center pt-3 pb-4`}>
+      <div className={`relative flex items-center pt-3 pb-4`} ref={refContent}>
         <div className={`pr-3 lg:pr-5`}>
           <Text
             size={`number`}
@@ -48,10 +37,7 @@ const Accordion = ({ list }: IAccordion) => {
         <Text content={title} size={`listFormularMenu`} />
         <div
           className={`absolute right-0 cursor-pointer`}
-          onClick={e => {
-            setExpand(isOpen ? false : index);
-            scrollToOpenSection(e);
-          }}
+          onClick={() => handleClick()}
         >
           <Plus
             className={`h-[32px] w-[32px] [&_line]:origin-center [&_line]:transition-all [&_line]:duration-500 ${
@@ -65,14 +51,14 @@ const Accordion = ({ list }: IAccordion) => {
     );
   };
 
-  const renderDetail = ({
+  const RenderDetail = ({
     index,
     data,
     isOpen
   }: {
     index: number;
     data: any;
-    isOpen: false | number;
+    isOpen: number;
   }) => {
     const isExpanded = index === isOpen;
     return (
@@ -96,7 +82,7 @@ const Accordion = ({ list }: IAccordion) => {
     );
   };
 
-  const [expanded, setExpand] = useState<false | number>(false);
+  const [expanded, setExpand] = useState<number>(-1);
 
   return (
     <>
@@ -109,14 +95,14 @@ const Accordion = ({ list }: IAccordion) => {
               id={`accordion-${key}`}
             >
               {item.title &&
-                renderHeader({
+                RenderHeader({
                   title: item.title,
                   expanded,
                   setExpand,
                   index: key
                 })}
               {item.item &&
-                renderDetail({ data: item.item, isOpen: expanded, index: key })}
+                RenderDetail({ data: item.item, isOpen: expanded, index: key })}
             </div>
           ))}
         </div>
