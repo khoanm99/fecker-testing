@@ -41,11 +41,11 @@ const Accordion = ({ list }: IAccordion) => {
         <div className={`pr-3 lg:pr-5`}>
           <Text
             size={`number`}
-            title={`${index < 10 ? '0' + (index + 1) : index}`}
+            content={`${index < 10 ? '0' + (index + 1) : index}`}
             cls={`text-black`}
           />
         </div>
-        <Text title={title} size={`listFormularMenu`} />
+        <Text content={title} size={`listFormularMenu`} />
         <div
           className={`absolute right-0 cursor-pointer`}
           onClick={e => {

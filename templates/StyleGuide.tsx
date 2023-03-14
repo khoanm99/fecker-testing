@@ -37,13 +37,13 @@ const StyleGuideTemplate = () => {
           />
           <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 Row 2`} />
         </div>
-        <Text size={`listFormularMenu`} title={`List / Formular / Menu`} />
-        <Text size={`descBig`} title={`Description Big`} />
-        <Text size={`text`} title={`Copy Text`} />
-        <Text size={`number`} title={`Numbers`} />
-        <Text size={`btn`} title={`Button`} />
-        <Text size={`textSmall`} title={`Copy Text Small`} />
-        <Text size={`descSmall`} title={`Description Small`} />
+        <Text size={`listFormularMenu`} content={`List / Formular / Menu`} />
+        <Text size={`descBig`} content={`Description Big`} />
+        <Text size={`text`} content={`Copy Text`} />
+        <Text size={`number`} content={`Numbers`} />
+        <Text size={`btn`} content={`Button`} />
+        <Text size={`textSmall`} content={`Copy Text Small`} />
+        <Text size={`descSmall`} content={`Description Small`} />
 
         <Accordion list={list} />
 

@@ -14,7 +14,7 @@ interface Props {
     | 'number'
     | 'btn';
   cls?: string;
-  title: string;
+  content: string;
   children?: ReactNode;
 }
 
@@ -22,7 +22,7 @@ const Text = ({
   renderAs = 'div',
   size = 'text',
   cls = '',
-  title = '',
+  content = '',
   children
 }: Props) => {
   const listSize: IKeyString = {
@@ -36,7 +36,11 @@ const Text = ({
   };
 
   return (
-    <Typo title={title} renderAs={renderAs} cls={twMerge(listSize[size], cls)}>
+    <Typo
+      title={content}
+      renderAs={renderAs}
+      cls={twMerge(listSize[size], cls)}
+    >
       {children}
     </Typo>
   );
