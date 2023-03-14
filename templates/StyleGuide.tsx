@@ -1,16 +1,7 @@
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
-import { IAccordionList } from '@/Model/organisms';
-import Accordion from '@/molecules/Accordion';
 
 const StyleGuideTemplate = () => {
-  const list: IAccordionList = [
-    { title: 'Scheune und Wohnhaus AR', item: 'asdas' },
-    { title: 'Holzbau Plus Award 2022', item: 'asdas' },
-    { title: 'Innovation Einstellhalle arCHill', item: 'asdas' },
-    { title: 'Nachhaltigkeit mit Splittdecke', item: 'asdas' }
-  ];
-
   return (
     <>
       <div className={`space-y-10 p-8`}>
@@ -48,8 +39,6 @@ const StyleGuideTemplate = () => {
             </div>
           </div>
         </div>
-
-        <Accordion list={list} />
       </div>
     </>
   );
