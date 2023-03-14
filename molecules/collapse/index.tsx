@@ -53,7 +53,11 @@ const Collapse = ({ content }: { content: string[] }) => {
       </div>
       {showExpand && (
         <div onClick={() => handleClick()} className={`mt-7 cursor-pointer`}>
-          <Text size={`number`} content={`mehr lesen`} cls={`text-green`} />
+          <Text
+            size={`number`}
+            content={expanded ? '... weniger lesen' : '... mehr lesen'}
+            cls={`text-green`}
+          />
         </div>
       )}
     </div>
