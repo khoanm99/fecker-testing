@@ -1,7 +1,7 @@
+import Typo from '@/components/foundation/typo';
 import { IKeyString } from '@/Model/common';
 import { ElementType, memo, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
-import Typo from '.';
 
 interface Props {
   renderAs?: ElementType;
