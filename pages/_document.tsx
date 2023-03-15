@@ -33,7 +33,7 @@ class MyDocument extends Document {
             }}
           />
         </Head>
-        <body className="bg-beige font-poppins text-base font-normal leading-normal antialiased">
+        <body className="font-poppins bg-beige text-base font-normal leading-normal antialiased">
           <Main />
           <NextScript />
         </body>

@@ -27,26 +27,20 @@ const Accordion = ({ list }: IAccordion) => {
 
     return (
       <div className={`relative flex items-center pt-3 pb-4`} ref={refContent}>
-        <div className={`pr-3 lg:pr-5`}>
-          <Text
-            size={`number`}
-            content={`${index < 10 ? '0' + (index + 1) : index}`}
-            cls={`text-black`}
-          />
-        </div>
-        <Text content={title} size={`listFormularMenu`} />
-        <div
-          className={`absolute right-0 cursor-pointer`}
+        <Text
+          size={`number`}
+          content={`${index < 10 ? '0' + (index + 1) : index}`}
+          cls={`text-black pr-3 lg:pr-5`}
+        />
+        <Text content={title} size={`listFormulaMenu`} />
+        <Plus
           onClick={() => handleClick()}
-        >
-          <Plus
-            className={`h-[32px] w-[32px] [&_line]:origin-center [&_line]:transition-all [&_line]:duration-500 ${
-              isOpen
-                ? '[&_line:first-child]:opacity-0 [&_line:last-child]:rotate-90'
-                : ``
-            } `}
-          />
-        </div>
+          className={`absolute right-0 h-[32px] w-[32px] cursor-pointer [&_line]:origin-center [&_line]:transition-all [&_line]:duration-500 ${
+            isOpen
+              ? '[&_line:first-child]:opacity-0 [&_line:last-child]:rotate-90'
+              : ``
+          } `}
+        />
       </div>
     );
   };
@@ -87,12 +81,11 @@ const Accordion = ({ list }: IAccordion) => {
   return (
     <>
       {list && list.length > 0 && (
-        <div>
+        <>
           {list.map((item, key) => (
             <div
               key={key}
               className={`border-b-[1px] border-solid border-black first-of-type:border-t-[1px]`}
-              id={`accordion-${key}`}
             >
               {item.title &&
                 RenderHeader({
@@ -105,7 +98,7 @@ const Accordion = ({ list }: IAccordion) => {
                 RenderDetail({ data: item.item, isOpen: expanded, index: key })}
             </div>
           ))}
-        </div>
+        </>
       )}
     </>
   );

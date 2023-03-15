@@ -17,8 +17,8 @@ const Heading = ({
   title = ''
 }: Props) => {
   const listSize: IKeyString = {
-    h1: 'font-baskervville italic lg:text-[80px] lg:leading-normal uppercase',
-    h2: 'font-baskervville lg:text-[45px] lg:leading-normal'
+    h1: 'font-secondary italic lg:text-[80px] lg:leading-normal uppercase',
+    h2: 'font-secondary lg:text-[45px] lg:leading-normal'
   };
 
   return (
