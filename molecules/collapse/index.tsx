@@ -6,16 +6,7 @@ const Collapse = ({ content }: { content: string[] }) => {
   const [expanded, setExpand] = useState<boolean>(false);
   const [maxHeight, setMaxHeight] = useState<number>(0);
   const [showExpand, setShowExpand] = useState<boolean>(false);
-
-  const calcMaxHeight = () => {
-    let maxHeight = 30 * 6;
-    if (window.innerWidth < 1024) {
-      maxHeight = 24 * 6;
-    }
-
-    return maxHeight;
-  };
-  const handleClick = () => {
+  const handleCollapse = () => {
     if (refContent && refContent.current && window) {
       const maxHeightContent = calcMaxHeight();
       if (!expanded) {
@@ -26,13 +17,16 @@ const Collapse = ({ content }: { content: string[] }) => {
       setExpand(!expanded);
     }
   };
-
-  useEffect(() => {
+  const checkContentHeight = () => {
     if (content && content.length > 1 && refContent && refContent.current) {
       if (refContent.current.clientHeight > calcMaxHeight()) {
         setShowExpand(true);
       }
     }
+  };
+
+  useEffect(() => {
+    checkContentHeight();
     setMaxHeight(calcMaxHeight());
   }, []);
 
@@ -51,7 +45,7 @@ const Collapse = ({ content }: { content: string[] }) => {
       </div>
       {showExpand && (
         <div
-          onClick={() => handleClick()}
+          onClick={() => handleCollapse()}
           className={`mt-2 cursor-pointer lg:mt-6`}
         >
           <Text
@@ -63,6 +57,15 @@ const Collapse = ({ content }: { content: string[] }) => {
       )}
     </div>
   );
+};
+
+const calcMaxHeight = () => {
+  let maxHeight = 30 * 6;
+  if (window.innerWidth < 1024) {
+    maxHeight = 24 * 6;
+  }
+
+  return maxHeight;
 };
 
 export default Collapse;

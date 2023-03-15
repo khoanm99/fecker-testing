@@ -27,7 +27,7 @@ const AppHeader = () => {
   return (
     <header id="header" className={clsx(clsHeaderDefault)}>
       <div
-        className={`transition-all grid grid-cols-12 gap-4 pb-6 border-b items-center ${
+        className={`grid grid-cols-12 items-center gap-4 border-b pb-6 transition-all ${
           ctx.isSticky ? ' border-bright' : 'border-transparent'
         }`}
       >

@@ -17,8 +17,8 @@ module.exports = {
         green: '#39c66b'
       },
       fontFamily: {
-        poppins: `'Poppins', sans-serif;`,
-        baskervville: `'Baskervville', serif`
+        primary: `'Poppins', sans-serif;`,
+        secondary: `'Baskervville', serif`
       },
       fontSize: {},
       screens: {
