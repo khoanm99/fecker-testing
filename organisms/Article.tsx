@@ -12,7 +12,7 @@ const Article = ({ post, contentCls }: Props) => {
   return (
     <>
       {post.excerpt && (
-        <div className="prose-p:font-medium mb-6 text-3xl lg:indent-24">
+        <div className="mb-6 text-3xl prose-p:font-medium lg:indent-24">
           {post.excerpt}
         </div>
       )}

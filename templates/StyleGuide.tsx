@@ -50,7 +50,7 @@ const StyleGuideTemplate = () => {
 
   return (
     <>
-      <div className={`space-y-10 p-8`}>
+      <div className={`p-8`}>
         <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
         <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 / Names`} />
         <div>
@@ -62,7 +62,7 @@ const StyleGuideTemplate = () => {
           />
           <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 Row 2`} />
         </div>
-        <Text size={`listFormularMenu`} content={`List / Formular / Menu`} />
+        <Text size={`listFormulaMenu`} content={`List / Formula / Menu`} />
         <Text size={`descBig`} content={`Description Big`} />
         <Text size={`text`} content={`Copy Text`} />
         <Text size={`number`} content={`Numbers`} />

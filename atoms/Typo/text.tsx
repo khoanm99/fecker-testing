@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 interface Props {
   renderAs?: ElementType;
   size?:
-    | 'listFormularMenu'
+    | 'listFormulaMenu'
     | 'descBig'
     | 'descSmall'
     | 'text'
@@ -26,7 +26,7 @@ const Text = ({
   children
 }: Props) => {
   const listSize: IKeyString = {
-    listFormularMenu: 'font-extralight lg:text-[35px] lg:leading-normal',
+    listFormulaMenu: 'font-extralight lg:text-[35px] lg:leading-normal',
     descBig: 'font-extralight lg:text-3xl lg:leading-normal ',
     descSmall: 'font-medium lg:text-base lg:leading-normal ',
     text: 'font-extralight lg:text-xl lg:leading-normal ',
