@@ -12,7 +12,7 @@ const InfoWindow = ({
 }) => {
   return (
     <div
-      className={`absolute w-[255px] bg-white lg:left-[calc(50%_+_30px)] lg:top-[calc(50%_-_25px)] lg:space-y-8 lg:p-7`}
+      className={`absolute w-[255px] bg-white lg:left-[calc(50%_+_38px)] lg:top-[calc(50%_-_25px)] lg:space-y-8 lg:p-7`}
     >
       {content && <Text size={`textSmall`} content={content} />}
       <div>
