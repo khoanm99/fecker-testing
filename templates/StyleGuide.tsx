@@ -1,8 +1,8 @@
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
 import { IAccordionList } from '@/models/molecules/accordions';
-import Accordion from '@/molecules/accordions';
 import Collapse from '@/molecules/collapse';
+import Accordion from '@/molecules/commons/accordions';
 import ContactMap from '@/organisms/contact/map';
 
 const StyleGuideTemplate = () => {

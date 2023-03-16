@@ -1,9 +1,10 @@
 import Typo from '@/components/foundation/typo';
 import { IKeyString } from '@/models/common';
-import { ElementType, memo, ReactNode } from 'react';
+import { ElementType, HTMLAttributes, memo, ReactNode } from 'react';
+import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { twMerge } from 'tailwind-merge';
 
-interface Props {
+interface Props extends HTMLAttributes<ReactElement> {
   renderAs?: ElementType;
   size?:
     | 'listFormulaMenu'
@@ -23,7 +24,8 @@ const Text = ({
   size = 'text',
   cls = '',
   content = '',
-  children
+  children,
+  ...props
 }: Props) => {
   const listSize: IKeyString = {
     listFormulaMenu: 'font-extralight lg:text-[35px] lg:leading-normal',
@@ -37,6 +39,7 @@ const Text = ({
 
   return (
     <Typo
+      {...props}
       title={content}
       renderAs={renderAs}
       cls={twMerge(listSize[size], cls)}
