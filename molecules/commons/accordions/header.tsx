@@ -25,11 +25,11 @@ const AccordionHeader = ({
   return (
     <div className={`relative flex items-center pt-3 pb-4`} ref={refContent}>
       <Text
-        size={`number`}
+        size={`numberList`}
         content={`${index < 10 ? '0' + (index + 1) : index}`}
-        cls={`text-black pr-3 lg:pr-5`}
+        className={`pr-3 text-black lg:pr-5`}
       />
-      <Text content={title} size={`listFormulaMenu`} />
+      <Text content={title} size={`listDropDown`} />
       <Plus
         onClick={() => handleClick()}
         className={`absolute right-0 h-[32px] w-[32px] cursor-pointer [&_line]:origin-center [&_line]:transition-all [&_line]:duration-500 ${

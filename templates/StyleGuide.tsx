@@ -1,8 +1,13 @@
+import PrimaryButton from '@/atoms/button';
+import ContactSvg from '@/atoms/Svg/contact';
+import DownloadSvg from '@/atoms/Svg/download';
+import InstagramSvg from '@/atoms/Svg/instagram';
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
 import { IAccordionList } from '@/models/molecules/accordions';
 import Collapse from '@/molecules/collapse';
 import Accordion from '@/molecules/commons/accordions';
+import ToggleWithText from '@/molecules/toggle';
 import ContactMap from '@/organisms/contact/map';
 
 const StyleGuideTemplate = () => {
@@ -64,27 +69,87 @@ const StyleGuideTemplate = () => {
 
   return (
     <>
-      <div className={`p-8`}>
+      <div className={`space-y-10 p-8`}>
         <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
-        <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 / Names`} />
-        <div>
-          <Heading
-            size={`h2`}
-            renderAs={`h2`}
-            title={`Heading 2 Row 1`}
-            cls={`italic`}
-          />
-          <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 Row 2`} />
-        </div>
-        <Text size={`listFormulaMenu`} content={`List / Formula / Menu`} />
-        <Text size={`descBig`} content={`Description Big`} />
-        <Text size={`text`} content={`Copy Text`} />
-        <Text size={`number`} content={`Numbers`} />
-        <Text size={`btn`} content={`Button`} />
-        <Text size={`textSmall`} content={`Copy Text Small`} />
-        <Text size={`descSmall`} content={`Description Small`} />
+        <Heading size={`h2`} renderAs={`h2`} title={`Heading 2`} />
+        <Heading
+          size={`h2`}
+          renderAs={`h2`}
+          title={`Heading 2 extralight`}
+          className={`font-extralight`}
+        />
+        <Heading size={`h3`} renderAs={`h3`} title={`Heading 3`} />
+        <Text
+          size={`bodyText`}
+          content={`Body Text Highlight / Headline Small
+Lorem ipsum`}
+          className={`font-bold`}
+        />
 
-        <Accordion list={list} />
+        <Text
+          size={`bodyText`}
+          content={`Copy = Body Text
+          Lorem ipsum`}
+        />
+
+        <Text
+          size={`bodyTextSmall`}
+          content={`Copy 2 = Body Text Small Footer
+          Lorem ipsum`}
+        />
+
+        <Text size={`listDropDown`} content={`List / Drop Down List`} />
+
+        <Text size={`numberList`} content={`numbers list`} />
+
+        <Text size={`numberHome`} content={`numbers home`} />
+
+        <Text size={`textOnPicture`} content={`text on pictures`} />
+
+        <Text
+          size={`menuLink`}
+          content={`links (HEADER MENU / FOOTER LINKS)`}
+        />
+
+        <Text
+          size={`menuHeadline`}
+          content={`fullscreen menu headline`}
+          className={`cursor-pointer`}
+        />
+
+        <Text
+          size={`menuHeadline`}
+          content={`fullscreen menu headline Hover Me`}
+          className={`cursor-pointer text-primary hover:text-white`}
+        />
+
+        <Text size={`menu`} content={`fullscreen menu`} />
+
+        <Text size={`toggleDesc`} content={`TOGGLE BUTTON DESCRIPTION`} />
+
+        <Text size={`btn`} content={`Button`} />
+
+        <div className="space-y-3">
+          <div className=" text-red-500">Hover me</div>
+          <DownloadSvg />
+          <InstagramSvg />
+
+          <div className={`text-rose-400`}>Primary button</div>
+          <div className="">
+            <PrimaryButton title={`Kontakt aufnehmen`} />
+            <PrimaryButton title={`Senden`} />
+          </div>
+          <div className="">
+            <ContactSvg />
+          </div>
+
+          <ToggleWithText
+            content={{ left: 'Kachelansicht', right: 'Listenansicht' }}
+          />
+        </div>
+        <div>
+          <Accordion list={list} />
+        </div>
 
         <Collapse content={sampleContent} />
 
@@ -95,17 +160,23 @@ const StyleGuideTemplate = () => {
         <Collapse content={sampleContentLong} />
 
         <div>
-          <div>Primary Colors</div>
+          <div className={``}>Primary Colors</div>
           <div className="flex flex-wrap">
-            <div className="h-[120px] w-[360px] rounded-lg bg-secondary "></div>
+            <div className="h-[120px] w-[360px] rounded-lg bg-primary"></div>
             <div className="w-full">
               <strong>Primary</strong>/ #FF003D
             </div>
           </div>
           <div className="flex flex-wrap">
-            <div className="h-[120px] w-[360px] rounded-lg bg-primary"></div>
+            <div className="h-[120px] w-[360px] rounded-lg bg-white"></div>
             <div className="w-full">
-              <strong>Secondary</strong>/ #1D1D1D
+              <strong>White</strong>/ #FFF
+            </div>
+          </div>
+          <div className="flex flex-wrap">
+            <div className="h-[120px] w-[360px] rounded-lg bg-black"></div>
+            <div className="w-full">
+              <strong>Black</strong>/ #000
             </div>
           </div>
         </div>

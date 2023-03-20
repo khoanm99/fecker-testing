@@ -7,20 +7,22 @@ import { twMerge } from 'tailwind-merge';
 interface Props extends HTMLAttributes<ReactElement> {
   renderAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   size?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  cls?: string;
+  className?: string;
   title: string;
 }
 
 const Heading = ({
   renderAs = 'h1',
   size = 'h1',
-  cls = '',
-  title = ''
+  className = '',
+  title = '',
+  ...props
 }: Props) => {
+  const defaultCls = 'font-primary leading-normal';
   const listSize: IKeyString = {
-    h1: 'font-secondary italic lg:text-[80px] lg:leading-normal uppercase',
-    h2: 'font-secondary lg:text-[45px] lg:leading-normal',
-    h3: '',
+    h1: 'text-[40px] leading-[1.2] font-bold uppercase lg:text-[120px]',
+    h2: 'text-[20px] font-bold uppercase lg:text-[45px]',
+    h3: 'text-[20px] font-extrabold uppercase lg:text-[45px]',
     h4: '',
     h5: '',
     h6: ''
@@ -28,9 +30,10 @@ const Heading = ({
 
   return (
     <Typo
+      {...props}
       title={title}
       renderAs={renderAs}
-      cls={twMerge(listSize[size], cls)}
+      cls={twMerge(defaultCls, listSize[size], className)}
     />
   );
 };

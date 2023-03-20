@@ -22,7 +22,7 @@ const AccordionContent = ({
           transition={{ duration: 0.3 }}
           className={`overflow-hidden`}
         >
-          <Text content={data} size={`text`} cls={`pb-4`} />
+          <Text content={data} size={`bodyText`} className={`pb-4`} />
         </motion.div>
       </AnimatePresence>
     </>

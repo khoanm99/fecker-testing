@@ -8,7 +8,7 @@ const HomeTemplate = () => {
         renderAs={'h1'}
         size={`h1`}
         title={'Heading H1'}
-        cls={'heading-h1 pb-[20px]'}
+        className={'heading-h1 pb-[20px]'}
       />
       <Text
         renderAs={'p'}
