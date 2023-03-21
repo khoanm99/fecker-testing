@@ -1,8 +1,15 @@
+import PrimaryButton from '@/atoms/button';
+import Input from '@/atoms/input';
+import ContactSvg from '@/atoms/Svg/contact';
+import ContactSticky from '@/atoms/Svg/contactSticky';
+import DownloadSvg from '@/atoms/Svg/download';
+import InstagramSvg from '@/atoms/Svg/instagram';
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
 import { IAccordionList } from '@/models/molecules/accordions';
-import Accordion from '@/molecules/accordions';
 import Collapse from '@/molecules/collapse';
+import Accordion from '@/molecules/commons/accordions';
+import ToggleWithText from '@/molecules/toggle';
 import ContactMap from '@/organisms/contact/map';
 
 const StyleGuideTemplate = () => {
@@ -26,7 +33,7 @@ const StyleGuideTemplate = () => {
   ];
 
   const sampleContent = [
-    'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.',
+    'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.  In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.',
     'Wir verbauen gerne naturbelassenes Holz. Vor allem in tiefen Lagen, wo die Luftfeuchtigkeit hoch und wenig Sonnentage sind, ist es wichtig, auf hochwertiges Holz zu setzen. In höheren Lagen kann eine gewöhnliche Fichte viele Hundert Jahre Freibewitterung aushalten.',
     'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.'
   ];
@@ -64,27 +71,69 @@ const StyleGuideTemplate = () => {
 
   return (
     <>
-      <div className={`p-8`}>
+      <div className={`space-y-10 p-8 pt-[100px]`}>
         <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
-        <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 / Names`} />
-        <div>
-          <Heading
-            size={`h2`}
-            renderAs={`h2`}
-            title={`Heading 2 Row 1`}
-            cls={`italic`}
-          />
-          <Heading size={`h2`} renderAs={`h2`} title={`Heading 2 Row 2`} />
-        </div>
-        <Text size={`listFormulaMenu`} content={`List / Formula / Menu`} />
-        <Text size={`descBig`} content={`Description Big`} />
-        <Text size={`text`} content={`Copy Text`} />
-        <Text size={`number`} content={`Numbers`} />
-        <Text size={`btn`} content={`Button`} />
-        <Text size={`textSmall`} content={`Copy Text Small`} />
-        <Text size={`descSmall`} content={`Description Small`} />
+        <Heading size={`h2`} renderAs={`h2`} title={`Heading 2`} />
+        <Heading
+          size={`h2`}
+          renderAs={`h2`}
+          title={`Heading 2 extralight`}
+          className={`font-extralight`}
+        />
+        <Heading size={`h3`} renderAs={`h3`} title={`Heading 3`} />
+        <Text
+          size={`bodyText`}
+          content={`Body Text Highlight / Headline Small
+Lorem ipsum`}
+          className={`font-bold`}
+        />
 
-        <Accordion list={list} />
+        <Text
+          size={`bodyText`}
+          content={`Copy = Body Text
+          Lorem ipsum`}
+        />
+
+        <Text
+          size={`bodyTextSmall`}
+          content={`Copy 2 = Body Text Small Footer
+          Lorem ipsum`}
+        />
+
+        <Text size={`listDropDown`} content={`List / Drop Down List`} />
+
+        <Text size={`numberList`} content={`numbers list`} />
+
+        <Text size={`numberHome`} content={`numbers home`} />
+
+        <Text size={`textOnPicture`} content={`text on pictures`} />
+
+        <Text
+          size={`menuLink`}
+          content={`links (HEADER MENU / FOOTER LINKS)`}
+          className={`hover:text-primary`}
+        />
+
+        <Text
+          size={`menuHeadline`}
+          content={`fullscreen menu headline`}
+          className={`cursor-pointer hover:text-primary`}
+        />
+
+        <Text
+          size={`menuHeadline`}
+          content={`fullscreen menu headline Hover Me`}
+          className={`cursor-pointer text-primary hover:text-white`}
+        />
+
+        <Text size={`menu`} content={`fullscreen menu`} />
+
+        <Text size={`toggleDesc`} content={`TOGGLE BUTTON DESCRIPTION`} />
+
+        <Text size={`btn`} content={`Button`} />
+        <div>
+          <Accordion list={list} />
+        </div>
 
         <Collapse content={sampleContent} />
 
@@ -95,21 +144,89 @@ const StyleGuideTemplate = () => {
         <Collapse content={sampleContentLong} />
 
         <div>
-          <div>Primary Colors</div>
+          <div className={``}>Primary Colors</div>
           <div className="flex flex-wrap">
-            <div className="h-[120px] w-[360px] rounded-lg bg-secondary "></div>
+            <div className="h-[120px] w-[360px] rounded-lg bg-primary"></div>
             <div className="w-full">
               <strong>Primary</strong>/ #FF003D
             </div>
           </div>
           <div className="flex flex-wrap">
-            <div className="h-[120px] w-[360px] rounded-lg bg-primary"></div>
+            <div className="h-[120px] w-[172px] rounded-lg bg-white"></div>
             <div className="w-full">
-              <strong>Secondary</strong>/ #1D1D1D
+              <strong>White</strong>/ #FFF
+            </div>
+          </div>
+          <div className="flex flex-wrap">
+            <div className="h-[120px] w-[172px] rounded-lg bg-black"></div>
+            <div className="w-full">
+              <strong>Black</strong>/ #000
             </div>
           </div>
         </div>
 
+        <div className="space-y-3">
+          <div className="">
+            <div className="flex">
+              <div className="my-3 mx-2 w-[30%]">
+                <div className={` pb-4 text-rose-400`}>Primary button</div>
+                <PrimaryButton title={`Kontakt aufnehmen`} />
+              </div>
+              <div className={`w-[30% my-3 mx-2`}>
+                <div className={`pb-4  text-rose-400`}>Hover Button</div>
+                <PrimaryButton title={`Senden`} />
+              </div>
+              <div className="my-3 mx-2 w-[30%]  pb-4">
+                <div className={`text-rose-400`}>Sticky Contact Button</div>
+                <ContactSticky />
+              </div>
+            </div>
+          </div>
+
+          <ToggleWithText
+            content={{ left: 'Kachelansicht', right: 'Listenansicht' }}
+            className={`justify-start`}
+          />
+
+          <div className=" text-red-500">Hover me</div>
+          <DownloadSvg />
+          <ContactSvg />
+          <InstagramSvg />
+
+          <Text
+            size={`menuHeadline`}
+            content={`ANGEBOT`}
+            className={`cursor-pointer hover:text-primary`}
+          />
+          <Text
+            size={`menu`}
+            content={`VERMIETEN`}
+            className={`cursor-pointer hover:text-primary`}
+          />
+
+          <div>
+            <div className=" text-red-500">Footer hover</div>
+            <Text
+              size={`menuLink`}
+              content={`firma`}
+              className={`cursor-pointer hover:text-primary`}
+            />
+          </div>
+        </div>
+        <div className="max-w-[500px] space-y-5">
+          <Input placeholder={`Vorname Name`} />
+          <Input placeholder={`Email`} />
+          <Input placeholder={`Nachricht`} />
+
+          <div className="flex justify-between">
+            <Text
+              content={`Mit dem Senden akzeptieren Sie die Datenschutzerklärung`}
+              className={`w-[50%]`}
+              size={`bodyTextSmall`}
+            />
+            <PrimaryButton title="Senden" />
+          </div>
+        </div>
         <ContactMap maker={sampleMakerPosition} />
       </div>
     </>

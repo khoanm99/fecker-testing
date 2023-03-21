@@ -1,18 +1,28 @@
-import { ElementType, ReactNode } from 'react';
+import { ElementType, HTMLAttributes, ReactNode } from 'react';
+import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { twMerge } from 'tailwind-merge';
 
-interface Props {
+interface Props extends HTMLAttributes<ReactElement> {
   renderAs?: ElementType;
   cls?: string;
   title: string;
   children?: ReactNode;
 }
 
-const Typo = ({ renderAs = 'div', cls = '', title = '', children }: Props) => {
+const Typo = ({
+  renderAs = 'div',
+  cls = '',
+  title = '',
+  children,
+  ...props
+}: Props) => {
   const Element = renderAs;
   return (
-    <Element className={twMerge(cls)}>
-      {title != '' && <span dangerouslySetInnerHTML={{ __html: title }}></span>}
+    <Element
+      {...props}
+      className={twMerge(cls)}
+      dangerouslySetInnerHTML={{ __html: title }}
+    >
       {children && <>{children}</>}
     </Element>
   );

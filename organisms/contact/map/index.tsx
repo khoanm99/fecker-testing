@@ -1,3 +1,4 @@
+import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
 import { ILatLngCMS } from '@/models/molecules/map';
 import InfoWindow from '@/molecules/infoWindow';
@@ -8,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 const ContactMap = ({ maker }: { maker: ILatLngCMS[] }) => {
   const render = (status: Status) => {
-    return <Text size={`descBig`} content={status} renderAs={`h3`}></Text>;
+    return <Heading size={`h3`} title={status} renderAs={`h3`} />;
   };
   const [listMaker, setListMarker] = useState<ILatLngCMS[]>();
   const [isOpenInfo, setIsOpenInfo] = useState<boolean>(true);

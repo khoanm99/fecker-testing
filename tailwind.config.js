@@ -12,13 +12,10 @@ module.exports = {
     extend: {
       colors: {
         beige: '#ebe9e3',
-        primary: '#ff003d',
-        secondary: '#1d1d1d',
-        green: '#39c66b'
+        primary: '#39c66b'
       },
       fontFamily: {
-        primary: `'Poppins', sans-serif;`,
-        secondary: `'Baskervville', serif`
+        primary: `'Poppins', sans-serif;`
       },
       fontSize: {},
       screens: {
