@@ -10,10 +10,3 @@ export interface IClassName {
 }
 
 export type SVGProps = HTMLAttributes<HTMLOrSVGElement> & IClassName;
-
-export interface IImage {
-  width?: number;
-  height?: number;
-  src?: string;
-  alt?: string;
-}
