@@ -1,38 +1,34 @@
 import PrimaryButton from '@/atoms/button';
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
-import { ITextBlock } from '@/models/common';
 import { IContentBlock } from '@/models/molecules/contentBlock';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const ContentBlock = ({
-  title,
-  description,
-  image,
-  buttonLink,
+  textBlockData,
   index,
   state = 'layout-right'
 }: IContentBlock) => {
+  const imageData = textBlockData?.image?.data?.attributes;
   return (
     <div
       className={`relative mx-auto flex max-w-[1440px] flex-wrap px-5 lg:px-0 ${
         state == 'layout-right' ? '' : 'justify-end lg:pt-[60px]'
       }`}
     >
-      {image && image.url && (
+      {imageData && imageData.url && imageData.width && imageData.height && (
         <Image
-          src={image.url}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
+          src={imageData.url}
+          alt={imageData.alternativeText ?? ''}
+          width={755}
+          height={(imageData.height * 755) / imageData.width}
         />
       )}
-      {title &&
+      {textBlockData &&
+        textBlockData.title &&
         RenderBlockText({
-          title,
-          description,
-          buttonLink,
+          textBlockData,
           index,
           state
         })}
@@ -42,14 +38,8 @@ const ContentBlock = ({
 
 export default ContentBlock;
 
-const RenderBlockText = ({
-  title,
-  description,
-  buttonLink,
-  index,
-  state
-}: IContentBlock) => {
-  const blockRight = `justify-end lg:bottom-0 lg:right-[50px]`;
+const RenderBlockText = ({ textBlockData, index, state }: IContentBlock) => {
+  const blockRight = `justify-end lg:bottom-0 lg:right-[50px] 2xl:right-[56px]`;
   const blockLeft = `justify-start lg:top-0 lg:left-0`;
   return (
     <div
@@ -58,8 +48,10 @@ const RenderBlockText = ({
       } lg:absolute `}
     >
       <div
-        className={`relative mt-[-123px] max-w-[280px] bg-beige pl-12 pt-[10px] md:max-w-[400px] md:pt-8 lg:mt-0 lg:w-[640px] lg:max-w-none  lg:pt-[60px] lg:pb-[66px] 2xl:w-[720px] ${
-          state == 'layout-right' ? 'lg:pl-[88px]' : 'pr-5 lg:pl-[128px]'
+        className={`relative mt-[-123px] max-w-[280px] bg-beige pl-12 pt-[10px] md:max-w-[400px] md:pt-8 lg:mt-0 lg:w-[640px] lg:max-w-none  lg:pt-[60px] lg:pb-[66px] 2xl:w-[770px] ${
+          state == 'layout-right'
+            ? 'lg:pl-[88px]'
+            : 'pr-5 lg:pl-[128px] 2xl:pl-[144px] 2xl:pr-[50px]'
         }`}
       >
         {index && (
@@ -69,25 +61,31 @@ const RenderBlockText = ({
             className={`absolute top-[10px] left-[10px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-black md:top-[33px] lg:static lg:h-[50px] lg:w-[50px]`}
           />
         )}
-        {title && (
+        {textBlockData && textBlockData.title && (
           <Heading
             size={`h2`}
             renderAs={`h2`}
-            title={title}
+            title={textBlockData.title}
             className={`pb-[5px] lg:pt-4 lg:pb-3`}
           />
         )}
-        {description && (
+        {textBlockData && textBlockData.description && (
           <Text
             size={`bodyText`}
             renderAs={`p`}
-            content={description}
+            content={textBlockData.description}
             className={`pb-[30px] lg:max-w-[465px] lg:pb-10 2xl:max-w-[525px]`}
           />
         )}
-        {buttonLink && (
-          <Link href={buttonLink.url} title={buttonLink.title}>
-            <PrimaryButton title={buttonLink.title} className={``} />
+        {textBlockData && textBlockData.buttonLink && (
+          <Link
+            href={textBlockData.buttonLink.url}
+            title={textBlockData.buttonLink.title}
+          >
+            <PrimaryButton
+              title={textBlockData.buttonLink.title}
+              className={``}
+            />
           </Link>
         )}
       </div>

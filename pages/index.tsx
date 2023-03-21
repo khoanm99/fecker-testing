@@ -5,11 +5,19 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
+import {
+  HomeSectionEntityResponse,
+  UploadFileEntityResponse
+} from '@/graphql/generated';
 
-const Home = () => {
+interface Props {
+  homeSection?: HomeSectionEntityResponse;
+}
+
+const Home = ({ homeSection }: Props) => {
   return (
     <DefaultLayout>
-      <HomeTemplate />
+      {homeSection && <HomeTemplate dataResponse={homeSection} />}
       <NextSeo title="" description="" />
     </DefaultLayout>
   );
@@ -33,9 +41,10 @@ export const getStaticProps: GetStaticProps = async () => {
       notFound: true
     };
   }
+
   return {
     props: {
-      payload: rs?.data
+      homeSection: rs?.data?.homeSection ?? {}
     }
   };
 };
