@@ -14,7 +14,7 @@ const HeaderMenu = () => {
           <li key={key} className=" lg:pr-[50px]">
             <Link
               href={item.url}
-              className={`text-[16px] font-extrabold uppercase leading-[24px] text-white transition-all duration-300 hover:text-green ${
+              className={`text-[16px] font-extrabold uppercase leading-[24px] text-white transition-all duration-300 hover:text-primary ${
                 router.asPath === item.url ? 'underline underline-offset-4' : ''
               }`}
             >
