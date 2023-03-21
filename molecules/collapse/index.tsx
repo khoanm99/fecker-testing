@@ -33,27 +33,24 @@ const Collapse = ({ content }: { content: string[] }) => {
   return (
     <div>
       <div
-        className={`overflow-hidden transition-all duration-300`}
+        className={`mb-6 overflow-hidden transition-all duration-300 lg:mb-[30px] `}
         style={{ maxHeight: maxHeight }}
       >
-        <div ref={refContent} className={`space-y-6 lg:space-y-7`}>
+        <div ref={refContent} className={`space-y-6  lg:space-y-[30px]`}>
           {content.length > 0 &&
             content.map((item, key) => (
-              <Text size={`text`} renderAs={`p`} content={item} key={key} />
+              <Text size={`bodyText`} renderAs={`p`} content={item} key={key} />
             ))}
         </div>
       </div>
       {showExpand && (
-        <div
+        <Text
+          size={`btn`}
+          content={expanded ? '... weniger lesen' : '... mehr lesen'}
+          className={`cursor-pointer text-primary`}
+          renderAs={`span`}
           onClick={() => handleCollapse()}
-          className={`mt-2 cursor-pointer lg:mt-6`}
-        >
-          <Text
-            size={`number`}
-            content={expanded ? '... weniger lesen' : '... mehr lesen'}
-            cls={`text-green`}
-          />
-        </div>
+        />
       )}
     </div>
   );
