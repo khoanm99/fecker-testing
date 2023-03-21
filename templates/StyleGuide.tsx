@@ -3,6 +3,7 @@ import Text from '@/atoms/Typo/text';
 import { IAccordionList } from '@/models/molecules/accordions';
 import Accordion from '@/molecules/accordions';
 import Collapse from '@/molecules/collapse';
+import ContactMap from '@/organisms/contact/map';
 
 const StyleGuideTemplate = () => {
   const list: IAccordionList = [
@@ -46,6 +47,19 @@ const StyleGuideTemplate = () => {
     'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.',
     'Wir verbauen gerne naturbelassenes Holz. Vor allem in tiefen Lagen, wo die Luftfeuchtigkeit hoch und wenig Sonnentage sind, ist es wichtig, auf hochwertiges Holz zu setzen. In höheren Lagen kann eine gewöhnliche Fichte viele Hundert Jahre Freibewitterung aushalten.',
     'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.'
+  ];
+
+  const sampleMakerPosition = [
+    {
+      attributes: {
+        lat: 47.49861601840052,
+        lng: 9.420276747114341,
+        content:
+          'Fecker Holzbau AG <br/> Achill Fecker <br/> Pündtstrasse 3 <br/> 9320 Arbon',
+        phone: '+41 71 290 10 65',
+        email: 'info@feckerholzbau.ch'
+      }
+    }
   ];
 
   return (
@@ -95,6 +109,8 @@ const StyleGuideTemplate = () => {
             </div>
           </div>
         </div>
+
+        <ContactMap maker={sampleMakerPosition} />
       </div>
     </>
   );
