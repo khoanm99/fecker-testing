@@ -4,6 +4,8 @@ import HomeTemplate from '@/templates/HomeTemplate';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NextSeo } from 'next-seo';
+import { initializeApollo } from '@/utils/apolloClient';
+import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
 
 const Home = () => {
   return (
@@ -16,12 +18,26 @@ const Home = () => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async context => {
-  const locale: string = context.locale ? context.locale : '';
+export const getStaticProps: GetStaticProps = async () => {
+  const apolloClient = initializeApollo();
 
+  const rs: any = await apolloClient
+    .query({
+      query: GET_HOME_SECTION
+    })
+    .catch(() => {
+      return {
+        notFound: true
+      };
+    });
+  if (!rs?.data) {
+    return {
+      notFound: true
+    };
+  }
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common']))
+      payload: rs?.data
     }
   };
 };

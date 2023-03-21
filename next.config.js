@@ -11,7 +11,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')]
   },
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'fecker-holzbau-cms.absolutagentur.ch'],
     minimumCacheTTL: 60
   }
 };
