@@ -3,6 +3,7 @@ import { IAppContext } from '@/types';
 import clsx from 'clsx';
 import { useTranslation } from 'next-i18next';
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import LogoSVG from 'atoms/Svg/logo';
 import PhoneSVG from 'atoms/Svg/phone';
 import Link from 'next/link';
@@ -47,15 +48,20 @@ const HeaderLogo = () => {
 };
 
 const HeaderMenu = () => {
+  const router = useRouter();
   return (
     <ul className="hidden flex-row lg:block lg:flex lg:w-[calc(100%-118px-64px)] lg:justify-end lg:pt-[17px]">
       {menuData &&
         menuData.main.map((item, key) => (
-          <li
-            key={key}
-            className="font-extrabold uppercase text-white lg:pr-[50px]"
-          >
-            <Link href={item.url}>{item.title}</Link>
+          <li key={key} className=" lg:pr-[50px]">
+            <Link
+              href={item.url}
+              className={`text-[16px] font-extrabold uppercase leading-[24px] text-white transition-all hover:text-green ${
+                router.asPath === item.url ? 'underline underline-offset-4' : ''
+              }`}
+            >
+              {item.title}
+            </Link>
           </li>
         ))}
     </ul>
@@ -73,7 +79,7 @@ const HeaderAction = () => {
   return (
     <div className="flex flex-col justify-around bg-green py-[10px] px-[14px] lg:justify-start lg:bg-transparent lg:p-[0px] lg:pr-[20px] lg:pt-[10px]">
       <div
-        className="flex h-[36px] w-[36px] flex-col items-center justify-center"
+        className="flex h-[36px] w-[36px] cursor-pointer flex-col items-center justify-center"
         onClick={clickHandle}
       >
         <span className="h-[2px] w-[20px] rounded-[2px] bg-white lg:w-[36px] lg:bg-green"></span>
