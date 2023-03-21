@@ -198,7 +198,6 @@ Lorem ipsum`}
             content={`ANGEBOT`}
             className={`cursor-pointer hover:text-primary`}
           />
-
           <Text
             size={`menu`}
             content={`VERMIETEN`}
@@ -212,6 +211,20 @@ Lorem ipsum`}
               content={`firma`}
               className={`cursor-pointer hover:text-primary`}
             />
+          </div>
+        </div>
+        <div className="max-w-[500px] space-y-5">
+          <Input placeholder={`Vorname Name`} />
+          <Input placeholder={`Email`} />
+          <Input placeholder={`Nachricht`} />
+
+          <div className="flex justify-between">
+            <Text
+              content={`Mit dem Senden akzeptieren Sie die Datenschutzerklärung`}
+              className={`w-[50%]`}
+              size={`bodyTextSmall`}
+            />
+            <PrimaryButton title="Senden" />
           </div>
         </div>
         <ContactMap maker={sampleMakerPosition} />
