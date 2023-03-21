@@ -232,8 +232,6 @@ Lorem ipsum`}
             </div>
           </div>
         </div>
-        <ListContentBlock list={sampleBlockTextJson.data} />
-
         <ContactMap maker={sampleMakerPosition} />
       </div>
     </>

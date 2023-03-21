@@ -1,16 +1,17 @@
-import { IContentBlock } from '@/models/molecules/contentBlock';
+import { ComponentBasicTextBlock, Maybe } from '@/graphql/generated';
 import ContentBlock from '@/molecules/commons/contentBlock';
 
-const ListContentBlock = ({ list }: { list: IContentBlock[] }) => {
+const ListContentBlock = ({
+  textBlock
+}: {
+  textBlock: Maybe<ComponentBasicTextBlock>[];
+}) => {
   return (
     <div className={`space-y-[100px] lg:space-y-[155px]`}>
-      {list &&
-        list.map((item, key) => (
+      {textBlock &&
+        textBlock.map((item, key) => (
           <ContentBlock
-            title={item.title}
-            description={item.description}
-            image={item.image}
-            buttonLink={item.buttonLink}
+            textBlockData={item}
             state={(key + 1) % 2 == 0 ? 'layout-left' : 'layout-right'}
             index={key + 1}
             key={key}

@@ -11,7 +11,11 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')]
   },
   images: {
-    domains: ['localhost', 'fecker-holzbau-cms.absolutagentur.ch'],
+    domains: [
+      'localhost',
+      'fecker-holzbau-cms.absolutagentur.ch',
+      'storage.googleapis.com'
+    ],
     minimumCacheTTL: 60
   }
 };
