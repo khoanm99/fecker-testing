@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-const AppFooter = () => {
+const Footer = () => {
   return (
     <footer id="footer" className="">
       Footer
@@ -8,4 +8,4 @@ const AppFooter = () => {
   );
 };
 
-export default memo(AppFooter);
+export default memo(Footer);
