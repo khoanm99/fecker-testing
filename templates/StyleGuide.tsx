@@ -33,7 +33,7 @@ const StyleGuideTemplate = () => {
   ];
 
   const sampleContent = [
-    'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.',
+    'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.  In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.',
     'Wir verbauen gerne naturbelassenes Holz. Vor allem in tiefen Lagen, wo die Luftfeuchtigkeit hoch und wenig Sonnentage sind, ist es wichtig, auf hochwertiges Holz zu setzen. In höheren Lagen kann eine gewöhnliche Fichte viele Hundert Jahre Freibewitterung aushalten.',
     'Holz altert natürlich, wenn es der Witterung ausgesetzt ist. Die Dauerhaftigkeit von Holzfassaden kann wesentlich beeinflusst werden. Am effektivsten ist der konstruktive Holzschutz zum Beispiel mit Vordächern. Der chemische Holzschutz mit Anstrichen schützt meist nur die Oberfläche. In die Tiefe eingedrungenes Wasser kann dort erheblichen Schaden anrichten, wenn das Brett nicht schnell genug wieder austrocknen kann.'
   ];
@@ -71,7 +71,7 @@ const StyleGuideTemplate = () => {
 
   return (
     <>
-      <div className={`space-y-10 p-8`}>
+      <div className={`space-y-10 p-8 pt-[100px]`}>
         <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
         <Heading size={`h2`} renderAs={`h2`} title={`Heading 2`} />
         <Heading

@@ -33,10 +33,10 @@ const Collapse = ({ content }: { content: string[] }) => {
   return (
     <div>
       <div
-        className={`overflow-hidden transition-all duration-300`}
+        className={`mb-6 overflow-hidden transition-all duration-300 lg:mb-[30px] `}
         style={{ maxHeight: maxHeight }}
       >
-        <div ref={refContent} className={`space-y-6 lg:space-y-[30px]`}>
+        <div ref={refContent} className={`space-y-6  lg:space-y-[30px]`}>
           {content.length > 0 &&
             content.map((item, key) => (
               <Text size={`bodyText`} renderAs={`p`} content={item} key={key} />
