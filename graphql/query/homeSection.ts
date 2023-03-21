@@ -17,6 +17,9 @@ export const GET_HOME_SECTION = gql`
           heroSlider {
             ...HeroSliderData
           }
+          introContent {
+            ...IntroContent
+          }
           textBlock {
             ...TextBlock
           }
