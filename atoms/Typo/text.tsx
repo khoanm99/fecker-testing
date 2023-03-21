@@ -41,9 +41,9 @@ const Text = ({
     textOnPicture:
       'text-[20px] font-bold leading-tight uppercase lg:text-[30px]',
     menuLink:
-      'text-[16px] font-extrabold transition-color duration-500 uppercase hover:text-primary',
+      'text-[16px] font-extrabold transition-color duration-500 uppercase',
     menuHeadline:
-      'text-[30px] font-extrabold transition-color duration-500 uppercase hover:text-primary',
+      'text-[30px] font-extrabold transition-color duration-500 uppercase',
     menu: 'text-[20px] font-light uppercase',
     toggleDesc: 'text-[16px] font-extralight uppercase lg:text-[30px]',
     btn: 'text-[16px] font-semibold lg:text-[20px]'

@@ -1,19 +1,22 @@
 import Toggle from '@/atoms/toggle';
 import Text from '@/atoms/Typo/text';
 import { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface IProps {
   content: {
     left?: string;
     right?: string;
   };
+  className?: string;
 }
-const ToggleWithText = ({ content }: IProps) => {
+const ToggleWithText = ({ content, className }: IProps) => {
   const [active, setActive] = useState<boolean>(false);
+  const defaultCls = 'flex items-center justify-center space-x-6';
   return (
     <>
       {content && (
-        <div className={`flex items-center justify-center space-x-6`}>
+        <div className={twMerge(defaultCls, className)}>
           {content.left && (
             <Text
               size={`bodyText`}

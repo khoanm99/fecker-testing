@@ -1,5 +1,7 @@
 import PrimaryButton from '@/atoms/button';
+import Input from '@/atoms/input';
 import ContactSvg from '@/atoms/Svg/contact';
+import ContactSticky from '@/atoms/Svg/contactSticky';
 import DownloadSvg from '@/atoms/Svg/download';
 import InstagramSvg from '@/atoms/Svg/instagram';
 import Heading from '@/atoms/Typo/heading';
@@ -109,12 +111,13 @@ Lorem ipsum`}
         <Text
           size={`menuLink`}
           content={`links (HEADER MENU / FOOTER LINKS)`}
+          className={`hover:text-primary`}
         />
 
         <Text
           size={`menuHeadline`}
           content={`fullscreen menu headline`}
-          className={`cursor-pointer`}
+          className={`cursor-pointer hover:text-primary`}
         />
 
         <Text
@@ -128,25 +131,6 @@ Lorem ipsum`}
         <Text size={`toggleDesc`} content={`TOGGLE BUTTON DESCRIPTION`} />
 
         <Text size={`btn`} content={`Button`} />
-
-        <div className="space-y-3">
-          <div className=" text-red-500">Hover me</div>
-          <DownloadSvg />
-          <InstagramSvg />
-
-          <div className={`text-rose-400`}>Primary button</div>
-          <div className="">
-            <PrimaryButton title={`Kontakt aufnehmen`} />
-            <PrimaryButton title={`Senden`} />
-          </div>
-          <div className="">
-            <ContactSvg />
-          </div>
-
-          <ToggleWithText
-            content={{ left: 'Kachelansicht', right: 'Listenansicht' }}
-          />
-        </div>
         <div>
           <Accordion list={list} />
         </div>
@@ -168,19 +152,68 @@ Lorem ipsum`}
             </div>
           </div>
           <div className="flex flex-wrap">
-            <div className="h-[120px] w-[360px] rounded-lg bg-white"></div>
+            <div className="h-[120px] w-[172px] rounded-lg bg-white"></div>
             <div className="w-full">
               <strong>White</strong>/ #FFF
             </div>
           </div>
           <div className="flex flex-wrap">
-            <div className="h-[120px] w-[360px] rounded-lg bg-black"></div>
+            <div className="h-[120px] w-[172px] rounded-lg bg-black"></div>
             <div className="w-full">
               <strong>Black</strong>/ #000
             </div>
           </div>
         </div>
 
+        <div className="space-y-3">
+          <div className="">
+            <div className="flex">
+              <div className="my-3 mx-2 w-[30%]">
+                <div className={` pb-4 text-rose-400`}>Primary button</div>
+                <PrimaryButton title={`Kontakt aufnehmen`} />
+              </div>
+              <div className={`w-[30% my-3 mx-2`}>
+                <div className={`pb-4  text-rose-400`}>Hover Button</div>
+                <PrimaryButton title={`Senden`} />
+              </div>
+              <div className="my-3 mx-2 w-[30%]  pb-4">
+                <div className={`text-rose-400`}>Sticky Contact Button</div>
+                <ContactSticky />
+              </div>
+            </div>
+          </div>
+
+          <ToggleWithText
+            content={{ left: 'Kachelansicht', right: 'Listenansicht' }}
+            className={`justify-start`}
+          />
+
+          <div className=" text-red-500">Hover me</div>
+          <DownloadSvg />
+          <ContactSvg />
+          <InstagramSvg />
+
+          <Text
+            size={`menuHeadline`}
+            content={`ANGEBOT`}
+            className={`cursor-pointer hover:text-primary`}
+          />
+
+          <Text
+            size={`menu`}
+            content={`VERMIETEN`}
+            className={`cursor-pointer hover:text-primary`}
+          />
+
+          <div>
+            <div className=" text-red-500">Footer hover</div>
+            <Text
+              size={`menuLink`}
+              content={`firma`}
+              className={`cursor-pointer hover:text-primary`}
+            />
+          </div>
+        </div>
         <ContactMap maker={sampleMakerPosition} />
       </div>
     </>

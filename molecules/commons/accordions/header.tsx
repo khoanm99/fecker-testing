@@ -23,19 +23,20 @@ const AccordionHeader = ({
   };
 
   return (
-    <div className={`relative flex items-center pt-3 pb-4`} ref={refContent}>
+    <div
+      className={`relative flex cursor-pointer items-center pt-3 pb-4 transition-colors duration-500 hover:text-primary`}
+      onClick={() => handleClick()}
+      ref={refContent}
+    >
       <Text
         size={`numberList`}
         content={`${index < 10 ? '0' + (index + 1) : index}`}
-        className={`pr-3 text-black lg:pr-5`}
+        className={`pr-3 lg:pr-5`}
       />
       <Text content={title} size={`listDropDown`} />
       <Plus
-        onClick={() => handleClick()}
-        className={`absolute right-0 h-[32px] w-[32px] cursor-pointer [&_line]:origin-center [&_line]:transition-all [&_line]:duration-500 ${
-          isOpen
-            ? '[&_line:first-child]:opacity-0 [&_line:last-child]:rotate-90'
-            : ``
+        className={`absolute right-0 h-[32px] w-[32px] cursor-pointer transition-all duration-500 ease-out ${
+          isOpen ? 'rotate-[225deg]' : `rotate-0`
         } `}
       />
     </div>

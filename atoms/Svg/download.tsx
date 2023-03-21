@@ -1,11 +1,7 @@
 import { SVGProps } from '@/models/common';
 import { twMerge } from 'tailwind-merge';
 
-const DownloadSvg = ({
-  color = '#39c66b',
-  className = '',
-  ...props
-}: SVGProps) => {
+const DownloadSvg = ({ className = '', ...props }: SVGProps) => {
   const defaultCls =
     'transition-all duration-500 fill-black hover:fill-primary cursor-pointer';
   return (
