@@ -1,7 +1,7 @@
 // import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
-import Header from '@/organisms/commons/Header';
-import AppFooter from '@/organisms/commons/Footer';
+import Header from '@/organisms/commons/Header/Header';
+import AppFooter from '@/organisms/commons/Footer/Footer';
 
 import useResetState from '@/hooks/useResetState';
 

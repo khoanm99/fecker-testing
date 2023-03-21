@@ -20,5 +20,43 @@
       "title": "Immobilien",
       "target": ""
     }
+  ],
+  "footer": [
+    {
+      "url": "/firma",
+      "title": "Figma",
+      "target": ""
+    },
+    {
+      "url": "/angebot",
+      "title": "Angebot",
+      "target": ""
+    },
+    {
+      "url": "/refrenzen",
+      "title": "Refrenzen",
+      "target": ""
+    },
+    {
+      "url": "/immobilien",
+      "title": "Immobilien",
+      "target": ""
+    },
+    {
+      "url": "/downloads",
+      "title": "Downloads",
+      "target": "",
+      "mobile": {
+        "hidden": true
+      }
+    },
+    {
+      "url": "/impressum",
+      "title": "Impressum",
+      "target": "",
+      "mobile": {
+        "hidden": true
+      }
+    }
   ]
 }

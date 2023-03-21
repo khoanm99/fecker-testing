@@ -24,7 +24,7 @@ class MyDocument extends Document {
             crossOrigin=""
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:wght@200;300;400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Poppins:wght@200;300;400;500;700;800&display=swap"
             rel="stylesheet"
           />
           <script
@@ -33,7 +33,7 @@ class MyDocument extends Document {
             }}
           />
         </Head>
-        <body className="font-poppins bg-beige text-base font-normal leading-normal antialiased">
+        <body className="bg-beige font-primary text-base font-normal leading-normal antialiased">
           <Main />
           <NextScript />
         </body>
