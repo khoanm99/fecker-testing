@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import Link from 'next/link';
 import InstagramSvg from '@/atoms/Svg/instagram';
+import { useRouter } from 'next/router';
 
 // Data
 import contactData from 'data/contact.json';
@@ -24,7 +25,7 @@ const ContactInfo = () => {
       ></p>
       <ul className="pb-[25px]">
         <li>
-          <a href={`tel:${contactData.contact[0].phone}`}>
+          <a href={`tel: ${contactData.contact[0].phone}`}>
             tel:{contactData.contact[0].phone}
           </a>
         </li>
@@ -53,6 +54,7 @@ const ContactInfo = () => {
 };
 
 const Menu = () => {
+  const router = useRouter();
   return (
     <ul className="pb-[30px] xl:w-auto">
       {menuData &&
@@ -65,9 +67,9 @@ const Menu = () => {
           >
             <Link
               href={item.url}
-              className={
-                'text-[16px] font-extrabold uppercase leading-[24px] text-black transition-all  duration-300 hover:text-primary'
-              }
+              className={`text-[16px] font-extrabold uppercase leading-[24px] text-black transition-all  duration-300 hover:text-primary ${
+                router.asPath === item.url ? 'underline underline-offset-4' : ''
+              }`}
             >
               {item.title}
             </Link>
