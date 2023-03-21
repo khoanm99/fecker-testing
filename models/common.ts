@@ -31,5 +31,5 @@ export type ITextBlock = {
   id?: string;
   title: string;
   description: string;
-  image: IImage;
+  image?: IImage;
 };

@@ -34,8 +34,7 @@ const ContentBlock = ({
           description,
           buttonLink,
           index,
-          state,
-          image
+          state
         })}
     </div>
   );

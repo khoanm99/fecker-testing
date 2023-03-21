@@ -75,159 +75,161 @@ const StyleGuideTemplate = () => {
   return (
     <>
       <div className={`space-y-10 pt-[100px]`}>
-        <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
-        <Heading size={`h2`} renderAs={`h2`} title={`Heading 2`} />
-        <Heading
-          size={`h2`}
-          renderAs={`h2`}
-          title={`Heading 2 extralight`}
-          className={`font-extralight`}
-        />
-        <Heading size={`h3`} renderAs={`h3`} title={`Heading 3`} />
-        <Text
-          size={`bodyText`}
-          content={`Body Text Highlight / Headline Small
+        <div className="px-8">
+          <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
+          <Heading size={`h2`} renderAs={`h2`} title={`Heading 2`} />
+          <Heading
+            size={`h2`}
+            renderAs={`h2`}
+            title={`Heading 2 extralight`}
+            className={`font-extralight`}
+          />
+          <Heading size={`h3`} renderAs={`h3`} title={`Heading 3`} />
+          <Text
+            size={`bodyText`}
+            content={`Body Text Highlight / Headline Small
 Lorem ipsum`}
-          className={`font-bold`}
-        />
-
-        <Text
-          size={`bodyText`}
-          content={`Copy = Body Text
-          Lorem ipsum`}
-        />
-
-        <Text
-          size={`bodyTextSmall`}
-          content={`Copy 2 = Body Text Small Footer
-          Lorem ipsum`}
-        />
-
-        <Text size={`listDropDown`} content={`List / Drop Down List`} />
-
-        <Text size={`numberList`} content={`numbers list`} />
-
-        <Text size={`numberHome`} content={`numbers home`} />
-
-        <Text size={`textOnPicture`} content={`text on pictures`} />
-
-        <Text
-          size={`menuLink`}
-          content={`links (HEADER MENU / FOOTER LINKS)`}
-          className={`hover:text-primary`}
-        />
-
-        <Text
-          size={`menuHeadline`}
-          content={`fullscreen menu headline`}
-          className={`cursor-pointer hover:text-primary`}
-        />
-
-        <Text
-          size={`menuHeadline`}
-          content={`fullscreen menu headline Hover Me`}
-          className={`cursor-pointer text-primary hover:text-white`}
-        />
-
-        <Text size={`menu`} content={`fullscreen menu`} />
-
-        <Text size={`toggleDesc`} content={`TOGGLE BUTTON DESCRIPTION`} />
-
-        <Text size={`btn`} content={`Button`} />
-        <div>
-          <Accordion list={list} />
-        </div>
-
-        <Collapse content={sampleContent} />
-
-        <Collapse content={sampleContentShort} />
-
-        <Collapse content={sampleContentTooShort} />
-
-        <Collapse content={sampleContentLong} />
-
-        <div>
-          <div className={``}>Primary Colors</div>
-          <div className="flex flex-wrap">
-            <div className="h-[120px] w-[360px] rounded-lg bg-primary"></div>
-            <div className="w-full">
-              <strong>Primary</strong>/ #FF003D
-            </div>
-          </div>
-          <div className="flex flex-wrap">
-            <div className="h-[120px] w-[172px] rounded-lg bg-white"></div>
-            <div className="w-full">
-              <strong>White</strong>/ #FFF
-            </div>
-          </div>
-          <div className="flex flex-wrap">
-            <div className="h-[120px] w-[172px] rounded-lg bg-black"></div>
-            <div className="w-full">
-              <strong>Black</strong>/ #000
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-3">
-          <div className="">
-            <div className="flex">
-              <div className="my-3 mx-2 w-[30%]">
-                <div className={` pb-4 text-rose-400`}>Primary button</div>
-                <PrimaryButton title={`Kontakt aufnehmen`} />
-              </div>
-              <div className={`w-[30% my-3 mx-2`}>
-                <div className={`pb-4  text-rose-400`}>Hover Button</div>
-                <PrimaryButton title={`Senden`} />
-              </div>
-              <div className="my-3 mx-2 w-[30%]  pb-4">
-                <div className={`text-rose-400`}>Sticky Contact Button</div>
-                <ContactSticky />
-              </div>
-            </div>
-          </div>
-
-          <ToggleWithText
-            content={{ left: 'Kachelansicht', right: 'Listenansicht' }}
-            className={`justify-start`}
+            className={`font-bold`}
           />
 
-          <div className=" text-red-500">Hover me</div>
-          <DownloadSvg />
-          <ContactSvg />
-          <InstagramSvg />
+          <Text
+            size={`bodyText`}
+            content={`Copy = Body Text
+          Lorem ipsum`}
+          />
+
+          <Text
+            size={`bodyTextSmall`}
+            content={`Copy 2 = Body Text Small Footer
+          Lorem ipsum`}
+          />
+
+          <Text size={`listDropDown`} content={`List / Drop Down List`} />
+
+          <Text size={`numberList`} content={`numbers list`} />
+
+          <Text size={`numberHome`} content={`numbers home`} />
+
+          <Text size={`textOnPicture`} content={`text on pictures`} />
+
+          <Text
+            size={`menuLink`}
+            content={`links (HEADER MENU / FOOTER LINKS)`}
+            className={`hover:text-primary`}
+          />
 
           <Text
             size={`menuHeadline`}
-            content={`ANGEBOT`}
+            content={`fullscreen menu headline`}
             className={`cursor-pointer hover:text-primary`}
           />
+
           <Text
-            size={`menu`}
-            content={`VERMIETEN`}
-            className={`cursor-pointer hover:text-primary`}
+            size={`menuHeadline`}
+            content={`fullscreen menu headline Hover Me`}
+            className={`cursor-pointer text-primary hover:text-white`}
           />
+
+          <Text size={`menu`} content={`fullscreen menu`} />
+
+          <Text size={`toggleDesc`} content={`TOGGLE BUTTON DESCRIPTION`} />
+
+          <Text size={`btn`} content={`Button`} />
+          <div>
+            <Accordion list={list} />
+          </div>
+
+          <Collapse content={sampleContent} />
+
+          <Collapse content={sampleContentShort} />
+
+          <Collapse content={sampleContentTooShort} />
+
+          <Collapse content={sampleContentLong} />
 
           <div>
-            <div className=" text-red-500">Footer hover</div>
+            <div className={``}>Primary Colors</div>
+            <div className="flex flex-wrap">
+              <div className="h-[120px] w-[360px] rounded-lg bg-primary"></div>
+              <div className="w-full">
+                <strong>Primary</strong>/ #FF003D
+              </div>
+            </div>
+            <div className="flex flex-wrap">
+              <div className="h-[120px] w-[172px] rounded-lg bg-white"></div>
+              <div className="w-full">
+                <strong>White</strong>/ #FFF
+              </div>
+            </div>
+            <div className="flex flex-wrap">
+              <div className="h-[120px] w-[172px] rounded-lg bg-black"></div>
+              <div className="w-full">
+                <strong>Black</strong>/ #000
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="">
+              <div className="flex">
+                <div className="my-3 mx-2 w-[30%]">
+                  <div className={` pb-4 text-rose-400`}>Primary button</div>
+                  <PrimaryButton title={`Kontakt aufnehmen`} />
+                </div>
+                <div className={`w-[30% my-3 mx-2`}>
+                  <div className={`pb-4  text-rose-400`}>Hover Button</div>
+                  <PrimaryButton title={`Senden`} />
+                </div>
+                <div className="my-3 mx-2 w-[30%]  pb-4">
+                  <div className={`text-rose-400`}>Sticky Contact Button</div>
+                  <ContactSticky />
+                </div>
+              </div>
+            </div>
+
+            <ToggleWithText
+              content={{ left: 'Kachelansicht', right: 'Listenansicht' }}
+              className={`justify-start`}
+            />
+
+            <div className=" text-red-500">Hover me</div>
+            <DownloadSvg />
+            <ContactSvg />
+            <InstagramSvg />
+
             <Text
-              size={`menuLink`}
-              content={`firma`}
+              size={`menuHeadline`}
+              content={`ANGEBOT`}
               className={`cursor-pointer hover:text-primary`}
             />
-          </div>
-        </div>
-        <div className="max-w-[500px] space-y-5">
-          <Input placeholder={`Vorname Name`} />
-          <Input placeholder={`Email`} />
-          <Input placeholder={`Nachricht`} />
-
-          <div className="flex justify-between">
             <Text
-              content={`Mit dem Senden akzeptieren Sie die Datenschutzerklärung`}
-              className={`w-[50%]`}
-              size={`bodyTextSmall`}
+              size={`menu`}
+              content={`VERMIETEN`}
+              className={`cursor-pointer hover:text-primary`}
             />
-            <PrimaryButton title="Senden" />
+
+            <div>
+              <div className=" text-red-500">Footer hover</div>
+              <Text
+                size={`menuLink`}
+                content={`firma`}
+                className={`cursor-pointer hover:text-primary`}
+              />
+            </div>
+          </div>
+          <div className="max-w-[500px] space-y-5">
+            <Input placeholder={`Vorname Name`} />
+            <Input placeholder={`Email`} />
+            <Input placeholder={`Nachricht`} />
+
+            <div className="flex justify-between">
+              <Text
+                content={`Mit dem Senden akzeptieren Sie die Datenschutzerklärung`}
+                className={`w-[50%]`}
+                size={`bodyTextSmall`}
+              />
+              <PrimaryButton title="Senden" />
+            </div>
           </div>
         </div>
         <ListContentBlock list={sampleBlockTextJson.data} />
