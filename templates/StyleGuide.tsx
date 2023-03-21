@@ -9,8 +9,10 @@ import Text from '@/atoms/Typo/text';
 import { IAccordionList } from '@/models/molecules/accordions';
 import Collapse from '@/molecules/collapse';
 import Accordion from '@/molecules/commons/accordions';
+import ContentBlock from '@/molecules/commons/contentBlock';
 import ToggleWithText from '@/molecules/toggle';
 import ContactMap from '@/organisms/contact/map';
+import sampleBlockTextJson from '../data/sampleBlockText.json';
 
 const StyleGuideTemplate = () => {
   const list: IAccordionList = [
@@ -71,7 +73,7 @@ const StyleGuideTemplate = () => {
 
   return (
     <>
-      <div className={`space-y-10 p-8 pt-[100px]`}>
+      <div className={`space-y-10 pt-[100px]`}>
         <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
         <Heading size={`h2`} renderAs={`h2`} title={`Heading 2`} />
         <Heading
@@ -227,6 +229,20 @@ Lorem ipsum`}
             <PrimaryButton title="Senden" />
           </div>
         </div>
+
+        {sampleBlockTextJson &&
+          sampleBlockTextJson.data.map((item, key) => (
+            <ContentBlock
+              title={item.title}
+              description={item.description}
+              image={item.image}
+              buttonLink={item.buttonLink}
+              state={(key + 1) % 2 == 0 ? 'right' : 'left'}
+              index={key + 1}
+              key={key}
+            />
+          ))}
+
         <ContactMap maker={sampleMakerPosition} />
       </div>
     </>

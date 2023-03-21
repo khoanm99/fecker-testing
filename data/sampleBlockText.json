@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "title": "BERATUNG & PLANUNG",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.<br/><br/> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt. ",
+      "image": {
+        "url": "/assets/img/dummy-block-text-1.jpg",
+        "alt": "dummy-img",
+        "width": 755,
+        "height": 647
+      },
+      "buttonLink": {
+        "title": "Kontakt aufnhemen",
+        "url": "/contact"
+      }
+    },
+    {
+      "title": "NEUBAUTEN",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.<br/><br/> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt. ",
+      "image": {
+        "url": "/assets/img/dummy-block-text-2.jpg",
+        "alt": "dummy-img",
+        "width": 755,
+        "height": 647
+      }
+    },
+    {
+      "title": "GEBäUDESANIERUNG",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.<br/><br/> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt. ",
+      "image": {
+        "url": "/assets/img/dummy-block-text-3.jpg",
+        "alt": "dummy-img",
+        "width": 755,
+        "height": 647
+      }
+    }
+  ]
+}
