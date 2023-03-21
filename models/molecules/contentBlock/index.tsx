@@ -1,9 +1,6 @@
-import { IButtonLink, IImage } from '@/models/common';
+import { IButtonLink, ITextBlock } from '@/models/common';
 
-export interface IContentBlock {
-  title?: string;
-  description?: string;
-  image?: IImage;
+export interface IContentBlock extends ITextBlock {
   buttonLink?: IButtonLink;
   state?: 'layout-left' | 'layout-right';
   index?: number;

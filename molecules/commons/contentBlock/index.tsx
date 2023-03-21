@@ -1,6 +1,7 @@
 import PrimaryButton from '@/atoms/button';
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
+import { ITextBlock } from '@/models/common';
 import { IContentBlock } from '@/models/molecules/contentBlock';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -28,7 +29,14 @@ const ContentBlock = ({
         />
       )}
       {title &&
-        RenderBlockText({ title, description, buttonLink, index, state })}
+        RenderBlockText({
+          title,
+          description,
+          buttonLink,
+          index,
+          state,
+          image
+        })}
     </div>
   );
 };

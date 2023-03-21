@@ -28,7 +28,7 @@ export type ISeo = {
   description: string;
 };
 export type ITextBlock = {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   image: IImage;
