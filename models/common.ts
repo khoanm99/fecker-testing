@@ -22,3 +22,14 @@ export interface IButtonLink {
   title: string;
   url: string;
 }
+
+export type ISeo = {
+  title: string;
+  description: string;
+};
+export type ITextBlock = {
+  id: string;
+  title: string;
+  description: string;
+  image: IImage;
+};
