@@ -1,7 +1,6 @@
 import PrimaryButton from '@/atoms/button';
 import Heading from '@/atoms/Typo/heading';
 import Text from '@/atoms/Typo/text';
-import { IButtonLink } from '@/models/common';
 import { IContentBlock } from '@/models/molecules/contentBlock';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,10 +11,14 @@ const ContentBlock = ({
   image,
   buttonLink,
   index,
-  state = 'left'
+  state = 'layout-right'
 }: IContentBlock) => {
   return (
-    <div className={`relative flex flex-wrap px-5 lg:px-0`}>
+    <div
+      className={`relative mx-auto flex max-w-[1440px] flex-wrap px-5 lg:px-0 ${
+        state == 'layout-right' ? '' : 'justify-end lg:pt-[60px]'
+      }`}
+    >
       {image && image.url && (
         <Image
           src={image.url}
@@ -39,18 +42,24 @@ const RenderBlockText = ({
   index,
   state
 }: IContentBlock) => {
+  const blockRight = `justify-end lg:bottom-0 lg:right-[50px]`;
+  const blockLeft = `justify-start lg:top-0 lg:left-0`;
   return (
     <div
       className={`flex w-full ${
-        state == 'left' ? 'justify-end' : 'justify-start'
-      } lg:absolute lg:top-[100px]`}
+        state == 'layout-right' ? blockRight : blockLeft
+      } lg:absolute `}
     >
-      <div className="relative mt-[-123px] max-w-[290px] bg-beige pl-12 pt-7 pr-5 md:max-w-[400px] lg:mt-0 lg:max-w-[640px] lg:pl-[88px] lg:pt-[60px]">
+      <div
+        className={`relative mt-[-123px] max-w-[280px] bg-beige pl-12 pt-[10px] md:max-w-[400px] md:pt-8 lg:mt-0 lg:w-[640px] lg:max-w-none  lg:pt-[60px] lg:pb-[66px] 2xl:w-[720px] ${
+          state == 'layout-right' ? 'lg:pl-[88px]' : 'pr-5 lg:pl-[128px]'
+        }`}
+      >
         {index && (
           <Text
             size={`numberHome`}
             content={index < 10 ? '0' + index : `${index}`}
-            className={`absolute top-[10px] left-[10px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-black lg:static lg:h-[50px] lg:w-[50px]`}
+            className={`absolute top-[10px] left-[10px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-black md:top-[33px] lg:static lg:h-[50px] lg:w-[50px]`}
           />
         )}
         {title && (
@@ -58,7 +67,7 @@ const RenderBlockText = ({
             size={`h2`}
             renderAs={`h2`}
             title={title}
-            className={`pb-[5px]`}
+            className={`pb-[5px] lg:pt-4 lg:pb-3`}
           />
         )}
         {description && (
@@ -66,12 +75,12 @@ const RenderBlockText = ({
             size={`bodyText`}
             renderAs={`p`}
             content={description}
-            className={`pb-[30px]`}
+            className={`pb-[30px] lg:max-w-[465px] lg:pb-10 2xl:max-w-[525px]`}
           />
         )}
         {buttonLink && (
           <Link href={buttonLink.url} title={buttonLink.title}>
-            <PrimaryButton title={buttonLink.title} />
+            <PrimaryButton title={buttonLink.title} className={``} />
           </Link>
         )}
       </div>

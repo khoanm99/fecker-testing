@@ -11,6 +11,7 @@ import Collapse from '@/molecules/collapse';
 import Accordion from '@/molecules/commons/accordions';
 import ContentBlock from '@/molecules/commons/contentBlock';
 import ToggleWithText from '@/molecules/toggle';
+import ListContentBlock from '@/organisms/commons/ContentBlock';
 import ContactMap from '@/organisms/contact/map';
 import sampleBlockTextJson from '../data/sampleBlockText.json';
 
@@ -229,19 +230,7 @@ Lorem ipsum`}
             <PrimaryButton title="Senden" />
           </div>
         </div>
-
-        {sampleBlockTextJson &&
-          sampleBlockTextJson.data.map((item, key) => (
-            <ContentBlock
-              title={item.title}
-              description={item.description}
-              image={item.image}
-              buttonLink={item.buttonLink}
-              state={(key + 1) % 2 == 0 ? 'right' : 'left'}
-              index={key + 1}
-              key={key}
-            />
-          ))}
+        <ListContentBlock list={sampleBlockTextJson.data} />
 
         <ContactMap maker={sampleMakerPosition} />
       </div>

@@ -5,6 +5,6 @@ export interface IContentBlock {
   description?: string;
   image?: IImage;
   buttonLink?: IButtonLink;
-  state: 'left' | 'right';
+  state?: 'layout-left' | 'layout-right';
   index?: number;
 }
