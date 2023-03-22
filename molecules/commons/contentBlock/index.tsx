@@ -13,25 +13,32 @@ const ContentBlock = ({
   const imageData = textBlockData?.image?.data?.attributes;
   return (
     <div
-      className={`relative mx-auto flex max-w-[1440px] flex-wrap px-5 lg:px-0 ${
+      className={`mx-auto flex flex-wrap overflow-hidden px-5 lg:px-0 ${
         state == 'layout-right' ? '' : 'justify-end lg:pt-[60px]'
       }`}
     >
-      {imageData && imageData.url && imageData.width && imageData.height && (
-        <Image
-          src={imageData.url}
-          alt={imageData.alternativeText ?? ''}
-          width={755}
-          height={(imageData.height * 755) / imageData.width}
-        />
-      )}
-      {textBlockData &&
-        textBlockData.title &&
-        RenderBlockText({
-          textBlockData,
-          index,
-          state
-        })}
+      <div className="relative w-full lg:h-[705px] 2xl:h-[calc(100vh_-_106px)]">
+        {imageData && imageData.url && imageData.width && imageData.height && (
+          <div
+            className={`absolute top-0 w-full pt-[93%] lg:w-[58%] lg:pt-[55%] ${
+              state == 'layout-right' ? '' : 'right-0'
+            }`}
+          >
+            <Image
+              src={imageData.url}
+              alt={imageData.alternativeText ?? ''}
+              fill
+            />
+          </div>
+        )}
+        {textBlockData &&
+          textBlockData.title &&
+          RenderBlockText({
+            textBlockData,
+            index,
+            state
+          })}
+      </div>
     </div>
   );
 };
@@ -39,19 +46,19 @@ const ContentBlock = ({
 export default ContentBlock;
 
 const RenderBlockText = ({ textBlockData, index, state }: IContentBlock) => {
-  const blockRight = `justify-end lg:bottom-0 lg:right-[50px] 2xl:right-[56px]`;
-  const blockLeft = `justify-start lg:top-0 lg:left-0`;
+  const blockRight = `justify-end lg:bottom-0 lg:right-0`;
+  const blockLeft = `justify-start`;
   return (
     <div
       className={`flex w-full ${
         state == 'layout-right' ? blockRight : blockLeft
-      } lg:absolute `}
+      } lg:absolute lg:w-1/2`}
     >
       <div
-        className={`relative mt-[-123px] max-w-[280px] bg-beige pl-12 pt-[10px] md:max-w-[400px] md:pt-8 lg:mt-0 lg:w-[640px] lg:max-w-none  lg:pt-[60px] lg:pb-[66px] 2xl:w-[770px] ${
+        className={`relative mt-[calc(100%_-_123px)] max-w-[280px] bg-beige pl-12 pt-[10px] md:max-w-[400px] md:pt-8 lg:mt-0 lg:w-full lg:max-w-none lg:pt-[60px] lg:pb-[66px] ${
           state == 'layout-right'
             ? 'lg:pl-[88px]'
-            : 'pr-5 lg:pl-[128px] 2xl:pl-[144px] 2xl:pr-[50px]'
+            : 'pr-5 lg:pl-[128px] 2xl:pl-[calc(100vw_*_0.1)] 2xl:pr-[50px]'
         }`}
       >
         {index && (
