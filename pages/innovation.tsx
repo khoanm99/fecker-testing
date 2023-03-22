@@ -18,19 +18,10 @@ export const getStaticProps: GetStaticProps = async () => {
     .query({
       query: GET_INNOVATION_SECTION
     })
-    .catch(() => {
-      return {
-        notFound: true
-      };
-    });
-  if (!rs?.data) {
-    return {
-      notFound: true
-    };
-  }
+    .catch(() => {});
   return {
     props: {
-      payload: rs?.data
+      payload: rs?.data || {}
     }
   };
 };

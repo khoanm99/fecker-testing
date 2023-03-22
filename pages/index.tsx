@@ -32,16 +32,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .query({
       query: GET_HOME_SECTION
     })
-    .catch(() => {
-      return {
-        notFound: true
-      };
-    });
-  if (!rs?.data) {
-    return {
-      notFound: true
-    };
-  }
+    .catch(() => {});
 
   return {
     props: {
