@@ -52,9 +52,9 @@ const MenuHeader = () => {
       <Link href="/" className="inline-block w-[70px] xl:w-[118px]">
         <LogoSVG textColor={'#000'} />
       </Link>
-      <a onClick={onClick} href="#">
+      <span onClick={onClick} className="h-[26px] w-[26px]">
         <CloseSVG className="h-[26px] w-[26px]" />
-      </a>
+      </span>
     </div>
   );
 };
@@ -97,14 +97,18 @@ const MenuBody = () => {
           </p>
         </span>
       </div>
-      <ContactForm className="lg:w-6/12 lg:pb-[0]" locate="menu" />
+      <ContactForm
+        className="hidden lg:block lg:w-6/12 lg:pb-[0]"
+        locate="menu"
+      />
     </div>
   );
 };
 
 const MenuItem = ({ menuItem, id }: IMenuItem) => {
   const [open, setOpen] = useState<boolean>(false);
-  const submenuHandle = () => {
+  const submenuHandle = (e: any) => {
+    e.preventDefault();
     setOpen(!open);
   };
   return (
@@ -121,13 +125,16 @@ const MenuItem = ({ menuItem, id }: IMenuItem) => {
       </Link>
       {menuItem.list && (
         <>
-          <a
-            href="#"
+          <span
             className="absolute top-[18px] right-[0] inline"
             onClick={submenuHandle}
           >
-            <PlusSVG className="w-[32[px] h-[32px] lg:hidden" />
-          </a>
+            <PlusSVG
+              className={`w-[32[px] h-[32px] transition-all duration-300 lg:hidden ${
+                open ? 'rotate-[45deg]' : ''
+              }`}
+            />
+          </span>
           <span className={`${open ? 'block' : 'hidden'} lg:block`}>
             <ul className="pt-[10px]">
               {menuItem.list.map((item, key) => (
