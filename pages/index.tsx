@@ -15,6 +15,7 @@ interface Props {
 }
 
 const Home = ({ homeSection }: Props) => {
+  console.log("homeSection",homeSection)
   return (
     <DefaultLayout>
       {homeSection && <HomeTemplate dataResponse={homeSection} />}
@@ -25,26 +26,27 @@ const Home = ({ homeSection }: Props) => {
 
 export default Home;
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const apolloClient = initializeApollo();
-//   const rs: any = await apolloClient
-//     .query({
-//       query: GET_HOME_SECTION
-//     })
-//     .catch(() => {
-//       return {
-//         notFound: true
-//       };
-//     });
-//   if (!rs?.data) {
-//     return {
-//       notFound: true
-//     };
-//   }
-//
-//   return {
-//     props: {
-//       homeSection: rs?.data?.homeSection ?? {}
-//     }
-//   };
-// };
+export const getStaticProps: GetStaticProps = async () => {
+  const apolloClient = initializeApollo();
+
+  const rs: any = await apolloClient
+    .query({
+      query: GET_HOME_SECTION
+    })
+    .catch(() => {
+      return {
+        notFound: true
+      };
+    });
+  if (!rs?.data) {
+    return {
+      notFound: true
+    };
+  }
+
+  return {
+    props: {
+      homeSection: rs?.data?.homeSection ?? {}
+    }
+  };
+};
