@@ -52,7 +52,7 @@ const MenuHeader = () => {
       <Link href="/" className="inline-block w-[70px] xl:w-[118px]">
         <LogoSVG textColor={'#000'} />
       </Link>
-      <span onClick={onClick} className="h-[26px] w-[26px]">
+      <span onClick={onClick} className="h-[26px] w-[26px] cursor-pointer">
         <CloseSVG className="h-[26px] w-[26px]" />
       </span>
     </div>
@@ -69,20 +69,20 @@ const MenuBody = () => {
       ))}
       <div className="border-b-[1px] border-black py-[12px] lg:w-3/12 lg:border-transparent">
         <Link
-          href="#"
+          href="/kontakt"
           className="text-[30px] font-extrabold uppercase leading-[45px] text-black transition-all duration-300 hover:text-primary lg:inline-block lg:pb-[8px] lg:text-[30px]"
         >
           Kontakt
         </Link>
         <span className="hidden lg:block">
           <p
-            className="lg:pb-[10px] lg:text-[16px] lg:leading-[24px]"
+            className="font-extralight lg:pb-[10px] lg:text-[16px] lg:leading-[24px]"
             dangerouslySetInnerHTML={{ __html: contactData.contact[0].address }}
           ></p>
           <p className="text-[16px] leading-[24px]">
             <a
               href={`tel: ${contactData.contact[0].phone}`}
-              className="text-black hover:text-primary"
+              className="font-extralight text-black hover:text-primary"
             >
               tel: {contactData.contact[0].phone}
             </a>
@@ -90,7 +90,7 @@ const MenuBody = () => {
           <p className="text-[16px] leading-[24px]">
             <a
               href={`mailto:${contactData.contact[0].email}`}
-              className="text-black hover:text-primary"
+              className="font-extralight text-black hover:text-primary"
             >
               {contactData.contact[0].email}
             </a>
@@ -126,7 +126,7 @@ const MenuItem = ({ menuItem, id }: IMenuItem) => {
       {menuItem.list && (
         <>
           <span
-            className="absolute top-[18px] right-[0] inline"
+            className="absolute top-[18px] right-[0] inline cursor-pointer"
             onClick={submenuHandle}
           >
             <PlusSVG
