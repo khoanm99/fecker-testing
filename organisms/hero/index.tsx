@@ -15,6 +15,8 @@ const HeroSection = ({
   heroSectionData: ComponentBasicHeroSlider;
 }) => {
   const listImage = heroSectionData.image.data;
+  const havePagination =
+    listImage && Array.isArray(listImage) && listImage.length > 1;
   return (
     <div className={`mb-14`}>
       <div className={`relative`}>
@@ -22,11 +24,11 @@ const HeroSection = ({
           loop
           slidesPerView={1}
           modules={[Pagination, Navigation]}
-          // pagination={{
-          //   el: `.fecker-pagination`,
-          //   clickable: true,
-          //   type: 'bullets'
-          // }}
+          pagination={{
+            el: `.fecker-pagination`,
+            clickable: true,
+            type: 'bullets'
+          }}
           navigation={{
             nextEl: '.fecker-button-next',
             prevEl: '.fecker-button-prev'
@@ -71,7 +73,7 @@ const HeroSection = ({
             )}
           </div>
         )}
-        {listImage && Array.isArray(listImage) && listImage.length > 1 && (
+        {havePagination && (
           <>
             <div className="fecker-button-prev absolute left-5 top-1/2 z-10 -translate-y-1/2 lg:hidden">
               <NavigationSvg />
@@ -82,7 +84,9 @@ const HeroSection = ({
           </>
         )}
       </div>
-      {/* <div className={`fecker-pagination fecker-swiper-pagination-custom`} /> */}
+      {havePagination && (
+        <div className={`fecker-pagination fecker-swiper-pagination-custom`} />
+      )}
     </div>
   );
 };
