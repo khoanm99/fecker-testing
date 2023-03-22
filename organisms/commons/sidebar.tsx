@@ -32,7 +32,7 @@ const Sidebar = ({ locate }: { locate?: string }) => {
         </Link>
       </div>
       {locate === 'menu' && (
-        <p className=" pt-[40px] pb-[20px] text-center text-[12px] font-extrabold leading-[12px] text-black lg:fixed lg:bottom-[200px] lg:right-[-105px] lg:rotate-[-90deg]">
+        <p className="pt-[40px] pb-[20px] text-center text-[12px] font-extrabold leading-[12px] text-black xl:fixed xl:bottom-[200px] xl:right-[-100px] xl:rotate-[-90deg] xl:pt-[0] xl:pb-[0]">
           © seit 1998 - Fecker Holzbau AG - 9320 Arbon
         </p>
       )}

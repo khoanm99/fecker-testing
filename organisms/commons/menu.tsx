@@ -52,7 +52,7 @@ const MenuHeader = () => {
     });
   };
   return (
-    <div className="menu-panel-header flex flex-row justify-between border-b-[1px] border-black pb-[25px] lg:border-transparent xl:pr-[20px] xl:pl-[55px]">
+    <div className="menu-panel-header flex flex-row justify-between border-b-[1px] border-black pb-[25px] lg:border-transparent lg:pr-[7px] xl:pr-[25px] xl:pr-[20px] xl:pl-[55px]">
       <Link href="/" className="inline-block w-[70px] xl:w-[118px]">
         <LogoSVG textColor={'#000'} />
       </Link>
