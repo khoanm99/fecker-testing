@@ -1,0 +1,11 @@
+.fecker-swiper-pagination-custom {
+  @apply flex items-center pl-5 space-x-[4px] mt-[14px] lg:space-x-[9px];
+
+  .swiper-pagination-bullet {
+    @apply w-[7px] h-[7px] border-primary border rounded-full cursor-pointer bg-transparent transition-colors duration-500;
+
+    &-active {
+      @apply bg-primary
+    }
+  }
+}

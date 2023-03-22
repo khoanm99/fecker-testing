@@ -12,3 +12,7 @@
     @apply appearance-none;
   }
 }
+
+@layer components {
+  @import './components/swiper/pagination.scss';
+}

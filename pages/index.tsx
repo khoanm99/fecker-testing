@@ -5,10 +5,7 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
-import {
-  HomeSectionEntityResponse,
-  UploadFileEntityResponse
-} from '@/graphql/generated';
+import { HomeSectionEntityResponse } from '@/graphql/generated';
 
 interface Props {
   homeSection?: HomeSectionEntityResponse;
@@ -33,15 +30,15 @@ export const getStaticProps: GetStaticProps = async () => {
       query: GET_HOME_SECTION
     })
     .catch(() => {
-      return {
-        notFound: true
-      };
+      // return {
+      //   notFound: true
+      // };
     });
-  if (!rs?.data) {
-    return {
-      notFound: true
-    };
-  }
+  // if (!rs?.data) {
+  //   return {
+  //     notFound: true
+  //   };
+  // }
 
   return {
     props: {

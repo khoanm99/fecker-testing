@@ -2,10 +2,16 @@ import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_FASSADEN_SECTION } from '@/graphql/query/fassadenSection';
-const Fassaden = () => {
+import FassadenTemplate from '@/templates/FassadenTemplate';
+import { FassadenSectionEntityResponse } from '@/graphql/generated';
+interface Props {
+  fassadenSection: FassadenSectionEntityResponse;
+}
+
+const Fassaden = ({ fassadenSection }: Props) => {
   return (
     <DefaultLayout>
-      <div>fassaden</div>
+      {fassadenSection && <FassadenTemplate dataResponse={fassadenSection} />}
     </DefaultLayout>
   );
 };
@@ -19,18 +25,18 @@ export const getStaticProps: GetStaticProps = async () => {
       query: GET_FASSADEN_SECTION
     })
     .catch(() => {
-      return {
-        notFound: true
-      };
+      // return {
+      //   notFound: true
+      // };
     });
-  if (!rs?.data) {
-    return {
-      notFound: true
-    };
-  }
+  // if (!rs?.data) {
+  //   return {
+  //     notFound: true
+  //   };
+  // }
   return {
     props: {
-      payload: rs?.data
+      fassadenSection: rs?.data.fassadenSection ?? {}
     }
   };
 };
