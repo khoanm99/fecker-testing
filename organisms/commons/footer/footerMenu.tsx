@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import Link from 'next/link';
-import InstagramSvg from '@/atoms/Svg/instagram';
+import InstagramSvg from '@/atoms/svg/instagram';
 import { useRouter } from 'next/router';
 
 // Data

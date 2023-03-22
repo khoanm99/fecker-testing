@@ -1,4 +1,4 @@
-import Text from '@/atoms/Typo/text';
+import Text from '@/atoms/typo/text';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const AccordionContent = ({

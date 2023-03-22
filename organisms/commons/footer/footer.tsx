@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import FooterMenu from '@/organisms/commons/Footer/FooterMenu';
-import ContactForm from '@/organisms/ContactForm';
-import Text from '@/atoms/Typo/text';
+import FooterMenu from '@/organisms/commons/footer/footerMenu';
+import ContactForm from '@/organisms/contactForm';
+import Text from '@/atoms/typo/text';
 
 const Footer = () => {
   return (

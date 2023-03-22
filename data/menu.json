@@ -3,22 +3,76 @@
     {
       "url": "/angebot",
       "title": "Angebot",
-      "target": ""
-    },
-    {
-      "url": "/referenzen",
-      "title": "Referenzen",
-      "target": ""
+      "list": [
+        {
+          "title": "Beratung & planung",
+          "url": "beratung-planung"
+        },
+        {
+          "title": "Neubauten",
+          "url": "neubauten"
+        },
+        {
+          "title": "Gebäudesanierung",
+          "url": "gebaeudesanierung"
+        },
+        {
+          "title": "Reparaturen",
+          "url": "reparaturen"
+        },
+        {
+          "title": "Spezialitäten",
+          "url": "spezialitaeten"
+        },
+        {
+          "title": "Fassaden",
+          "url": "fassaden"
+        },
+        {
+          "title": "Innovationen",
+          "url": "innovationen"
+        }
+      ]
     },
     {
       "url": "/firma",
       "title": "Firma",
-      "target": ""
+      "list": [
+        {
+          "title": "Team",
+          "url": "team"
+        },
+        {
+          "title": "Geschichte",
+          "url": "geschichte"
+        },
+        {
+          "title": "Verbände & partner",
+          "url": "verbaende-partner"
+        },
+        {
+          "title": "Karriere",
+          "url": "karriere"
+        }
+      ]
+    },
+    {
+      "url": "/referenzen",
+      "title": "Referenzen"
     },
     {
       "url": "/immobilien",
       "title": "Immobilien",
-      "target": ""
+      "list": [
+        {
+          "title": "Projekte",
+          "url": "projekte"
+        },
+        {
+          "title": "Vermieten / verkaufen",
+          "url": "vermieten-verkaufen"
+        }
+      ]
     }
   ],
   "footer": [
