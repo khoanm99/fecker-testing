@@ -21,6 +21,7 @@ export type Scalars = {
   HomeSectionContentsDynamicZoneInput: any;
   InnovationSectionContentsDynamicZoneInput: any;
   JSON: any;
+  TeamSectionContentsDynamicZoneInput: any;
   Upload: any;
 };
 
@@ -66,18 +67,6 @@ export type ComponentAccordionAccordionFiltersInput = {
   not?: InputMaybe<ComponentAccordionAccordionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentAccordionAccordionFiltersInput>>>;
   title?: InputMaybe<StringFilterInput>;
-};
-
-export type ComponentBasicBanner = {
-  __typename?: 'ComponentBasicBanner';
-  id: Scalars['ID'];
-  media: UploadFileRelationResponseCollection;
-};
-
-export type ComponentBasicBannerMediaArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ComponentBasicButtonLink = {
@@ -157,13 +146,6 @@ export type ComponentBasicSlide = {
   image: UploadFileEntityResponse;
 };
 
-export type ComponentBasicSlideFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentBasicSlideFiltersInput>>>;
-  description?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<ComponentBasicSlideFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentBasicSlideFiltersInput>>>;
-};
-
 export type ComponentContentAccordions = {
   __typename?: 'ComponentContentAccordions';
   accordions?: Maybe<Array<Maybe<ComponentAccordionAccordion>>>;
@@ -172,6 +154,32 @@ export type ComponentContentAccordions = {
 
 export type ComponentContentAccordionsAccordionsArgs = {
   filters?: InputMaybe<ComponentAccordionAccordionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentContentPartner = {
+  __typename?: 'ComponentContentPartner';
+  id: Scalars['ID'];
+  partners?: Maybe<Array<Maybe<ComponentPartnerPartner>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentContentPartnerPartnersArgs = {
+  filters?: InputMaybe<ComponentPartnerPartnerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentContentStory = {
+  __typename?: 'ComponentContentStory';
+  id: Scalars['ID'];
+  stories?: Maybe<Array<Maybe<ComponentStoryStory>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentContentStoryStoriesArgs = {
+  filters?: InputMaybe<ComponentStoryStoryFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -188,32 +196,38 @@ export type ComponentContentTextBlocksTextBlocksArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type ComponentItemSlide = {
-  __typename?: 'ComponentItemSlide';
+export type ComponentPartnerPartner = {
+  __typename?: 'ComponentPartnerPartner';
   id: Scalars['ID'];
-  slide: Array<Maybe<ComponentBasicSlide>>;
+  image: UploadFileEntityResponse;
+  link?: Maybe<Scalars['String']>;
   title: Scalars['String'];
 };
 
-export type ComponentItemSlideSlideArgs = {
-  filters?: InputMaybe<ComponentBasicSlideFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+export type ComponentPartnerPartnerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentPartnerPartnerFiltersInput>>>;
+  link?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentPartnerPartnerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentPartnerPartnerFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentItemTextBlock = {
-  __typename?: 'ComponentItemTextBlock';
+export type ComponentStoryStory = {
+  __typename?: 'ComponentStoryStory';
+  description: Scalars['String'];
   id: Scalars['ID'];
   image: UploadFileEntityResponse;
   title: Scalars['String'];
+  year?: Maybe<Scalars['String']>;
 };
 
-export type ComponentItemTextCollapse = {
-  __typename?: 'ComponentItemTextCollapse';
-  description?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  isCollapse?: Maybe<Scalars['Boolean']>;
-  title: Scalars['String'];
+export type ComponentStoryStoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentStoryStoryFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentStoryStoryFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentStoryStoryFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+  year?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentTextBlockTextBlock = {
@@ -307,6 +321,9 @@ export type FileInfoInput = {
   name?: InputMaybe<Scalars['String']>;
 };
 
+/** Union Type of all registered slug content types */
+export type FindSlugResponse = ProjectEntityResponse;
+
 export type FloatFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
@@ -333,23 +350,25 @@ export type FloatFilterInput = {
 
 export type GenericMorph =
   | ComponentAccordionAccordion
-  | ComponentBasicBanner
   | ComponentBasicButtonLink
   | ComponentBasicHeroSlider
   | ComponentBasicIntroContent
   | ComponentBasicSeo
   | ComponentBasicSlide
   | ComponentContentAccordions
+  | ComponentContentPartner
+  | ComponentContentStory
   | ComponentContentTextBlocks
-  | ComponentItemSlide
-  | ComponentItemTextBlock
-  | ComponentItemTextCollapse
+  | ComponentPartnerPartner
+  | ComponentStoryStory
   | ComponentTextBlockTextBlock
   | FassadenSection
   | HomeSection
   | InnovationSection
   | Project
   | SlugifySlug
+  | Team
+  | TeamSection
   | UploadFile
   | UploadFolder
   | UsersPermissionsPermission
@@ -506,6 +525,7 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createProject?: Maybe<ProjectEntityResponse>;
   createSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
+  createTeam?: Maybe<TeamEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -517,6 +537,8 @@ export type Mutation = {
   deleteInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   deleteProject?: Maybe<ProjectEntityResponse>;
   deleteSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
+  deleteTeam?: Maybe<TeamEntityResponse>;
+  deleteTeamSection?: Maybe<TeamSectionEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -540,6 +562,8 @@ export type Mutation = {
   updateInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   updateProject?: Maybe<ProjectEntityResponse>;
   updateSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
+  updateTeam?: Maybe<TeamEntityResponse>;
+  updateTeamSection?: Maybe<TeamSectionEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -563,6 +587,10 @@ export type MutationCreateSlugifySlugArgs = {
   data: SlugifySlugInput;
 };
 
+export type MutationCreateTeamArgs = {
+  data: TeamInput;
+};
+
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
 };
@@ -584,6 +612,10 @@ export type MutationDeleteProjectArgs = {
 };
 
 export type MutationDeleteSlugifySlugArgs = {
+  id: Scalars['ID'];
+};
+
+export type MutationDeleteTeamArgs = {
   id: Scalars['ID'];
 };
 
@@ -661,6 +693,15 @@ export type MutationUpdateProjectArgs = {
 export type MutationUpdateSlugifySlugArgs = {
   data: SlugifySlugInput;
   id: Scalars['ID'];
+};
+
+export type MutationUpdateTeamArgs = {
+  data: TeamInput;
+  id: Scalars['ID'];
+};
+
+export type MutationUpdateTeamSectionArgs = {
+  data: TeamSectionInput;
 };
 
 export type MutationUpdateUploadFileArgs = {
@@ -772,13 +813,18 @@ export enum PublicationState {
 export type Query = {
   __typename?: 'Query';
   fassadenSection?: Maybe<FassadenSectionEntityResponse>;
+  findSlug?: Maybe<FindSlugResponse>;
   homeSection?: Maybe<HomeSectionEntityResponse>;
   innovationSection?: Maybe<InnovationSectionEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
   project?: Maybe<ProjectEntityResponse>;
+  projectBySlug?: Maybe<ProjectEntityResponse>;
   projects?: Maybe<ProjectEntityResponseCollection>;
   slugifySlug?: Maybe<SlugifySlugEntityResponse>;
   slugifySlugs?: Maybe<SlugifySlugEntityResponseCollection>;
+  team?: Maybe<TeamEntityResponse>;
+  teamSection?: Maybe<TeamSectionEntityResponse>;
+  teams?: Maybe<TeamEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -793,6 +839,12 @@ export type QueryFassadenSectionArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
 
+export type QueryFindSlugArgs = {
+  modelName?: InputMaybe<Scalars['String']>;
+  publicationState?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+};
+
 export type QueryHomeSectionArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
@@ -803,6 +855,10 @@ export type QueryInnovationSectionArgs = {
 
 export type QueryProjectArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryProjectBySlugArgs = {
+  slug: Scalars['String'];
 };
 
 export type QueryProjectsArgs = {
@@ -819,6 +875,21 @@ export type QuerySlugifySlugArgs = {
 export type QuerySlugifySlugsArgs = {
   filters?: InputMaybe<SlugifySlugFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryTeamArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryTeamSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type QueryTeamsArgs = {
+  filters?: InputMaybe<TeamFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -930,6 +1001,90 @@ export type StringFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type Team = {
+  __typename?: 'Team';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  image: UploadFileRelationResponseCollection;
+  name: Scalars['String'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type TeamImageArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type TeamEntity = {
+  __typename?: 'TeamEntity';
+  attributes?: Maybe<Team>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type TeamEntityResponse = {
+  __typename?: 'TeamEntityResponse';
+  data?: Maybe<TeamEntity>;
+};
+
+export type TeamEntityResponseCollection = {
+  __typename?: 'TeamEntityResponseCollection';
+  data: Array<TeamEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type TeamFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<TeamFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<TeamFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<TeamFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type TeamInput = {
+  image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  name?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type TeamSection = {
+  __typename?: 'TeamSection';
+  contents?: Maybe<Array<Maybe<TeamSectionContentsDynamicZone>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  heroSlider: ComponentBasicHeroSlider;
+  introContent?: Maybe<ComponentBasicIntroContent>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type TeamSectionContentsDynamicZone =
+  | ComponentContentPartner
+  | ComponentContentStory
+  | Error;
+
+export type TeamSectionEntity = {
+  __typename?: 'TeamSectionEntity';
+  attributes?: Maybe<TeamSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type TeamSectionEntityResponse = {
+  __typename?: 'TeamSectionEntityResponse';
+  data?: Maybe<TeamSectionEntity>;
+};
+
+export type TeamSectionInput = {
+  contents?: InputMaybe<Array<Scalars['TeamSectionContentsDynamicZoneInput']>>;
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
+  introContent?: InputMaybe<ComponentBasicIntroContentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
 };
 
 export type UploadFile = {
