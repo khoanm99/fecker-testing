@@ -59,7 +59,7 @@ const HeroSection = ({
             )}
             {heroSectionData.buttonLink && (
               <div
-                className={`w-screen pb-11 text-center lg:w-fit lg:pb-0 lg:text-left`}
+                className={`w-[calc(100vw_-_20px)] pb-11 text-center lg:w-fit lg:pb-0 lg:text-left`}
               >
                 <Link
                   href={heroSectionData.buttonLink.url}
