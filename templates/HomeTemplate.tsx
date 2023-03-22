@@ -7,12 +7,18 @@ interface Props {
 
 const HomeTemplate = ({ dataResponse }: Props) => {
   return (
-    <div className={'py-[60px]'}>
-      {dataResponse.data?.attributes?.textBlock && (
-        <ListContentBlock
-          textBlock={dataResponse.data?.attributes?.textBlock}
-        />
-      )}
+    <div className={'pb-[60px]'}>
+      {dataResponse.data?.attributes?.contents &&
+        dataResponse.data?.attributes?.contents.map((itemContent, key) => {
+          if (
+            itemContent?.__typename == 'ComponentContentTextBlocks' &&
+            itemContent.textBlocks
+          ) {
+            return (
+              <ListContentBlock key={key} textBlock={itemContent.textBlocks} />
+            );
+          }
+        })}
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import { ComponentBasicTextBlock, Maybe } from '@/graphql/generated';
+import { ComponentTextBlockTextBlock, Maybe } from '@/graphql/generated';
 import { IButtonLink, ITextBlock } from '@/models/common';
 
 export interface IContentBlock {
-  textBlockData: Maybe<ComponentBasicTextBlock>;
+  textBlockData: Maybe<ComponentTextBlockTextBlock>;
   state?: 'layout-left' | 'layout-right';
   index?: number;
 }
