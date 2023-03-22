@@ -27,6 +27,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
+
   const rs: any = await apolloClient
     .query({
       query: GET_HOME_SECTION
