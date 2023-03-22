@@ -3,9 +3,9 @@ import { IAppContext } from '@/types';
 import clsx from 'clsx';
 import { useTranslation } from 'next-i18next';
 import { useContext } from 'react';
-import HeaderMenu from '@/organisms/commons/Header/HeaderMenu';
-import HeaderLogo from '@/organisms/commons/Header/HeaderLogo';
-import HeaderAction from '@/organisms/commons/Header/HeaderAction';
+import HeaderMenu from '@/organisms/commons/header/headerMenu';
+import HeaderLogo from '@/organisms/commons/header/headerLogo';
+import HeaderAction from '@/organisms/commons/header/headerAction';
 
 const Header = () => {
   const { t } = useTranslation('common');

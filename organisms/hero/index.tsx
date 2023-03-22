@@ -4,10 +4,10 @@ import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { ComponentBasicHeroSlider } from '@/graphql/generated';
-import Heading from '@/atoms/Typo/heading';
+import Heading from '@/atoms/typo/heading';
 import PrimaryButton from '@/atoms/button';
 import Link from 'next/link';
-import NavigationSvg from '@/atoms/Svg/navigation';
+import NavigationSvg from '@/atoms/svg/navigation';
 
 const HeroSection = ({
   heroSectionData

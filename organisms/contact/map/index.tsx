@@ -1,5 +1,5 @@
-import Heading from '@/atoms/Typo/heading';
-import Text from '@/atoms/Typo/text';
+import Heading from '@/atoms/typo/heading';
+import Text from '@/atoms/typo/text';
 import { ILatLngCMS } from '@/models/molecules/map';
 import InfoWindow from '@/molecules/infoWindow';
 import Map from '@/molecules/map';

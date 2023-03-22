@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import Link from 'next/link';
-import LogoSVG from '@/atoms/Svg/logo';
+import LogoSVG from '@/atoms/svg/logo';
 
 const HeaderLogo = () => {
   return (
