@@ -3,7 +3,7 @@ import { IMAGE_FRAGMENT } from '@/graphql/fragment/image';
 
 export const TEXT_BLOCK_FRAGMENT = gql`
   ${IMAGE_FRAGMENT}
-  fragment TextBlock on ComponentBasicTextBlock {
+  fragment TextBlock on ComponentTextBlockTextBlock {
     id
     title
     description

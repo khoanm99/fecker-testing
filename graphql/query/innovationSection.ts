@@ -7,7 +7,7 @@ import {CONTENTS_FRAGMENT} from "@/graphql/fragment/contents";
 import {IMAGE_FRAGMENT} from "@/graphql/fragment/image";
 import {ACCORDION_FRAGMENT} from "@/graphql/fragment/accordion";
 
-export const GET_FASSADEN_SECTION = gql`
+export const GET_INNOVATION_SECTION = gql`
     ${IMAGE_FRAGMENT}
     ${HERO_SLIDER_FRAGMENT}
     ${TEXT_BLOCK_FRAGMENT}
@@ -15,8 +15,8 @@ export const GET_FASSADEN_SECTION = gql`
     ${INTRO_CONTENT_FRAGMENT}
     ${ACCORDION_FRAGMENT}
     ${CONTENTS_FRAGMENT}
-  query getFassadenSection {
-    fassadenSection {
+  query getInnovationSection {
+    innovationSection {
       data {
         id
         attributes {
