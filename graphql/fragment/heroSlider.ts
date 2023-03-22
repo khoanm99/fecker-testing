@@ -10,5 +10,8 @@ export const HERO_SLIDER_FRAGMENT = gql`
         ...ImageData
       }
     }
+    buttonLink {
+      ...ButtonLinkData
+    }
   }
 `;
