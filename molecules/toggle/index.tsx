@@ -1,5 +1,5 @@
 import Toggle from '@/atoms/toggle';
-import Text from '@/atoms/Typo/text';
+import Text from '@/atoms/typo/text';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 

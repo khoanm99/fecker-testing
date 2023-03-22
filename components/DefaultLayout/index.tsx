@@ -1,7 +1,8 @@
 // import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
-import Header from '@/organisms/commons/Header/Header';
-import AppFooter from '@/organisms/commons/Footer/Footer';
+import Header from '@/organisms/commons/header/header';
+import Footer from '@/organisms/commons/footer/footer';
+import MenuPanel from '@/organisms/commons/menu';
 
 import useResetState from '@/hooks/useResetState';
 
@@ -16,7 +17,8 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
     <>
       <Header />
       <main>{children}</main>
-      <AppFooter />
+      <MenuPanel />
+      <Footer />
     </>
   );
 };

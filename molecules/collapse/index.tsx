@@ -1,4 +1,4 @@
-import Text from '@/atoms/Typo/text';
+import Text from '@/atoms/typo/text';
 import { useEffect, useRef, useState } from 'react';
 
 const Collapse = ({ content }: { content: string[] }) => {

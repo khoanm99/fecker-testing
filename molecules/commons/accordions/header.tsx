@@ -1,5 +1,5 @@
-import Plus from '@/atoms/Svg/plus';
-import Text from '@/atoms/Typo/text';
+import Plus from '@/atoms/svg/plus';
+import Text from '@/atoms/typo/text';
 import { rePosition } from '@/utils/rePosition';
 import { useRef } from 'react';
 
