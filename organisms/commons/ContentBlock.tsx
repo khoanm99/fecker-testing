@@ -1,10 +1,10 @@
-import { ComponentBasicTextBlock, Maybe } from '@/graphql/generated';
+import { ComponentTextBlockTextBlock, Maybe } from '@/graphql/generated';
 import ContentBlock from '@/molecules/commons/contentBlock';
 
 const ListContentBlock = ({
   textBlock
 }: {
-  textBlock: Maybe<ComponentBasicTextBlock>[];
+  textBlock: Maybe<ComponentTextBlockTextBlock>[];
 }) => {
   return (
     <div className={`space-y-[100px] lg:space-y-[155px]`}>
