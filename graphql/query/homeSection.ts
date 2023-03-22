@@ -20,8 +20,11 @@ export const GET_HOME_SECTION = gql`
           introContent {
             ...IntroContent
           }
-          textBlock {
-            ...TextBlock
+          ... on ComponentContentTextBlocks {
+            id
+            textBlocks {
+              ...TextBlock
+            }
           }
           seo {
             ...SeoData

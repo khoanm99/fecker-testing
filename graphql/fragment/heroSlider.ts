@@ -6,7 +6,6 @@ export const HERO_SLIDER_FRAGMENT = gql`
   fragment HeroSliderData on ComponentBasicHeroSlider {
     id
     title
-    description
     image {
       data {
         ...ImageData
