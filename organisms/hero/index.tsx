@@ -71,12 +71,16 @@ const HeroSection = ({
             )}
           </div>
         )}
-        <div className="fecker-button-prev absolute left-5 top-1/2 z-10 -translate-y-1/2 lg:hidden">
-          <NavigationSvg />
-        </div>
-        <div className="fecker-button-next absolute right-5 top-1/2 z-10 -translate-y-1/2 rotate-180 lg:hidden">
-          <NavigationSvg />
-        </div>
+        {listImage && Array.isArray(listImage) && listImage.length > 1 && (
+          <>
+            <div className="fecker-button-prev absolute left-5 top-1/2 z-10 -translate-y-1/2 lg:hidden">
+              <NavigationSvg />
+            </div>
+            <div className="fecker-button-next absolute right-5 top-1/2 z-10 -translate-y-1/2 rotate-180 lg:hidden">
+              <NavigationSvg />
+            </div>
+          </>
+        )}
       </div>
       {/* <div className={`fecker-pagination fecker-swiper-pagination-custom`} /> */}
     </div>
