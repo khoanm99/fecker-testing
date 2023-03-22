@@ -1,11 +1,11 @@
 import PrimaryButton from '@/atoms/button';
 import Input from '@/atoms/input';
-import ContactSvg from '@/atoms/Svg/contact';
-import ContactSticky from '@/atoms/Svg/contactSticky';
-import DownloadSvg from '@/atoms/Svg/download';
-import InstagramSvg from '@/atoms/Svg/instagram';
-import Heading from '@/atoms/Typo/heading';
-import Text from '@/atoms/Typo/text';
+import ContactSvg from '@/atoms/svg/contact';
+import ContactSticky from '@/atoms/svg/contactSticky';
+import DownloadSvg from '@/atoms/svg/download';
+import InstagramSvg from '@/atoms/svg/instagram';
+import Heading from '@/atoms/typo/heading';
+import Text from '@/atoms/typo/text';
 import { IAccordionList } from '@/models/molecules/accordions';
 import Collapse from '@/molecules/collapse';
 import Accordion from '@/molecules/commons/accordions';

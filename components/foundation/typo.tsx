@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 interface Props extends HTMLAttributes<ReactElement> {
   renderAs?: ElementType;
   cls?: string;
-  title: string;
+  title?: string;
   children?: ReactNode;
 }
 
@@ -17,6 +17,12 @@ const Typo = ({
   ...props
 }: Props) => {
   const Element = renderAs;
+  if (!title)
+    return (
+      <Element {...props} className={twMerge(cls)}>
+        {children && <>{children}</>}
+      </Element>
+    );
   return (
     <Element
       {...props}

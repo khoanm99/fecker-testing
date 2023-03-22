@@ -2,10 +2,18 @@ import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_INNOVATION_SECTION } from '@/graphql/query/innovationSection';
-const Innovation = () => {
+import { InnovationSectionEntityResponse } from '@/graphql/generated';
+import InnovationTemplate from '@/templates/Innovation';
+
+interface Props {
+  innovationSection: InnovationSectionEntityResponse;
+}
+const Innovation = ({ innovationSection }: Props) => {
   return (
     <DefaultLayout>
-      <div>innovation</div>
+      {innovationSection && (
+        <InnovationTemplate dataResponse={innovationSection} />
+      )}
     </DefaultLayout>
   );
 };
@@ -18,10 +26,19 @@ export const getStaticProps: GetStaticProps = async () => {
     .query({
       query: GET_INNOVATION_SECTION
     })
-    .catch(() => {});
+    .catch(() => {
+      // return {
+      //   notFound: true
+      // };
+    });
+  // if (!rs?.data) {
+  //   return {
+  //     notFound: true
+  //   };
+  // }
   return {
     props: {
-      payload: rs?.data || {}
+      innovationSection: rs?.data?.innovationSection ?? {}
     }
   };
 };
