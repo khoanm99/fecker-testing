@@ -1,6 +1,5 @@
 import { HomeSectionEntityResponse } from '@/graphql/generated';
 import ListContentBlock from '@/organisms/commons/ContentBlock';
-import HeroSection from '@/organisms/hero';
 
 interface Props {
   dataResponse: HomeSectionEntityResponse;
