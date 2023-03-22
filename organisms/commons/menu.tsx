@@ -8,6 +8,7 @@ import { IAppContext } from '@/types';
 import AppContext from '@/contexts/appContext';
 import { twMerge } from 'tailwind-merge';
 import ContactForm from '@/organisms/contactForm';
+import Sidebar from '@/organisms/commons/sidebar';
 
 // Data
 import menuData from 'data/menu.json';
@@ -27,15 +28,18 @@ interface IMenuItem {
 
 const Menu = () => {
   const ctx: IAppContext = useContext(AppContext) as IAppContext;
-  const clsDefault = `menu-panel fixed top-0 left-0 z-[50] h-full w-full p-[20px] bg-beige transition-all duration-300 overflow-auto xl:px-[0]`;
+  const clsDefault = `menu-panel fixed flex flex-col justify-between top-0 left-0 z-[50] h-full w-full p-[20px] bg-beige transition-all duration-300 overflow-auto xl:px-[0] xl:py-[25px]`;
   const clsState = `${
     ctx.isMenuOpen ? 'translate-x-[0]' : 'translate-x-[100%]'
   }`;
 
   return (
     <motion.div className={twMerge(clsDefault, clsState)}>
-      <MenuHeader />
-      <MenuBody />
+      <div className="">
+        <MenuHeader />
+        <MenuBody />
+      </div>
+      <Sidebar locate={'menu'} />
     </motion.div>
   );
 };
@@ -144,7 +148,7 @@ const MenuItem = ({ menuItem, id }: IMenuItem) => {
                 >
                   <Link
                     href={item.url}
-                    className="text-[20px] font-extralight text-black transition-all duration-300 hover:text-primary"
+                    className="text-[20px] font-light text-black transition-all duration-300 hover:text-primary"
                   >
                     {item.title}
                   </Link>
