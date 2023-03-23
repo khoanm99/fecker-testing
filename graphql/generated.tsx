@@ -113,7 +113,7 @@ export type ComponentBasicHeroSliderInput = {
 
 export type ComponentBasicIntroContent = {
   __typename?: 'ComponentBasicIntroContent';
-  content: Scalars['String'];
+  content?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
@@ -201,7 +201,7 @@ export type ComponentPartnerPartner = {
   id: Scalars['ID'];
   image: UploadFileEntityResponse;
   link?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
 };
 
 export type ComponentPartnerPartnerFiltersInput = {
@@ -246,6 +246,34 @@ export type ComponentTextBlockTextBlockFiltersInput = {
   not?: InputMaybe<ComponentTextBlockTextBlockFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentTextBlockTextBlockFiltersInput>>>;
   title?: InputMaybe<StringFilterInput>;
+};
+
+export type ContactSection = {
+  __typename?: 'ContactSection';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  heroSlider: ComponentBasicHeroSlider;
+  introContent?: Maybe<ComponentBasicIntroContent>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ContactSectionEntity = {
+  __typename?: 'ContactSectionEntity';
+  attributes?: Maybe<ContactSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ContactSectionEntityResponse = {
+  __typename?: 'ContactSectionEntityResponse';
+  data?: Maybe<ContactSectionEntity>;
+};
+
+export type ContactSectionInput = {
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
+  introContent?: InputMaybe<ComponentBasicIntroContentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
 };
 
 export type DateTimeFilterInput = {
@@ -362,6 +390,7 @@ export type GenericMorph =
   | ComponentPartnerPartner
   | ComponentStoryStory
   | ComponentTextBlockTextBlock
+  | ContactSection
   | FassadenSection
   | HomeSection
   | InnovationSection
@@ -532,6 +561,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteContactSection?: Maybe<ContactSectionEntityResponse>;
   deleteFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   deleteHomeSection?: Maybe<HomeSectionEntityResponse>;
   deleteInnovationSection?: Maybe<InnovationSectionEntityResponse>;
@@ -556,6 +586,7 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateContactSection?: Maybe<ContactSectionEntityResponse>;
   updateFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHomeSection?: Maybe<HomeSectionEntityResponse>;
@@ -666,6 +697,10 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
+};
+
+export type MutationUpdateContactSectionArgs = {
+  data: ContactSectionInput;
 };
 
 export type MutationUpdateFassadenSectionArgs = {
@@ -812,6 +847,7 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  contactSection?: Maybe<ContactSectionEntityResponse>;
   fassadenSection?: Maybe<FassadenSectionEntityResponse>;
   findSlug?: Maybe<FindSlugResponse>;
   homeSection?: Maybe<HomeSectionEntityResponse>;
@@ -833,6 +869,10 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+export type QueryContactSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type QueryFassadenSectionArgs = {
@@ -1006,16 +1046,12 @@ export type StringFilterInput = {
 export type Team = {
   __typename?: 'Team';
   createdAt?: Maybe<Scalars['DateTime']>;
-  image: UploadFileRelationResponseCollection;
+  imageLandscape: UploadFileEntityResponse;
+  imagePortrait: UploadFileEntityResponse;
   name: Scalars['String'];
+  position?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type TeamImageArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type TeamEntity = {
@@ -1042,13 +1078,16 @@ export type TeamFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<TeamFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<TeamFiltersInput>>>;
+  position?: InputMaybe<StringFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type TeamInput = {
-  image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  imageLandscape?: InputMaybe<Scalars['ID']>;
+  imagePortrait?: InputMaybe<Scalars['ID']>;
   name?: InputMaybe<Scalars['String']>;
+  position?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
