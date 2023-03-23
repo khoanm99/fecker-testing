@@ -1,7 +1,13 @@
 import Text from '@/atoms/typo/text';
 import { useEffect, useRef, useState } from 'react';
 
-const Collapse = ({ content }: { content: string[] }) => {
+const Collapse = ({
+  content,
+  className = ''
+}: {
+  content: string[];
+  className?: string;
+}) => {
   const refContent = useRef<HTMLDivElement>(null);
   const [expanded, setExpand] = useState<boolean>(false);
   const [maxHeight, setMaxHeight] = useState<number>(0);
@@ -31,7 +37,7 @@ const Collapse = ({ content }: { content: string[] }) => {
   }, []);
 
   return (
-    <div>
+    <div className={className}>
       <div
         className={`mb-6 overflow-hidden transition-all duration-300 lg:mb-[30px] `}
         style={{ maxHeight: maxHeight }}

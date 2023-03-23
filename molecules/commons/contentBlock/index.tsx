@@ -28,6 +28,7 @@ const ContentBlock = ({
               src={imageData.url}
               alt={imageData.alternativeText ?? ''}
               fill
+              className={`object-cover`}
             />
           </div>
         )}
@@ -52,13 +53,13 @@ const RenderBlockText = ({ textBlockData, index, state }: IContentBlock) => {
     <div
       className={`flex w-full ${
         state == 'layout-right' ? blockRight : blockLeft
-      } lg:absolute lg:w-1/2`}
+      } lg:absolute lg:w-[55%]`}
     >
       <div
-        className={`relative mt-[calc(100%_-_123px)] w-[280px] bg-beige pt-[10px] md:max-w-[400px] md:pt-8 lg:mt-0 lg:w-full lg:max-w-none lg:pt-[60px] lg:pb-[66px] ${
+        className={`relative mt-[calc(100%_-_123px)] w-[280px] bg-beige pt-[10px] md:max-w-[400px] md:pt-8 lg:mt-0 lg:w-full lg:max-w-none lg:pt-[60px] lg:pb-[20px] xl:pb-[66px] ${
           state == 'layout-right'
-            ? 'lg:pl-[88px]'
-            : 'pr-5 lg:pl-[128px] 2xl:pl-[calc(100vw_*_0.1)] 2xl:pr-[50px]'
+            ? 'xl:pl-[88px]'
+            : 'pr-5 xl:pl-[128px] 2xl:pl-[calc(100vw_*_0.1)] 2xl:pr-[50px]'
         }`}
       >
         {index && textBlockData && textBlockData.title && (
