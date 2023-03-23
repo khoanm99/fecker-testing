@@ -54,7 +54,7 @@ const HeroIntroText = ({
               {result && (
                 <Collapse
                   content={result}
-                  className={`max-w-[770px]  pt-[30px] lg:ml-14 `}
+                  className={`max-w-[770px] pt-[30px] lg:ml-14 2xl:max-w-[60vw] `}
                 />
               )}
             </div>
