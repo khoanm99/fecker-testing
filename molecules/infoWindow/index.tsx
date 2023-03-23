@@ -11,9 +11,7 @@ const InfoWindow = ({
   email?: string;
 }) => {
   return (
-    <div
-      className={`absolute w-[255px] bg-white p-7 lg:left-[calc(50%_+_38px)] lg:top-[calc(50%_-_25px)] lg:space-y-8`}
-    >
+    <div className={`w-[255px] bg-white p-7 lg:space-y-8`}>
       {content && <Text size={`bodyTextSmall`} content={content} />}
       <div>
         {phone && (
