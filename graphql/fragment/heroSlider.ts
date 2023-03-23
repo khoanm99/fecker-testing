@@ -1,7 +1,8 @@
 import { gql } from '@apollo/client';
-import { IMAGE_FRAGMENT } from '@/graphql/fragment/image';
+import { BUTTON_LINK_FRAGMENT } from '@/graphql/fragment/buttonLink';
 
 export const HERO_SLIDER_FRAGMENT = gql`
+  ${BUTTON_LINK_FRAGMENT}
   fragment HeroSliderData on ComponentBasicHeroSlider {
     id
     title

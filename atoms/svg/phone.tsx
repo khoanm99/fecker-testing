@@ -1,4 +1,9 @@
-const Phone = () => {
+import { SVGProps } from '@/models/common';
+import { twMerge } from 'tailwind-merge';
+
+const Phone = ({ className = '', ...props }: SVGProps) => {
+  const defaultCls =
+    'transition-all duration-500 fill-black hover:fill-primary cursor-pointer';
   return (
     <svg
       width="20"
@@ -6,6 +11,7 @@ const Phone = () => {
       viewBox="0 0 20 19"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={twMerge(defaultCls, className)}
     >
       <g clipPath="url(#clip0_178_285)">
         <path
