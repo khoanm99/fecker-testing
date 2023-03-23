@@ -15,7 +15,6 @@ const Home = ({ homeSection }: Props) => {
   return (
     <DefaultLayout>
       {homeSection && <HomeTemplate dataResponse={homeSection} />}
-      <NextSeo title="" description="" />
     </DefaultLayout>
   );
 };

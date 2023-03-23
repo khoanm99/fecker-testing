@@ -1,5 +1,5 @@
 .fecker-swiper-pagination-custom {
-  @apply flex items-center pl-5 space-x-[4px] mt-[14px] lg:space-x-[9px];
+  @apply flex items-center pl-5 space-x-[4px] mt-[14px] lg:absolute lg:right-[84px] lg:pl-0 lg:z-[11] lg:bottom-[150px];
 
   .swiper-pagination-bullet {
     @apply w-[7px] h-[7px] border-primary border rounded-full cursor-pointer bg-transparent transition-colors duration-500;
