@@ -10,7 +10,7 @@
   }
 }
 
-.story-slider {
+.slider-container {
   .swiper-horizontal {
     @apply pt-[20px] lg:pt-[40px]
   }
@@ -25,6 +25,16 @@
 
   .as-scrollbar {
     @apply h-[2px] w-[100%] block transition-all duration-300;
+  }
+}
+
+.partner-slider {
+  .swiper-pagination {
+    @apply w-[calc(100%-20px)] lg:w-[calc(100%-40px)] xl:w-[calc(100%-75px)]
+  }
+
+  .swiper-wrapper {
+    @apply mr-[-20px] lg:mr-[-40px] xl:mr-[-75px]
   }
 }
 

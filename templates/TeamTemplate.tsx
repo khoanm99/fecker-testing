@@ -5,6 +5,7 @@ import {
 import HeroSection from '@/organisms/hero';
 import { Fragment } from 'react';
 import StorySlider from '@/organisms/slider/story';
+import PartnerSlider from '@/organisms/slider/partner';
 
 interface Props {
   dataResponse: TeamSectionEntityResponse;
@@ -27,6 +28,12 @@ const TeamTemplate = ({ dataResponse }: Props) => {
               return (
                 <Fragment key={key}>
                   <StorySlider data={item} title={item.title} />
+                </Fragment>
+              );
+            case 'ComponentContentPartner':
+              return (
+                <Fragment key={key}>
+                  <PartnerSlider data={item} title={item.title} />
                 </Fragment>
               );
           }
