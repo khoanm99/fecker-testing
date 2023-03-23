@@ -201,7 +201,7 @@ export type ComponentPartnerPartner = {
   id: Scalars['ID'];
   image: UploadFileEntityResponse;
   link?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
 };
 
 export type ComponentPartnerPartnerFiltersInput = {
@@ -1006,16 +1006,11 @@ export type StringFilterInput = {
 export type Team = {
   __typename?: 'Team';
   createdAt?: Maybe<Scalars['DateTime']>;
-  image: UploadFileRelationResponseCollection;
+  image: UploadFileEntityResponse;
   name: Scalars['String'];
+  position?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type TeamImageArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type TeamEntity = {
@@ -1042,13 +1037,15 @@ export type TeamFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<TeamFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<TeamFiltersInput>>>;
+  position?: InputMaybe<StringFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type TeamInput = {
-  image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  image?: InputMaybe<Scalars['ID']>;
   name?: InputMaybe<Scalars['String']>;
+  position?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 

@@ -3,39 +3,48 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { ComponentBasicHeroSlider } from '@/graphql/generated';
-import Heading from '@/atoms/typo/heading';
-import PrimaryButton from '@/atoms/button';
-import Link from 'next/link';
+// import 'swiper/css/pagination';
+import {
+  ComponentBasicHeroSlider,
+  ComponentBasicIntroContent
+} from '@/graphql/generated';
 import NavigationSvg from '@/atoms/svg/navigation';
+import ContactStickySvg from '@/atoms/svg/contactSticky';
+import { twMerge } from 'tailwind-merge';
+import HeroIntroText from '@/molecules/hero/heroIntroContent';
+import HeroText from '@/molecules/hero/heroText';
 
 const HeroSection = ({
-  heroSectionData
+  heroSectionData,
+  introContent,
+  templateName = 'home'
 }: {
   heroSectionData: ComponentBasicHeroSlider;
+  introContent?: ComponentBasicIntroContent;
+  templateName: 'home' | 'subPage';
 }) => {
   const listImage = heroSectionData.image.data;
   const havePagination =
     listImage && Array.isArray(listImage) && listImage.length > 1;
+
+  const defaultContactCls = `hidden lg:absolute  lg:z-[11] lg:right-[30px] lg:block `;
+  const contactClsHome = `lg:bottom-[50px] xl:bottom-[70px]`;
+  const contactClsSubPage = `lg:bottom-[30px] xl:bottom-[35px]`;
   return (
-    <div className={`mb-14`}>
+    <div className={`mb-14 lg:relative`}>
       <div className={`relative`}>
         <Swiper
-          loop
+          // loop
           slidesPerView={1}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination]}
           pagination={{
-            el: `.fecker-pagination`,
-            clickable: true,
-            type: 'bullets'
+            el: '.fecker-pagination',
+            clickable: true
           }}
           navigation={{
             nextEl: '.fecker-button-next',
             prevEl: '.fecker-button-prev'
           }}
-          observer={true}
-          observeParents={true}
-          observeSlideChildren={true}
         >
           <>
             {listImage &&
@@ -47,32 +56,7 @@ const HeroSection = ({
               ))}
           </>
         </Swiper>
-        {heroSectionData && (
-          <div
-            className={`absolute bottom-0 z-[10] w-fit lg:bottom-[180px] lg:pl-[80px] 2xl:bottom-[225px] 2xl:pl-[100px]`}
-          >
-            {heroSectionData.title && (
-              <Heading
-                size={`h1`}
-                renderAs={`h1`}
-                title={heroSectionData.title}
-                className={`z-10 max-w-[195px] pb-6 pl-5 text-white lg:max-w-[630px] lg:pl-0`}
-              />
-            )}
-            {heroSectionData.buttonLink && (
-              <div
-                className={`w-[calc(100vw_-_20px)] pb-11 text-center lg:w-fit lg:pb-0 lg:text-left`}
-              >
-                <Link
-                  href={heroSectionData.buttonLink.url}
-                  title={heroSectionData.buttonLink.title}
-                >
-                  <PrimaryButton title={heroSectionData.buttonLink.title} />
-                </Link>
-              </div>
-            )}
-          </div>
-        )}
+        {heroSectionData && <HeroText heroSectionData={heroSectionData} />}
         {havePagination && (
           <>
             <div className="fecker-button-prev absolute left-5 top-1/2 z-10 -translate-y-1/2 lg:hidden">
@@ -81,11 +65,23 @@ const HeroSection = ({
             <div className="fecker-button-next absolute right-5 top-1/2 z-10 -translate-y-1/2 rotate-180 lg:hidden">
               <NavigationSvg />
             </div>
+            <div
+              className={`fecker-pagination fecker-swiper-pagination-custom`}
+            />
           </>
         )}
+        <ContactStickySvg
+          className={twMerge(
+            defaultContactCls,
+            templateName == 'home' ? contactClsHome : contactClsSubPage
+          )}
+        />
       </div>
-      {havePagination && (
-        <div className={`fecker-pagination fecker-swiper-pagination-custom`} />
+      {introContent && (
+        <HeroIntroText
+          introContent={introContent}
+          templateName={templateName}
+        />
       )}
     </div>
   );
