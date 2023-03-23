@@ -88,13 +88,26 @@ const ContactForm = ({
             : 'lg:flex lg:justify-between '
         }`}
       >
-        <Text
-          content={`Mit dem Senden akzeptieren Sie die Datenschutzerklärung`}
+        <div
           className={`py-[10px] lg:py-[0px] ${
             locate === 'menu' ? '' : 'lg:w-[50%]'
           }`}
-          size={`bodyTextSmall`}
-        />
+        >
+          <Text
+            content={`Mit dem Senden akzeptieren Sie die Datenschutzerklärung`}
+            size={`bodyTextSmall`}
+          />
+          {resultSend !== null && (
+            <Text
+              content={
+                resultSend ? `Email erfolgreich senden` : 'E-Mail senden fehl'
+              }
+              className={`py-0 ${resultSend ? 'text-primary' : 'text-[red]'}`}
+              size={`bodyTextSmall`}
+            />
+          )}
+        </div>
+
         <div>
           <PrimaryButton
             title="Senden"
@@ -104,16 +117,6 @@ const ContactForm = ({
               locate === 'menu' ? 'lg:mb-[0] xl:mt-[0]' : 'lg:m-[0px]'
             }`}
           />
-          {resultSend !== null && (
-            <p
-              className={clsx(
-                'text-[14px] lg:mt-2 lg:text-center',
-                resultSend ? 'text-primary' : 'text-[red]'
-              )}
-            >
-              {resultSend ? 'Email erfolgreich senden' : 'E-Mail senden fehl'}
-            </p>
-          )}
         </div>
       </div>
     </form>

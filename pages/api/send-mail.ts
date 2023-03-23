@@ -8,7 +8,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const body = req.body;
 
     const { name, email, message } = JSON.parse(body);
-    console.log('body', name, email, message);
     if (isEmpty(name) || isEmpty(email) || isEmpty(message)) {
       return res.status(400).json({ success: false });
     }
@@ -28,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         from: process.env.NEXT_PUBLIC_EMAIL_SENDER,
         to: process.env.NEXT_PUBLIC_EMAIL_RECEIVE,
         subject:
-          'Mail Kontaktieren ' + `- ${new Date().toLocaleDateString('de-DE')}`,
+          'Kontakt Formular ' + `- ${new Date().toLocaleDateString('de-DE')}`,
         text: template || '',
         html: template || ''
       };
