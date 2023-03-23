@@ -2,10 +2,36 @@ import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_TEAM_SECTION } from '@/graphql/query/teamSection';
-const Team = () => {
+import StorySlider from '@/organisms/slider/story';
+import { TeamSection, Team } from '@/graphql/generated';
+import { Fragment } from 'react';
+
+interface Props {
+  teamSection: {
+    data: {
+      attributes: TeamSection;
+    };
+  };
+  teams: Team;
+}
+const Team = ({ payload }: { payload: Props }) => {
   return (
     <DefaultLayout>
-      <div>Team</div>
+      <div className="min-h-[100vh] px-[20px]">
+        {payload.teamSection.data.attributes.contents &&
+          payload.teamSection.data.attributes.contents.map(
+            (item: any, key: number) => {
+              switch (item.__typename) {
+                case 'ComponentContentStory':
+                  return (
+                    <Fragment key={key}>
+                      <StorySlider data={item} title={item.title} />
+                    </Fragment>
+                  );
+              }
+            }
+          )}
+      </div>
     </DefaultLayout>
   );
 };

@@ -9,3 +9,22 @@
     }
   }
 }
+
+.story-slider {
+  .swiper-horizontal {
+    @apply pt-[20px] lg:pt-[40px]
+  }
+
+  .swiper-pagination {
+    @apply bg-white flex rounded-[2px] absolute top-[0px] left-[0] w-[100%];
+  }
+
+  .swiper-pagination-bullet-active {
+    @apply bg-primary;
+  }
+
+  .as-scrollbar {
+    @apply h-[2px] w-[100%] block transition-all duration-300;
+  }
+}
+
