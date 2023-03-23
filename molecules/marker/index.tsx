@@ -1,15 +1,22 @@
 import { ILatLngCMS } from '@/models/molecules/map';
 import { useEffect, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
+import InfoWindow from '@/molecules/infoWindow';
 
 interface Props extends google.maps.MarkerOptions {
-  itemInfo?: ILatLngCMS | null;
+  itemInfo?: any;
   setIsOpenInfo?: Function;
   isOpenInfo?: boolean;
   setItemInfo?: Function;
+  myMap: google.maps.Map | undefined;
+  gotoCenter?: Function;
 }
 
 const Marker = (options: Props) => {
   const [marker, setMarker] = useState<google.maps.Marker>();
+  const [infowindow, setInfowindow] = useState<google.maps.InfoWindow>();
+  const { myMap, itemInfo, gotoCenter } = options;
+  const [isOpenInfowindow, setIsOpenInfowindow] = useState<boolean>(false);
   useEffect(() => {
     if (!marker) setMarker(new google.maps.Marker());
     return () => {
@@ -20,6 +27,22 @@ const Marker = (options: Props) => {
   }, [marker]);
 
   useEffect(() => {
+    if (!infowindow)
+      setInfowindow(
+        new google.maps.InfoWindow({
+          content: ReactDOMServer.renderToString(
+            <InfoWindow
+              content={itemInfo?.attributes?.content}
+              email={itemInfo?.attributes?.email}
+              phone={itemInfo?.attributes?.phone}
+            />
+          ),
+          ariaLabel: 'Fecker'
+        })
+      );
+  }, [infowindow]);
+
+  useEffect(() => {
     if (marker) {
       marker.setOptions(options);
     }
@@ -27,28 +50,31 @@ const Marker = (options: Props) => {
 
   // Handle click maker
   useEffect(() => {
+    if (infowindow) {
+      if (isOpenInfowindow) {
+        infowindow.close();
+      } else {
+        infowindow.open({
+          anchor: marker,
+          myMap
+        } as any);
+      }
+    }
+
     if (marker) {
       const makerListener = google.maps.event.addListener(
         marker,
         'click',
         () => {
-          if (!options.setItemInfo) return;
-          if (options.isOpenInfo && options.itemInfo) {
-            options.setItemInfo(options.itemInfo);
-          } else {
-            options.setItemInfo(null);
-          }
-
-          if (options.setIsOpenInfo) {
-            options.setIsOpenInfo(!options.isOpenInfo);
-          }
+          gotoCenter && gotoCenter();
+          setIsOpenInfowindow(!isOpenInfowindow);
         }
       );
       return () => {
         google.maps.event.removeListener(makerListener);
       };
     }
-  }, [options, marker]);
+  }, [options, marker, infowindow, isOpenInfowindow]);
 
   return null;
 };
