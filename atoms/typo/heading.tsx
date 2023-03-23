@@ -20,7 +20,7 @@ const Heading = ({
 }: Props) => {
   const defaultCls = 'font-primary leading-normal';
   const listSize: IKeyString = {
-    h1: 'text-[40px] leading-[1.2] font-bold uppercase lg:text-[120px]',
+    h1: 'text-[40px] leading-none font-bold uppercase lg:text-[120px]',
     h2: 'text-[20px] font-bold uppercase lg:text-[45px]',
     h3: 'text-[20px] font-extrabold uppercase lg:text-[45px]',
     h4: '',

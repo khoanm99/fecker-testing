@@ -3,14 +3,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
 import {
   ComponentBasicHeroSlider,
   ComponentBasicIntroContent
 } from '@/graphql/generated';
 import NavigationSvg from '@/atoms/svg/navigation';
-import ContactStickySvg from '@/atoms/svg/contactSticky';
-import { twMerge } from 'tailwind-merge';
 import HeroIntroText from '@/molecules/hero/heroIntroContent';
 import HeroText from '@/molecules/hero/heroText';
 
@@ -27,16 +24,13 @@ const HeroSection = ({
   const havePagination =
     listImage && Array.isArray(listImage) && listImage.length > 1;
 
-  const defaultContactCls = `hidden lg:absolute  lg:z-[11] lg:right-[30px] lg:block `;
-  const contactClsHome = `lg:bottom-[50px] xl:bottom-[70px]`;
-  const contactClsSubPage = `lg:bottom-[30px] xl:bottom-[35px]`;
   return (
     <div className={`mb-14 lg:relative`}>
       <div className={`relative`}>
         <Swiper
           // loop
           slidesPerView={1}
-          modules={[Pagination]}
+          modules={[Pagination, Navigation]}
           pagination={{
             el: '.fecker-pagination',
             clickable: true
@@ -70,12 +64,6 @@ const HeroSection = ({
             />
           </>
         )}
-        <ContactStickySvg
-          className={twMerge(
-            defaultContactCls,
-            templateName == 'home' ? contactClsHome : contactClsSubPage
-          )}
-        />
       </div>
       {introContent && (
         <HeroIntroText
