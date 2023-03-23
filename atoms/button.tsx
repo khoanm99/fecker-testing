@@ -1,24 +1,45 @@
 import { twMerge } from 'tailwind-merge';
+import Loading from '@/atoms/loading';
 
 interface Props {
   title: string;
   type?: 'button' | 'submit';
   className?: string;
+  loading?: boolean;
 }
 
-const PrimaryButton = ({ title, type = 'button', className }: Props) => {
+const PrimaryButton = ({
+  title,
+  type = 'button',
+  className,
+  loading = false
+}: Props) => {
   const clsFont = 'text-white text-[16px] font-semibold lg:text-[20px]';
   const clsDefault =
     'relative group hover:bg-black rounded-full bg-primary py-[8px] pl-5 pr-11 lg:pl-10 lg:pr-20 max-w-[330px] lg:max-w-[345px] transition-all duration-300';
   return (
     <>
       <button
-        className={twMerge(clsDefault, clsFont, className, ``)}
+        className={twMerge(
+          clsDefault,
+          clsFont,
+          className,
+          loading ? 'bg-black text-white' : ``
+        )}
         title={title}
         type={type}
+        disabled={loading}
       >
         {title}
-        {RenderArrow()}
+        {loading ? (
+          <Loading
+            className={
+              'absolute top-[calc(50%-10px)] right-3 h-[18px] w-[18px] lg:right-[45px] '
+            }
+          />
+        ) : (
+          RenderArrow()
+        )}
       </button>
     </>
   );
