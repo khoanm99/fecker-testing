@@ -10,7 +10,7 @@ const HeroText = ({
 }) => {
   return (
     <div
-      className={`absolute bottom-6 z-[10] w-fit lg:bottom-[180px] lg:pl-[80px] xl:bottom-[225px] xl:pl-[100px]`}
+      className={`absolute bottom-6 z-[10] w-fit lg:bottom-[200px] lg:pl-[80px] xl:bottom-[225px] xl:pl-[100px]`}
     >
       {heroSectionData.title && (
         <Heading
