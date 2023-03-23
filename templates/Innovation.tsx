@@ -11,6 +11,8 @@ const InnovationTemplate = ({ dataResponse }: Props) => {
       {dataResponse.data?.attributes?.heroSlider && (
         <HeroSection
           heroSectionData={dataResponse.data.attributes.heroSlider}
+          introContent={dataResponse.data.attributes.introContent ?? undefined}
+          templateName="subPage"
         />
       )}
     </div>
