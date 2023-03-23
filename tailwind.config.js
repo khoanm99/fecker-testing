@@ -17,6 +17,9 @@ module.exports = {
       fontFamily: {
         primary: `'Poppins', sans-serif;`
       },
+      animation: {
+        'spin-circle': 'spin 1s linear infinite'
+      },
       fontSize: {},
       screens: {
         '2xl': '1440px',
