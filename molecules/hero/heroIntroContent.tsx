@@ -12,7 +12,7 @@ const HeroIntroText = ({
 }) => {
   const defaultIntroText =
     'relative z-[10] mt-[55px] ml-auto mr-0 bg-beige px-5 lg:-mt-[220px] lg:max-w-[880px] lg:pl-[6vw] lg:pt-[54px] xl:max-w-[85.5vw]';
-  const result =
+  const listContent =
     introContent &&
     introContent.content &&
     introContent?.content.split(/\r?\n/).filter(item => item != '');
@@ -51,9 +51,9 @@ const HeroIntroText = ({
                   className={`font-extralight`}
                 />
               )}
-              {result && (
+              {listContent && (
                 <Collapse
-                  content={result}
+                  content={listContent}
                   className={`max-w-[770px] pt-[30px] lg:ml-14 2xl:max-w-[60vw] `}
                 />
               )}
