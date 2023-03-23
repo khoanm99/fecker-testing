@@ -12,7 +12,7 @@
 
 .story-slider {
   .swiper-horizontal {
-    @apply pt-[20px]
+    @apply pt-[20px] lg:pt-[40px]
   }
 
   .swiper-pagination {
