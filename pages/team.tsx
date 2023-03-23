@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_TEAM_SECTION } from '@/graphql/query/teamSection';
 import { TeamSection, Team } from '@/graphql/generated';
-import TeamTemplate from '@/templates/TeamTemplate';
+import TeamTemplate from 'templates/TeamTemplate';
 
 interface Props {
   teamSection: {
