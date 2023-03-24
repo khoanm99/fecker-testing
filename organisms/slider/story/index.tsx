@@ -81,7 +81,7 @@ const StorySlider = ({
                     renderAs="h4"
                     title={slide.title}
                     className={
-                      'pb-[8px] text-[16px] font-bold uppercase leading-[24px] leading-[30px] text-black lg:pb-[22px] lg:text-[20px]'
+                      'pb-[8px] text-[16px] font-bold uppercase leading-[24px] text-black lg:pb-[22px] lg:text-[20px] lg:leading-[30px]'
                     }
                   />
                   <Text
