@@ -27,6 +27,8 @@ const ImageWithHover = ({
               src={image.url}
               alt={image.alternativeText ?? ''}
               fill
+              sizes="(max-width: 1023px) 100vw,
+              (min-width: 1024px) 50vw"
               className={`object-cover object-center`}
             />
           </div>

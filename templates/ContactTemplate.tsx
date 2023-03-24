@@ -4,9 +4,12 @@ import ContactMap from '@/organisms/contact/map';
 
 // Data
 import contactInfo from 'data/contact.json';
+import IntroContent from '@/molecules/hero/heroIntroContent';
 
 interface Props {
-  dataResponse: ContactSectionEntityResponse;
+  dataResponse?: {
+    contactSection?: ContactSectionEntityResponse;
+  };
 }
 
 const location = [
@@ -22,17 +25,27 @@ const location = [
 ];
 
 const ContactTemplate = ({ dataResponse }: Props) => {
+  const contactSection = dataResponse?.contactSection;
+  const introContent = contactSection?.data?.attributes?.introContent;
   return (
-    <div className={'pb-[60px]'}>
-      {dataResponse?.data?.attributes?.heroSlider && (
-        <HeroSection
-          heroSectionData={dataResponse.data.attributes.heroSlider}
-          introContent={dataResponse.data.attributes.introContent ?? undefined}
-          templateName="subPage"
-        />
+    <>
+      {dataResponse && contactSection && (
+        <div className={'pb-[60px]'}>
+          {contactSection?.data?.attributes?.heroSlider && (
+            <HeroSection
+              heroSectionData={contactSection?.data?.attributes?.heroSlider}
+              templateName={`subPage`}
+            />
+          )}
+
+          {introContent && (
+            <IntroContent introContent={introContent} templateName="subPage">
+              <ContactMap maker={location} />
+            </IntroContent>
+          )}
+        </div>
       )}
-      <ContactMap maker={location} />
-    </div>
+    </>
   );
 };
 

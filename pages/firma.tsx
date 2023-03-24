@@ -9,17 +9,14 @@ import { GET_TEAM_SECTION } from '@/graphql/query/teamSection';
 import FirmaTemplate from '@/templates/FirmaTemplate';
 interface Props {
   dataResponse: {
-    teamSection: TeamSectionEntityResponse;
-    teams: TeamEntityResponseCollection;
+    teamSection?: TeamSectionEntityResponse;
+    teams?: TeamEntityResponseCollection;
   };
 }
 const Firma = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      <FirmaTemplate
-        dataTeamSection={dataResponse.teamSection ?? undefined}
-        dataTeams={dataResponse.teams}
-      />
+      {dataResponse && <FirmaTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
 };
