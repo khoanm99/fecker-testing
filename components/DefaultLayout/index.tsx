@@ -1,16 +1,13 @@
-// import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import Header from '@/organisms/commons/header/header';
 import Footer from '@/organisms/commons/footer/footer';
 import MenuPanel from '@/organisms/commons/menu';
-
 import useResetState from '@/hooks/useResetState';
 import { NextSeo } from 'next-seo';
 import ContactStickySvg from '@/atoms/svg/contactSticky';
-import BackToTopSVG from '@/atoms/svg/backToTop';
 import { twMerge } from 'tailwind-merge';
-import { scrollToTarget } from '@/utils/helpers';
+import BackToTop from '@/atoms/backToTop';
 
 export interface DefaultLayoutProps {
   title?: string;
@@ -57,14 +54,7 @@ const DefaultLayout = ({
       >
         <ContactStickySvg />
       </div>
-      <span
-        className={`${active} fixed bottom-[140px] right-[55px] hidden cursor-pointer lg:z-[11] ${
-          active ? 'lg:block' : ''
-        }`}
-        onClick={() => scrollToTarget('header', true)}
-      >
-        <BackToTopSVG />
-      </span>
+      <BackToTop active={active} />
       <MenuPanel />
       <Footer />
     </>
