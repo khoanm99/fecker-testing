@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @layer base {
+  @import './base/scrollbar';
+
   * {
     @apply focus:outline-0;
   }
@@ -31,8 +33,6 @@
 
   .gm-style-iw-tc {
     @apply hidden;
-
-
   }
 
   .gm-ui-hover-effect {

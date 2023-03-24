@@ -16,7 +16,7 @@ const PartnerSlider = ({
   title: string;
 }) => {
   return (
-    <div className="partner-slider slider-container pb-[60px] pl-[20px] lg:pb-[120px] lg:pl-[40px] xl:pl-[75px]">
+    <div className="partner-slider slider-container pl-[20px] xl:pl-[75px]">
       <div className="slider-header flex justify-between pr-[20px] lg:pr-[40px] xl:pr-[75px]">
         <Heading
           renderAs={'h2'}
