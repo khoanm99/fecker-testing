@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import Text from './typo/text';
 
-const SiteImage = ({
+const ImageWithHover = ({
   title,
   description,
   image,
@@ -38,7 +38,7 @@ const SiteImage = ({
   );
 };
 
-export default SiteImage;
+export default ImageWithHover;
 
 const renderOverlay = ({
   title,

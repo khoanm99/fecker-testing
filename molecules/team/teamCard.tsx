@@ -1,4 +1,4 @@
-import SiteImage from '@/atoms/siteImage';
+import ImageWithHover from '@/atoms/imageWithHover';
 import { Team } from '@/graphql/generated';
 import useWindowSize from '@/hooks/useWindowSize';
 import { Maybe } from 'graphql/jsutils/Maybe';
@@ -18,7 +18,7 @@ const TeamCard = ({
       : dataTeam?.imageLandscape.data?.attributes;
   return (
     <>
-      <SiteImage
+      <ImageWithHover
         title={dataTeam?.name ?? ''}
         description={dataTeam?.position ?? ''}
         image={

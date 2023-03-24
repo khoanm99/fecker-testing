@@ -1,6 +1,6 @@
 import Heading from '@/atoms/typo/heading';
 import { TeamEntity, TeamEntityResponseCollection } from '@/graphql/generated';
-import TeamCard from '@/molecules/team';
+import TeamCard from '@/molecules/team/teamCard';
 import { useEffect, useState } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 const TeamSection = ({

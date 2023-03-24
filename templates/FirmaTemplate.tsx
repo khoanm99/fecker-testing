@@ -7,7 +7,7 @@ import HeroSection from '@/organisms/hero';
 import { Fragment } from 'react';
 import StorySlider from '@/organisms/slider/story';
 import PartnerSlider from '@/organisms/slider/partner';
-import TeamSection from '@/organisms/team/teamCard';
+import TeamSection from '@/organisms/teams';
 
 interface Props {
   dataTeamSection?: TeamSectionEntityResponse;
