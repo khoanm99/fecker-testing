@@ -1,5 +1,5 @@
+import Container from '@/components/container';
 import { InnovationSectionEntityResponse } from '@/graphql/generated';
-import Collapse from '@/molecules/collapse';
 import Accordion from '@/molecules/commons/accordions';
 import IntroContent from '@/molecules/hero/heroIntroContent';
 import HeroSection from '@/organisms/hero';
@@ -33,7 +33,11 @@ const InnovationTemplate = ({ dataResponse }: Props) => {
                 itemContent?.__typename == `ComponentContentAccordions` &&
                 itemContent.accordions
               ) {
-                return <Accordion list={itemContent.accordions} key={key} />;
+                return (
+                  <Container layout={'grid'} key={key}>
+                    <Accordion list={itemContent.accordions} />
+                  </Container>
+                );
               }
             })}
         </div>
