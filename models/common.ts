@@ -7,6 +7,7 @@ export interface IKeyString {
 export interface IClassName {
   className?: string;
   color?: string;
+  pathCls?: string;
 }
 
 export type SVGProps = HTMLAttributes<HTMLOrSVGElement> & IClassName;
