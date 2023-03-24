@@ -1,6 +1,8 @@
+import { UploadFile } from '@/graphql/generated';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import Image from 'next/image';
 
-const HeroImage = ({ image }: any) => {
+const HeroImage = ({ image }: { image: Maybe<UploadFile> }) => {
   return (
     <>
       {image && image.url && (
