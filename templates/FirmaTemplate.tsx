@@ -9,6 +9,7 @@ import StorySlider from '@/organisms/slider/story';
 import PartnerSlider from '@/organisms/slider/partner';
 import TeamSection from '@/organisms/teams';
 import IntroContent from '@/molecules/hero/heroIntroContent';
+import Container from '@/components/container';
 
 interface Props {
   dataResponse: {
@@ -35,7 +36,11 @@ const FirmaTemplate = ({ dataResponse }: Props) => {
             <IntroContent introContent={introContent} templateName="subPage" />
           )}
 
-          {teams && <TeamSection dataTeams={teams} />}
+          {teams && (
+            <Container layout={'grid'} className={''}>
+              <TeamSection dataTeams={teams} />
+            </Container>
+          )}
 
           {teamSection?.data?.attributes?.contents &&
             teamSection.data.attributes.contents.map(
@@ -44,13 +49,17 @@ const FirmaTemplate = ({ dataResponse }: Props) => {
                   case 'ComponentContentStory':
                     return (
                       <Fragment key={key}>
-                        <StorySlider data={item} title={item.title} />
+                        <Container layout={'grid'}>
+                          <StorySlider data={item} title={item.title} />
+                        </Container>
                       </Fragment>
                     );
                   case 'ComponentContentPartner':
                     return (
                       <Fragment key={key}>
-                        <PartnerSlider data={item} title={item.title} />
+                        <Container layout={'full'}>
+                          <PartnerSlider data={item} title={item.title} />
+                        </Container>
                       </Fragment>
                     );
                 }

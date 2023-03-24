@@ -17,7 +17,7 @@ const StorySlider = ({
   title: string;
 }) => {
   return (
-    <div className="story-slider slider-container lg: py-[200px] px-[20px] lg:px-[40px] xl:px-[75px]">
+    <div className="story-slider slider-container">
       <div className="slider-header flex justify-between">
         <Heading
           renderAs={'h2'}
@@ -71,7 +71,7 @@ const StorySlider = ({
                     className="absolute bottom-[5px] right-[10px] text-[40px] font-bold leading-[40px] text-primary lg:hidden"
                   />
                 </div>
-                <div className="py-[20px] lg:w-5/12 lg:pl-[70px]">
+                <div className="pt-[20px] lg:w-5/12 lg:pl-[70px]">
                   <Heading
                     renderAs={'h3'}
                     title={slide.year ?? ''}
