@@ -19,7 +19,7 @@ const TeamSection = ({
   let count = 0;
   return (
     <div
-      className={`max-w-[1440px] px-5 lg:px-16 xl:px-20 2xl:mx-auto 3xl:mx-auto 3xl:max-w-[1660px]`}
+      className={`max-w-[1440px] 2xl:mx-auto 3xl:mx-auto 3xl:max-w-[1660px]`}
       id={`team`}
     >
       <Heading
