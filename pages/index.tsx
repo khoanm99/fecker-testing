@@ -2,7 +2,6 @@ import DefaultLayout from '@/components/DefaultLayout';
 import HomeTemplate from '@/templates/HomeTemplate';
 
 import { GetStaticProps } from 'next';
-import { NextSeo } from 'next-seo';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
 import { HomeSectionEntityResponse } from '@/graphql/generated';
@@ -15,7 +14,7 @@ interface Props {
 
 const Home = ({ dataResponse }: Props) => {
   return (
-    <DefaultLayout>
+    <DefaultLayout title={'Fecker Holzbau AG'} description={'Lorem Ipsum...'}>
       {dataResponse && <HomeTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
@@ -30,16 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .query({
       query: GET_HOME_SECTION
     })
-    .catch(() => {
-      // return {
-      //   notFound: true
-      // };
-    });
-  // if (!rs?.data) {
-  //   return {
-  //     notFound: true
-  //   };
-  // }
+    .catch(() => {});
 
   return {
     props: {
