@@ -1,0 +1,16 @@
+* {
+    scrollbar-color: darkgrey transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar-track {
+         -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+     }
+
+    &::-webkit-scrollbar {
+         @apply w-[6px]
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-primary rounded-[10px];
+    }
+}
