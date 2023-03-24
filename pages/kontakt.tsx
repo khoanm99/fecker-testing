@@ -2,10 +2,17 @@ import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_KONTACKT_SECTION } from '@/graphql/query/contactSection';
-const Kontakt = () => {
+import ContactTemplate from '@/templates/ContactTemplate';
+import { ContactSectionEntityResponse } from '@/graphql/generated';
+
+interface IProps {
+  dataResponse: ContactSectionEntityResponse;
+}
+
+const Kontakt = ({ dataResponse }: IProps) => {
   return (
     <DefaultLayout>
-      <div>Kontackt</div>
+      {dataResponse && <ContactTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
 };
@@ -21,7 +28,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch(() => {});
   return {
     props: {
-      payload: rs?.data || {}
+      dataResponse: rs?.data.contactSection || {}
     }
   };
 };

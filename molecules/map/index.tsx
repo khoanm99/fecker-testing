@@ -6,6 +6,8 @@ interface IMapProps extends google.maps.MapOptions {
   zoom: number;
   children?: ReactNode;
   isOpenInfo?: boolean;
+  myMap?: google.maps.Map | undefined;
+  setMyMap: any;
 }
 
 const MapStyle = [
@@ -185,22 +187,29 @@ const MapStyle = [
   }
 ];
 
-const Map = ({ center, zoom, children, isOpenInfo }: IMapProps) => {
+const Map = ({
+  center,
+  zoom,
+  children,
+  isOpenInfo,
+  myMap,
+  setMyMap
+}: IMapProps) => {
   const refMap = useRef<HTMLDivElement>(null);
-  const [myMap, setMyMap] = useState<google.maps.Map>();
 
   useEffect(() => {
     if (refMap.current) {
-      setMyMap(
-        new google.maps.Map(refMap.current, {
-          center,
-          zoom,
-          disableDefaultUI: true,
-          styles: MapStyle
-        })
-      );
+      setMyMap &&
+        setMyMap(
+          new google.maps.Map(refMap.current, {
+            center,
+            zoom,
+            disableDefaultUI: true,
+            styles: MapStyle
+          })
+        );
     }
-  }, [refMap]);
+  }, [refMap, setMyMap]);
 
   useEffect(() => {
     if (myMap) {
