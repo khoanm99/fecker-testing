@@ -5,13 +5,15 @@ import { GET_FASSADEN_SECTION } from '@/graphql/query/fassadenSection';
 import FassadenTemplate from '@/templates/FassadenTemplate';
 import { FassadenSectionEntityResponse } from '@/graphql/generated';
 interface Props {
-  fassadenSection: FassadenSectionEntityResponse;
+  dataResponse: {
+    fassadenSection: FassadenSectionEntityResponse;
+  };
 }
 
-const Fassaden = ({ fassadenSection }: Props) => {
+const Fassaden = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      {fassadenSection && <FassadenTemplate dataResponse={fassadenSection} />}
+      {dataResponse && <FassadenTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
 };
@@ -36,7 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // }
   return {
     props: {
-      fassadenSection: rs?.data.fassadenSection ?? {}
+      dataResponse: rs?.data ?? {}
     }
   };
 };

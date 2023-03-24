@@ -28,6 +28,8 @@ const ContentBlock = ({
               src={imageData.url}
               alt={imageData.alternativeText ?? ''}
               fill
+              sizes="(max-width: 1023px) 100vw,
+              (min-width: 1024px) 50vw"
               className={`object-cover`}
             />
           </div>

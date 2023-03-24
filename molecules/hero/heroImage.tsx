@@ -11,7 +11,9 @@ const HeroImage = ({ image }: { image: Maybe<UploadFile> }) => {
             src={image.url}
             alt={image.alternativeText ?? ''}
             fill
+            sizes={`100vw`}
             className={`object-cover object-center`}
+            priority
           />
         </div>
       )}

@@ -4,13 +4,19 @@ import { ComponentBasicHeroSlider } from '@/graphql/generated';
 import Link from 'next/link';
 
 const HeroText = ({
-  heroSectionData
+  heroSectionData,
+  templateName = 'home'
 }: {
   heroSectionData: ComponentBasicHeroSlider;
+  templateName: 'home' | 'subPage';
 }) => {
+  const clsPositionTextHome = `lg:bottom-[200px] lg:pl-[80px] xl:pl-[100px] xl:bottom-[225px]`;
+  const clsPositionTextSubPage = `lg:pl-[40px] lg:bottom-[220px] xl:bottom-[240px]`;
   return (
     <div
-      className={`absolute bottom-6 z-[10] w-fit lg:bottom-[200px] lg:pl-[80px] xl:bottom-[225px] xl:pl-[100px]`}
+      className={`absolute bottom-6 z-[10] w-fit lg:left-0  ${
+        templateName == 'home' ? clsPositionTextHome : clsPositionTextSubPage
+      }`}
     >
       {heroSectionData.title && (
         <Heading
