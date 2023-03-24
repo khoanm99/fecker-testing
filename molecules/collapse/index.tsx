@@ -1,17 +1,20 @@
 import Text from '@/atoms/typo/text';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import { useEffect, useRef, useState } from 'react';
 
 const Collapse = ({
   content,
   className = ''
 }: {
-  content: string[];
+  content: Maybe<String>;
   className?: string;
 }) => {
   const refContent = useRef<HTMLDivElement>(null);
   const [expanded, setExpand] = useState<boolean>(false);
-  const [maxHeight, setMaxHeight] = useState<number>(0);
+  const [maxHeight, setMaxHeight] = useState<number | null>(0);
   const [showExpand, setShowExpand] = useState<boolean>(false);
+  const listContent =
+    content && content.split(/\r?\n/).filter(item => item != '');
   const handleCollapse = () => {
     if (refContent && refContent.current && window) {
       const maxHeightContent = calcMaxHeight();
@@ -27,24 +30,31 @@ const Collapse = ({
     if (content && content.length > 1 && refContent && refContent.current) {
       if (refContent.current.clientHeight > calcMaxHeight()) {
         setShowExpand(true);
+        return true;
       }
     }
+    return false;
   };
 
   useEffect(() => {
     checkContentHeight();
-    setMaxHeight(calcMaxHeight());
+    if (checkContentHeight()) {
+      setMaxHeight(calcMaxHeight());
+    } else {
+      setMaxHeight(null);
+    }
   }, []);
 
   return (
     <div className={className}>
       <div
         className={`mb-6 overflow-hidden transition-all duration-300 lg:mb-[30px] `}
-        style={{ maxHeight: maxHeight }}
+        style={{ maxHeight: maxHeight ? maxHeight : 'auto' }}
       >
         <div ref={refContent} className={`space-y-6  lg:space-y-[30px]`}>
-          {content.length > 0 &&
-            content.map((item, key) => (
+          {listContent &&
+            listContent.length > 0 &&
+            listContent.map((item, key) => (
               <Text size={`bodyText`} renderAs={`p`} content={item} key={key} />
             ))}
         </div>

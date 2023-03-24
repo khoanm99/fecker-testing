@@ -31,9 +31,12 @@ const AccordionHeader = ({
       <Text
         size={`numberList`}
         content={`${index < 10 ? '0' + (index + 1) : index}`}
-        className={`pr-3 lg:pr-5`}
       />
-      <Text content={title} size={`listDropDown`} />
+      <Text
+        content={title}
+        size={`listDropDown`}
+        className={`pl-[30px] pr-14 lg:pl-[20px]`}
+      />
       <Plus
         className={`absolute right-0 h-[32px] w-[32px] cursor-pointer transition-all duration-500 ease-out ${
           isOpen ? 'rotate-[225deg]' : `rotate-0`

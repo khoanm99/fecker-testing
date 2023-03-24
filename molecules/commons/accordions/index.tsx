@@ -1,15 +1,21 @@
-import { IAccordion } from '@/models/molecules/accordions';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import AccordionHeader from './header';
 import AccordionContent from './content';
+import { ComponentAccordionAccordion, Maybe } from '@/graphql/generated';
+import { twMerge } from 'tailwind-merge';
+import Collapse from '@/molecules/collapse';
 
-const Accordion = ({ list }: IAccordion) => {
+const Accordion = ({
+  list
+}: {
+  list: Maybe<ComponentAccordionAccordion>[];
+}) => {
   const [expanded, setExpand] = useState<number>(-1);
 
   return (
     <>
       {list && list.length > 0 && (
-        <>
+        <div className={twMerge(`px-5 lg:px-20`)}>
           {list.map((item, key) => (
             <div
               key={key}
@@ -17,7 +23,7 @@ const Accordion = ({ list }: IAccordion) => {
                 key == 0 ? ` border-t-[1px]` : ``
               }`}
             >
-              {item.title && (
+              {item && item.title && (
                 <AccordionHeader
                   index={key}
                   title={item.title}
@@ -25,16 +31,14 @@ const Accordion = ({ list }: IAccordion) => {
                   setExpand={setExpand}
                 />
               )}
-              {item.item && (
-                <AccordionContent
-                  index={key}
-                  data={item.item}
-                  expanded={expanded}
-                />
+              {item && (
+                <AccordionContent index={key} expanded={expanded}>
+                  <Collapse content={item.content} className={`pb-4`} />
+                </AccordionContent>
               )}
             </div>
           ))}
-        </>
+        </div>
       )}
     </>
   );
