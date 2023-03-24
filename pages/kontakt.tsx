@@ -6,7 +6,9 @@ import ContactTemplate from '@/templates/ContactTemplate';
 import { ContactSectionEntityResponse } from '@/graphql/generated';
 
 interface IProps {
-  dataResponse: ContactSectionEntityResponse;
+  dataResponse?: {
+    contactSection?: ContactSectionEntityResponse;
+  };
 }
 
 const Kontakt = ({ dataResponse }: IProps) => {
@@ -28,7 +30,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch(() => {});
   return {
     props: {
-      dataResponse: rs?.data.contactSection || {}
+      dataResponse: rs?.data || {}
     }
   };
 };

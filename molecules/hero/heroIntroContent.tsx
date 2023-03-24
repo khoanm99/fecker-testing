@@ -2,16 +2,19 @@ import Heading from '@/atoms/typo/heading';
 import Text from '@/atoms/typo/text';
 import { ComponentBasicIntroContent } from '@/graphql/generated';
 import Collapse from '../collapse';
+import React from 'react';
 
-const HeroIntroText = ({
+const IntroContent = ({
   introContent,
-  templateName = 'home'
+  templateName = 'home',
+  children
 }: {
   introContent: ComponentBasicIntroContent;
   templateName?: string;
+  children?: React.ReactNode;
 }) => {
   const defaultIntroText =
-    'relative z-[10] mt-[55px] ml-auto mr-0 bg-beige px-5 lg:-mt-[220px] lg:max-w-[880px] lg:pl-[6vw] lg:pt-[54px] xl:max-w-[85.5vw]';
+    'relative z-[10] mt-[55px] ml-auto mr-0 bg-beige px-5 lg:-mt-[220px] lg:min-h-[220px] lg:max-w-[880px] lg:pl-[6vw] lg:pt-[54px] xl:max-w-[85.5vw]';
   const listContent =
     introContent &&
     introContent.content &&
@@ -57,6 +60,7 @@ const HeroIntroText = ({
                   className={`max-w-[770px] pt-[30px] lg:ml-14 2xl:max-w-[60vw] `}
                 />
               )}
+              {children}
             </div>
           )}
         </>
@@ -65,4 +69,4 @@ const HeroIntroText = ({
   );
 };
 
-export default HeroIntroText;
+export default IntroContent;

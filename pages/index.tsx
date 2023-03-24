@@ -8,13 +8,15 @@ import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
 import { HomeSectionEntityResponse } from '@/graphql/generated';
 
 interface Props {
-  homeSection?: HomeSectionEntityResponse;
+  dataResponse: {
+    homeSection: HomeSectionEntityResponse;
+  };
 }
 
-const Home = ({ homeSection }: Props) => {
+const Home = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      {homeSection && <HomeTemplate dataResponse={homeSection} />}
+      {dataResponse && <HomeTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
 };
@@ -41,7 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      homeSection: rs?.data?.homeSection ?? {}
+      dataResponse: rs?.data ?? {}
     }
   };
 };

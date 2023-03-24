@@ -6,14 +6,14 @@ import { InnovationSectionEntityResponse } from '@/graphql/generated';
 import InnovationTemplate from '@/templates/Innovation';
 
 interface Props {
-  innovationSection: InnovationSectionEntityResponse;
+  dataResponse: {
+    innovationSection: InnovationSectionEntityResponse;
+  };
 }
-const Innovation = ({ innovationSection }: Props) => {
+const Innovation = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      {innovationSection && (
-        <InnovationTemplate dataResponse={innovationSection} />
-      )}
+      {dataResponse && <InnovationTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
 };
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // }
   return {
     props: {
-      innovationSection: rs?.data?.innovationSection ?? {}
+      dataResponse: rs?.data ?? {}
     }
   };
 };
