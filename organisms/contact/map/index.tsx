@@ -32,44 +32,55 @@ const ContactMap = ({ maker }: { maker: ILatLngCMS[] }) => {
   };
 
   return (
-    <div className={`relative h-[200px] w-full max-w-[950px] lg:h-[570px]`}>
-      <Wrapper
-        apiKey={
-          process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ||
-          `AIzaSyCzW21O0QbysBjq12bCoOSSoAwhQfGq0Z0`
-        }
-        render={render}
+    <>
+      <div
+        className={`relative h-[200px] w-full max-w-[950px] lg:h-[570px] 2xl:h-[660px] 2xl:max-w-[1100px]`}
       >
-        <Map
-          center={center}
-          zoom={16}
-          isOpenInfo={isOpenInfo}
-          myMap={myMap}
-          setMyMap={setMyMap}
+        <Wrapper
+          apiKey={
+            process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ||
+            `AIzaSyCzW21O0QbysBjq12bCoOSSoAwhQfGq0Z0`
+          }
+          render={render}
         >
-          {listMaker &&
-            listMaker.length > 0 &&
-            listMaker.map((itemMaker, key) => {
-              if (itemMaker.attributes) {
-                const position: google.maps.LatLngLiteral = {
-                  lat: itemMaker.attributes.lat ?? 47.49861601840052,
-                  lng: itemMaker.attributes.lng ?? 9.420276747114341
-                };
-                return (
-                  <Marker
-                    key={key}
-                    position={position}
-                    icon={'assets/icon/marker.svg'}
-                    myMap={myMap}
-                    itemInfo={itemInfo}
-                    gotoCenter={gotoCenter}
-                  />
-                );
-              }
-            })}
-        </Map>
-      </Wrapper>
-    </div>
+          <Map
+            center={center}
+            zoom={16}
+            isOpenInfo={isOpenInfo}
+            myMap={myMap}
+            setMyMap={setMyMap}
+          >
+            {listMaker &&
+              itemInfo &&
+              listMaker.length > 0 &&
+              listMaker.map((itemMaker, key) => {
+                if (itemMaker.attributes) {
+                  const position: google.maps.LatLngLiteral = {
+                    lat: itemMaker.attributes.lat ?? 47.49861601840052,
+                    lng: itemMaker.attributes.lng ?? 9.420276747114341
+                  };
+                  return (
+                    <Marker
+                      key={key}
+                      position={position}
+                      icon={'assets/icon/marker.svg'}
+                      myMap={myMap}
+                      itemInfo={itemInfo}
+                      gotoCenter={gotoCenter}
+                    />
+                  );
+                }
+              })}
+          </Map>
+        </Wrapper>
+      </div>
+      <InfoWindow
+        content={maker[0].attributes?.content}
+        phone={maker[0].attributes?.phone}
+        email={maker[0].attributes?.email}
+        className={`bg-transparent pl-0 lg:hidden`}
+      />
+    </>
   );
 };
 

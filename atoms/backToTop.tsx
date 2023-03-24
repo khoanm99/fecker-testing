@@ -4,8 +4,8 @@ import BackToTopSVG from '@/atoms/svg/backToTop';
 const BackToTop = ({ active }: { active: Boolean }) => {
   return (
     <span
-      className={`${active} fixed bottom-[140px] right-[55px] hidden cursor-pointer lg:z-[11] ${
-        active ? 'lg:block' : ''
+      className={`fixed bottom-[140px] right-[55px] hidden cursor-pointer transition-all duration-300 lg:z-[11] lg:block ${
+        active ? 'visible opacity-100 ' : 'invisible opacity-0'
       }`}
       onClick={() => scrollToTarget('header', true)}
     >
