@@ -5,10 +5,12 @@ import { memo } from 'react';
 // Data
 import menuData from '@/data/menu.json';
 
-const HeaderMenu = () => {
+const HeaderMenu = ({ className }: { className?: string }) => {
   const router = useRouter();
   return (
-    <ul className="hidden flex-row lg:block lg:flex lg:w-[calc(100%-118px-64px)] lg:justify-end lg:pt-[17px]">
+    <ul
+      className={`hidden flex-row transition-all duration-300 lg:block lg:flex lg:w-[calc(100%-118px-64px)] lg:justify-end lg:pt-[17px] ${className}`}
+    >
       {menuData &&
         menuData.main.map((item, key) => (
           <li key={key} className=" lg:pr-[50px]">

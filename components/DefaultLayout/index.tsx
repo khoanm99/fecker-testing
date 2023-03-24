@@ -22,6 +22,7 @@ const DefaultLayout = ({
 }: DefaultLayoutProps) => {
   useResetState();
   const [active, setActive] = useState<Boolean>(false);
+  const [sticky, setsticky] = useState<Boolean>(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -30,6 +31,8 @@ const DefaultLayout = ({
         browser.pageYOffset > browser.innerHeight
           ? setActive(true)
           : setActive(false);
+
+        browser.pageYOffset > 140 ? setsticky(true) : setsticky(false);
       };
       browser.addEventListener('scroll', handleScroll);
 
@@ -41,7 +44,7 @@ const DefaultLayout = ({
 
   return (
     <>
-      <Header />
+      <Header sticky={sticky} />
       <NextSeo title={title} description={description ?? ''} />
       <main>{children}</main>
       <ContactSticky template={templateName} />
