@@ -13,7 +13,11 @@ import ContentBlock from '@/molecules/commons/contentBlock';
 import ToggleWithText from '@/molecules/toggle';
 import ListContentBlock from '@/organisms/commons/ContentBlock';
 import ContactMap from '@/organisms/contact/map';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import sampleBlockTextJson from '../data/sampleBlockText.json';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const StyleGuideTemplate = () => {
   const list: IAccordionList = [
@@ -232,6 +236,12 @@ Lorem ipsum`}
             </div>
           </div>
         </div>
+        <Swiper loop modules={[Pagination]} pagination={{ clickable: true }}>
+          <SwiperSlide>1</SwiperSlide>
+          <SwiperSlide>2</SwiperSlide>
+          <SwiperSlide>3</SwiperSlide>
+          <SwiperSlide>4</SwiperSlide>
+        </Swiper>
         <ContactMap maker={sampleMakerPosition} />
       </div>
     </>

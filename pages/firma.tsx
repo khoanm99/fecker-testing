@@ -1,27 +1,30 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
+import {
+  TeamEntityResponseCollection,
+  TeamSectionEntityResponse
+} from '@/graphql/generated';
 import { GET_TEAM_SECTION } from '@/graphql/query/teamSection';
-import { TeamSection, Team } from '@/graphql/generated';
-import TeamTemplate from 'templates/TeamTemplate';
-
+import FirmaTemplate from '@/templates/FirmaTemplate';
 interface Props {
-  teamSection: {
-    data: {
-      attributes: TeamSection;
-    };
+  dataResponse: {
+    teamSection: TeamSectionEntityResponse;
+    teams: TeamEntityResponseCollection;
   };
-  teams: Team;
 }
-const Team = ({ payload }: { payload: Props }) => {
+const Firma = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      <TeamTemplate dataResponse={payload.teamSection}></TeamTemplate>
+      <FirmaTemplate
+        dataTeamSection={dataResponse.teamSection ?? undefined}
+        dataTeams={dataResponse.teams}
+      />
     </DefaultLayout>
   );
 };
 
-export default Team;
+export default Firma;
 
 export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
@@ -32,7 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch(() => {});
   return {
     props: {
-      payload: rs?.data || {}
+      dataResponse: rs?.data ?? {}
     }
   };
 };

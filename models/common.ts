@@ -1,3 +1,5 @@
+import { UploadFile } from '@/graphql/generated';
+import { Maybe } from 'graphql/jsutils/Maybe';
 import { HTMLAttributes } from 'react';
 
 export interface IKeyString {
@@ -33,4 +35,12 @@ export type ITextBlock = {
   title: string;
   description: string;
   image?: IImage;
+};
+
+export type ISiteImage = {
+  title?: string;
+  description?: string;
+  image?: Maybe<UploadFile>;
+  variant?: 'green' | 'black';
+  layout?: 'layout-landscape' | 'layout-portrait';
 };
