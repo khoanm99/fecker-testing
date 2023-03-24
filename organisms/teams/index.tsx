@@ -29,7 +29,7 @@ const TeamSection = ({
         title={`TEAM`}
       />
       {dataTeamSuffer && (
-        <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 1023: 2 }}>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 1023: 3 }}>
           <Masonry
             gutter={`40px`}
             className={`lg:gap-[40px] max-[1023px]:[&>div]:!gap-[20px]`}

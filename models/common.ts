@@ -42,5 +42,5 @@ export type ISiteImage = {
   description?: string;
   image?: Maybe<UploadFile>;
   variant?: 'green' | 'black';
-  layout?: 'layout-landscape' | 'layout-portrait';
+  sharp?: 'fill' | 'auto';
 };
