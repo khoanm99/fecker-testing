@@ -1,21 +1,22 @@
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import AccordionHeader from './header';
 import AccordionContent from './content';
 import { ComponentAccordionAccordion, Maybe } from '@/graphql/generated';
-import { twMerge } from 'tailwind-merge';
 import Collapse from '@/molecules/collapse';
 
 const Accordion = ({
-  list
+  list,
+  className
 }: {
   list: Maybe<ComponentAccordionAccordion>[];
+  className?: string;
 }) => {
   const [expanded, setExpand] = useState<number>(-1);
 
   return (
     <>
       {list && list.length > 0 && (
-        <div className={twMerge(`px-5 lg:px-20`)}>
+        <div className={className}>
           {list.map((item, key) => (
             <div
               key={key}
