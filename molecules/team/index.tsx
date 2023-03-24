@@ -3,7 +3,7 @@ import { Team } from '@/graphql/generated';
 import useWindowSize from '@/hooks/useWindowSize';
 import { Maybe } from 'graphql/jsutils/Maybe';
 
-const TeamSection = ({
+const TeamCard = ({
   dataTeam,
   layout
 }: {
@@ -12,15 +12,17 @@ const TeamSection = ({
 }) => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width < 1024 ? true : false;
+  const imageAtDesktop =
+    layout == 'layout-portrait'
+      ? dataTeam?.imagePortrait.data?.attributes
+      : dataTeam?.imageLandscape.data?.attributes;
   return (
     <>
       <SiteImage
         title={dataTeam?.name ?? ''}
         description={dataTeam?.position ?? ''}
         image={
-          isMobile
-            ? dataTeam?.imagePortrait.data?.attributes
-            : dataTeam?.imageLandscape.data?.attributes
+          isMobile ? dataTeam?.imagePortrait.data?.attributes : imageAtDesktop
         }
         variant={`green`}
         layout={layout}
@@ -29,4 +31,4 @@ const TeamSection = ({
   );
 };
 
-export default TeamSection;
+export default TeamCard;
