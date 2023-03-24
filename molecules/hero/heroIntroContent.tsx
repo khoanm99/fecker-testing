@@ -15,10 +15,6 @@ const IntroContent = ({
 }) => {
   const defaultIntroText =
     'relative z-[10] mt-[55px] ml-auto mr-0 bg-beige px-5 lg:-mt-[240px] lg:min-h-[240px] lg:max-w-[880px] lg:pl-[6vw] lg:pt-[42px] xl:-mt-[262px] xl:min-h-[262px] xl:pt-[60px] xl:max-w-[85.5vw]';
-  const listContent =
-    introContent &&
-    introContent.content &&
-    introContent?.content.split(/\r?\n/).filter(item => item != '');
   return (
     <>
       {introContent && (
@@ -54,9 +50,9 @@ const IntroContent = ({
                   className={`pb-[30px] font-extralight lg:pb-[52px]`}
                 />
               )}
-              {listContent && (
+              {introContent && (
                 <Collapse
-                  content={listContent}
+                  content={introContent.content}
                   className={`max-w-[770px] lg:ml-14 2xl:max-w-[60vw] `}
                 />
               )}

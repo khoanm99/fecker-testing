@@ -139,17 +139,15 @@ Lorem ipsum`}
           <Text size={`toggleDesc`} content={`TOGGLE BUTTON DESCRIPTION`} />
 
           <Text size={`btn`} content={`Button`} />
-          <div>
-            <Accordion list={list} />
-          </div>
+          <div>{/* <Accordion list={list} /> */}</div>
 
-          <Collapse content={sampleContent} />
+          {/* <Collapse content={sampleContent} />
 
           <Collapse content={sampleContentShort} />
 
           <Collapse content={sampleContentTooShort} />
 
-          <Collapse content={sampleContentLong} />
+          <Collapse content={sampleContentLong} /> */}
 
           <div>
             <div className={``}>Primary Colors</div>

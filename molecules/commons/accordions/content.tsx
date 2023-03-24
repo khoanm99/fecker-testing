@@ -1,14 +1,14 @@
-import Text from '@/atoms/typo/text';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
 const AccordionContent = ({
   index,
-  data,
-  expanded
+  expanded,
+  children
 }: {
   index: number;
-  data: any;
   expanded: number;
+  children: ReactNode;
 }) => {
   const isExpanded = index === expanded;
   return (
@@ -22,7 +22,7 @@ const AccordionContent = ({
           transition={{ duration: 0.3 }}
           className={`overflow-hidden`}
         >
-          <Text content={data} size={`bodyText`} className={`pb-4`} />
+          {children}
         </motion.div>
       </AnimatePresence>
     </>

@@ -29,8 +29,11 @@ const TeamSection = ({
         title={`TEAM`}
       />
       {dataTeamSuffer && (
-        <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 1024: 2 }}>
-          <Masonry gutter={`40px`}>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 1023: 2 }}>
+          <Masonry
+            gutter={`40px`}
+            className={`lg:gap-[40px] max-[1023px]:[&>div]:!gap-[20px]`}
+          >
             {dataTeamSuffer.map((itemTeam, key) => {
               let layout = 'layout-landscape' as
                 | 'layout-landscape'
@@ -56,9 +59,7 @@ const TeamSection = ({
               return (
                 <div
                   key={key}
-                  className={`flex ${layout} ${count} ${
-                    count == 3 ? 'justify-end' : ''
-                  }`}
+                  className={`flex ${count == 3 ? 'justify-end' : ''}`}
                 >
                   <TeamCard dataTeam={itemTeam.attributes} layout={layout} />
                 </div>
