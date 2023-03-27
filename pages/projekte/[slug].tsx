@@ -17,7 +17,7 @@ interface Props {
 const ProjectDetail = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      <>Project</>
+      <>Project detail</>
     </DefaultLayout>
   );
 };

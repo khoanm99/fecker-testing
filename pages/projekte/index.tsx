@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { ProjectSectionEntityResponse } from '@/graphql/generated';
 import { GET_PROJECT_SECTION } from '@/graphql/query/projectSection';
+import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
 
 interface Props {
   dataResponse: {
@@ -13,7 +14,7 @@ interface Props {
 const Project = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      <>Project</>
+      {dataResponse && <OverViewProjectTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
 };

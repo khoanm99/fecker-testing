@@ -1,4 +1,4 @@
-import { SVGProps } from '@/models/common';
+import { SVGProps } from '@/types';
 import { twMerge } from 'tailwind-merge';
 
 const NavigationSvg = ({ className = '', ...props }: SVGProps) => {

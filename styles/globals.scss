@@ -4,6 +4,7 @@
 
 @layer base {
   @import './base/scrollbar';
+  @import './base/custom-markdown';
 
   * {
     @apply focus:outline-0;
@@ -43,5 +44,3 @@
     @apply invisible;
   }
 }
-
-

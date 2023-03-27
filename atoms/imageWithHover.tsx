@@ -1,4 +1,4 @@
-import { ISiteImage } from '@/models/common';
+import { ISiteImage } from '@/types';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import Text from './typo/text';
@@ -8,33 +8,37 @@ const ImageWithHover = ({
   description,
   image,
   variant,
-  layout
+  sharp = 'auto'
 }: ISiteImage) => {
-  const clsLandscape = `lg:pt-[71%]`;
-  const clsPortrait = `lg:w-[72%] lg:pt-[100%]`;
+  const clsFill = `absolute top-0 left-0 h-full w-full hover:bg-emerald-400`;
   return (
     <>
       {image && image.url && (
-        <div
-          className={`group relative w-full pt-[112%] ${
-            layout == 'layout-landscape' ? clsLandscape : clsPortrait
-          }`}
-        >
-          <div
-            className={`absolute top-0 left-0 h-full w-full hover:bg-emerald-400`}
-          >
+        <>
+          {sharp == 'fill' ? (
+            <div className={clsFill}>
+              <Image
+                src={image.url}
+                alt={image.alternativeText ?? ''}
+                fill
+                sizes={`"(max-width: 1023px) 100vw,
+                (min-width: 1024px) 50vw"`}
+                className={'object-cover object-center'}
+              />
+            </div>
+          ) : (
             <Image
               src={image.url}
               alt={image.alternativeText ?? ''}
-              fill
-              sizes="(max-width: 1023px) 100vw,
-              (min-width: 1024px) 50vw"
-              className={`object-cover object-center`}
+              width={image.width ?? 0}
+              height={image.height ?? 0}
+              className={`h-auto w-full`}
             />
-          </div>
+          )}
+
           {title &&
             renderOverlay({ title: title, description: description, variant })}
-        </div>
+        </>
       )}
     </>
   );

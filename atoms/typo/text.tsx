@@ -1,5 +1,5 @@
 import Typo from '@/components/foundation/typo';
-import { IKeyString } from '@/models/common';
+import { Items } from '@/types';
 import { ElementType, HTMLAttributes, memo, ReactNode } from 'react';
 import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { twMerge } from 'tailwind-merge';
@@ -32,7 +32,7 @@ const Text = ({
   ...props
 }: Props) => {
   const defaultCls = 'font-primary leading-normal';
-  const listSize: IKeyString = {
+  const listSize: Items = {
     bodyText: 'text-[16px] font-extralight lg:text-[20px]',
     bodyTextSmall: 'text-[14px] font-extralight lg:text-[16px]',
     listDropDown: 'text-[25px] font-extralight lg:text-[35px]',

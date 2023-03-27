@@ -1,9 +1,8 @@
 import Heading from '@/atoms/typo/heading';
-import Text from '@/atoms/typo/text';
-import { ILatLngCMS } from '@/models/molecules/map';
 import InfoWindow from '@/molecules/infoWindow';
 import Map from '@/molecules/map';
 import Marker from '@/molecules/marker';
+import { ILatLngCMS } from '@/types';
 import { Wrapper, Status } from '@googlemaps/react-wrapper';
 import { useEffect, useState } from 'react';
 

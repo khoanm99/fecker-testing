@@ -1,7 +1,7 @@
 import PrimaryButton from '@/atoms/button';
 import Heading from '@/atoms/typo/heading';
 import Text from '@/atoms/typo/text';
-import { IContentBlock } from '@/models/molecules/contentBlock';
+import { IContentBlock } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 

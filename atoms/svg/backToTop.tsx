@@ -1,4 +1,4 @@
-import { SVGProps } from '@/models/common';
+import { SVGProps } from '@/types';
 
 const BackToTop = ({
   pathCls = 'stroke-primary',
