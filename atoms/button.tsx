@@ -16,7 +16,7 @@ const PrimaryButton = ({
 }: Props) => {
   const clsFont = 'text-white text-[16px] font-semibold lg:text-[20px]';
   const clsDefault =
-    'relative group hover:bg-black rounded-full bg-primary py-[8px] pl-5 pr-11 lg:pl-10 lg:pr-20 max-w-[330px] lg:max-w-[345px] transition-all duration-300';
+    'relative group hover:bg-black rounded-full bg-primary py-[8px] pl-5 pr-11 lg:pl-10 lg:pr-20 max-w-[330px] lg:max-w-[100%] inline-block transition-all duration-300';
   return (
     <>
       <button
