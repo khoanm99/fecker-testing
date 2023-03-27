@@ -1,4 +1,3 @@
-import { ILatLngCMS } from '@/models/molecules/map';
 import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import InfoWindow from '@/molecules/infoWindow';

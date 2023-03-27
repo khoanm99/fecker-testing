@@ -1,4 +1,4 @@
-import { ISiteImage } from '@/models/common';
+import { ISiteImage } from '@/types';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import Text from './typo/text';

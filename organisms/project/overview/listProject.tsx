@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import 'swiper/css';
-import AccordionSection from '@/molecules/commons/accordions/section';
+import AccordionSection from '@/molecules/commons/accordions';
 
 interface Props {
   listCategory?: CategoryEntity[];

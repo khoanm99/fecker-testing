@@ -1,4 +1,4 @@
-import { SVGProps } from '@/models/common';
+import { SVGProps } from '@/types';
 
 const Close = ({ color = '#000', className = '', ...props }: SVGProps) => {
   return (
