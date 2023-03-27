@@ -80,7 +80,12 @@ const StyleGuideTemplate = () => {
     <>
       <div className={`space-y-10 pt-[100px]`}>
         <div className="px-8">
-          <Heading size={`h1`} renderAs={`h1`} title={`Headline 1`} />
+          <Heading
+            size={`h1`}
+            renderAs={`h1`}
+            title={`Headline 1`}
+            onMouseEnter={() => console.log('enter')}
+          />
           <Heading size={`h2`} renderAs={`h2`} title={`Heading 2`} />
           <Heading
             size={`h2`}

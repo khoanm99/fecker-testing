@@ -36,7 +36,6 @@ const StorySlider = ({
           spaceBetween={0}
           slidesPerView={1}
           threshold={20}
-          loop={true}
           navigation={{
             nextEl: '.slider-next-btn',
             prevEl: '.slider-prev-btn'

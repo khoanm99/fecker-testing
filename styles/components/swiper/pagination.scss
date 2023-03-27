@@ -38,3 +38,11 @@
   }
 }
 
+.slider-header {
+  .swiper-button-disabled {
+    @apply opacity-[0.3] lg:opacity-[0.3];
+  }
+}
+
+
+
