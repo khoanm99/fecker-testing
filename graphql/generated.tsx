@@ -23,6 +23,7 @@ export type Scalars = {
   ImmobilienSectionContentsDynamicZoneInput: any;
   InnovationSectionContentsDynamicZoneInput: any;
   JSON: any;
+  ProjectSectionContentsDynamicZoneInput: any;
   TeamSectionContentsDynamicZoneInput: any;
   Upload: any;
 };
@@ -49,6 +50,62 @@ export type BooleanFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
   startsWith?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type Category = {
+  __typename?: 'Category';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  name: Scalars['String'];
+  project?: Maybe<ProjectRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type CategoryProjectArgs = {
+  filters?: InputMaybe<ProjectFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type CategoryEntity = {
+  __typename?: 'CategoryEntity';
+  attributes?: Maybe<Category>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CategoryEntityResponse = {
+  __typename?: 'CategoryEntityResponse';
+  data?: Maybe<CategoryEntity>;
+};
+
+export type CategoryEntityResponseCollection = {
+  __typename?: 'CategoryEntityResponseCollection';
+  data: Array<CategoryEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<CategoryFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
+  project?: InputMaybe<ProjectFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CategoryInput = {
+  name?: InputMaybe<Scalars['String']>;
+  project?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type CategoryRelationResponseCollection = {
+  __typename?: 'CategoryRelationResponseCollection';
+  data: Array<CategoryEntity>;
 };
 
 export type ComponentAccordionAccordion = {
@@ -155,6 +212,19 @@ export type ComponentContentAccordions = {
 export type ComponentContentAccordionsAccordionsArgs = {
   filters?: InputMaybe<ComponentAccordionAccordionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentContentListProject = {
+  __typename?: 'ComponentContentListProject';
+  category: CategoryRelationResponseCollection;
+  id: Scalars['ID'];
+};
+
+export type ComponentContentListProjectCategoryArgs = {
+  filters?: InputMaybe<CategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -392,6 +462,7 @@ export type FloatFilterInput = {
 };
 
 export type GenericMorph =
+  | Category
   | ComponentAccordionAccordion
   | ComponentBasicButtonLink
   | ComponentBasicHeroSlider
@@ -399,6 +470,7 @@ export type GenericMorph =
   | ComponentBasicSeo
   | ComponentBasicSlide
   | ComponentContentAccordions
+  | ComponentContentListProject
   | ComponentContentPartner
   | ComponentContentStory
   | ComponentContentTextBlocks
@@ -411,6 +483,7 @@ export type GenericMorph =
   | ImmobilienSection
   | InnovationSection
   | Project
+  | ProjectSection
   | SlugifySlug
   | Team
   | TeamSection
@@ -605,6 +678,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createCategory?: Maybe<CategoryEntityResponse>;
   createProject?: Maybe<ProjectEntityResponse>;
   createSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   createTeam?: Maybe<TeamEntityResponse>;
@@ -614,12 +688,14 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteContactSection?: Maybe<ContactSectionEntityResponse>;
   deleteFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   deleteHomeSection?: Maybe<HomeSectionEntityResponse>;
   deleteImmobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
   deleteInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   deleteProject?: Maybe<ProjectEntityResponse>;
+  deleteProjectSection?: Maybe<ProjectSectionEntityResponse>;
   deleteSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   deleteTeam?: Maybe<TeamEntityResponse>;
   deleteTeamSection?: Maybe<TeamSectionEntityResponse>;
@@ -640,6 +716,7 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateCategory?: Maybe<CategoryEntityResponse>;
   updateContactSection?: Maybe<ContactSectionEntityResponse>;
   updateFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
@@ -647,6 +724,7 @@ export type Mutation = {
   updateImmobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
   updateInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   updateProject?: Maybe<ProjectEntityResponse>;
+  updateProjectSection?: Maybe<ProjectSectionEntityResponse>;
   updateSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   updateTeam?: Maybe<TeamEntityResponse>;
   updateTeamSection?: Maybe<TeamSectionEntityResponse>;
@@ -663,6 +741,10 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
+};
+
+export type MutationCreateCategoryArgs = {
+  data: CategoryInput;
 };
 
 export type MutationCreateProjectArgs = {
@@ -691,6 +773,10 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+export type MutationDeleteCategoryArgs = {
+  id: Scalars['ID'];
 };
 
 export type MutationDeleteProjectArgs = {
@@ -754,6 +840,11 @@ export type MutationResetPasswordArgs = {
   passwordConfirmation: Scalars['String'];
 };
 
+export type MutationUpdateCategoryArgs = {
+  data: CategoryInput;
+  id: Scalars['ID'];
+};
+
 export type MutationUpdateContactSectionArgs = {
   data: ContactSectionInput;
 };
@@ -782,6 +873,10 @@ export type MutationUpdateInnovationSectionArgs = {
 export type MutationUpdateProjectArgs = {
   data: ProjectInput;
   id: Scalars['ID'];
+};
+
+export type MutationUpdateProjectSectionArgs = {
+  data: ProjectSectionInput;
 };
 
 export type MutationUpdateSlugifySlugArgs = {
@@ -843,6 +938,7 @@ export type PaginationArg = {
 
 export type Project = {
   __typename?: 'Project';
+  category?: Maybe<CategoryRelationResponseCollection>;
   content: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   description: Scalars['String'];
@@ -851,6 +947,13 @@ export type Project = {
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ProjectCategoryArgs = {
+  filters?: InputMaybe<CategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ProjectImageArgs = {
@@ -878,6 +981,7 @@ export type ProjectEntityResponseCollection = {
 
 export type ProjectFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
+  category?: InputMaybe<CategoryFiltersInput>;
   content?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
@@ -891,12 +995,56 @@ export type ProjectFiltersInput = {
 };
 
 export type ProjectInput = {
+  category?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   content?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectRelationResponseCollection = {
+  __typename?: 'ProjectRelationResponseCollection';
+  data: Array<ProjectEntity>;
+};
+
+export type ProjectSection = {
+  __typename?: 'ProjectSection';
+  contents?: Maybe<Array<Maybe<ProjectSectionContentsDynamicZone>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  heroSlider: ComponentBasicHeroSlider;
+  introContent?: Maybe<ComponentBasicIntroContent>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ProjectSectionContentsDynamicZone =
+  | ComponentContentAccordions
+  | ComponentContentListProject
+  | ComponentContentTextBlocks
+  | Error;
+
+export type ProjectSectionEntity = {
+  __typename?: 'ProjectSectionEntity';
+  attributes?: Maybe<ProjectSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ProjectSectionEntityResponse = {
+  __typename?: 'ProjectSectionEntityResponse';
+  data?: Maybe<ProjectSectionEntity>;
+};
+
+export type ProjectSectionInput = {
+  contents?: InputMaybe<
+    Array<Scalars['ProjectSectionContentsDynamicZoneInput']>
+  >;
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
+  introContent?: InputMaybe<ComponentBasicIntroContentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
 };
 
 export enum PublicationState {
@@ -906,6 +1054,8 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  categories?: Maybe<CategoryEntityResponseCollection>;
+  category?: Maybe<CategoryEntityResponse>;
   contactSection?: Maybe<ContactSectionEntityResponse>;
   fassadenSection?: Maybe<FassadenSectionEntityResponse>;
   findSlug?: Maybe<FindSlugResponse>;
@@ -915,6 +1065,7 @@ export type Query = {
   me?: Maybe<UsersPermissionsMe>;
   project?: Maybe<ProjectEntityResponse>;
   projectBySlug?: Maybe<ProjectEntityResponse>;
+  projectSection?: Maybe<ProjectSectionEntityResponse>;
   projects?: Maybe<ProjectEntityResponseCollection>;
   slugifySlug?: Maybe<SlugifySlugEntityResponse>;
   slugifySlugs?: Maybe<SlugifySlugEntityResponseCollection>;
@@ -929,6 +1080,17 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+export type QueryCategoriesArgs = {
+  filters?: InputMaybe<CategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryCategoryArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 export type QueryContactSectionArgs = {
@@ -963,6 +1125,10 @@ export type QueryProjectArgs = {
 
 export type QueryProjectBySlugArgs = {
   slug: Scalars['String'];
+};
+
+export type QueryProjectSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type QueryProjectsArgs = {
