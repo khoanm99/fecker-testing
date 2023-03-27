@@ -1,17 +1,12 @@
 import {
   CategoryEntity,
-  ComponentAccordionAccordion,
   ProjectRelationResponseCollection
 } from '@/graphql/generated';
 import { memo } from 'react';
 import ProjectOverviewMasonry from '@/molecules/project/overview/projectOverviewMasonry';
 
 import ToggleWithText from '@/molecules/toggle';
-import { Maybe } from 'graphql/jsutils/Maybe';
 import { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper';
-import 'swiper/css';
 import AccordionSection from '@/molecules/commons/accordions';
 
 interface Props {
@@ -49,7 +44,7 @@ const ProjectOverView = ({ listCategory }: Props) => {
       <div className={``}>
         <ToggleWithText
           content={{ left: 'Kachelansicht', right: `Listenansicht` }}
-          state={handleLayout}
+          handleLayout={handleLayout}
         />
         <div className={`relative mt-12 overflow-hidden lg:mt-[118px]`}>
           {listProject && isListImage && (
