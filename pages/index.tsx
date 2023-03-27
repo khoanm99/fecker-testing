@@ -5,6 +5,7 @@ import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
 import { HomeSectionEntityResponse } from '@/graphql/generated';
+import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
@@ -34,6 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       dataResponse: rs?.data ?? {}
-    }
+    },
+    revalidate: getRevalidationTTL()
   };
 };
