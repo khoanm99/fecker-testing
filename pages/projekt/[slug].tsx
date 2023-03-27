@@ -61,9 +61,7 @@ export const getStaticProps: GetStaticProps = async _context => {
         slug: _context?.params?.slug ? _context?.params?.slug : ''
       }
     })
-    .catch(e => {
-      console.log('e', e);
-    });
+    .catch(e => {});
 
   if (!rs?.data) {
     return {
