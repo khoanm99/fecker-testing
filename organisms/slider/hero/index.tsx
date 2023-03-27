@@ -25,11 +25,14 @@ const HeroSection = ({
   };
   return (
     <div className={`mb-14 overflow-hidden lg:relative`}>
-      <HoverArea icon={'arrow-right'} layout="slider">
+      <HoverArea
+        icon={`${listImage.length > 1 ? 'arrow-right' : ''}`}
+        layout="slider"
+      >
         <div
-          className={
-            'absolute top-0 right-0 z-[10] h-full w-[30%] cursor-pointer'
-          }
+          className={`absolute top-0 right-0 z-[10] h-full w-[30%] cursor-pointer ${
+            listImage.length > 1 ? '' : 'hidden'
+          }`}
           onClick={handleClick}
         ></div>
         <div className={`relative`}>
