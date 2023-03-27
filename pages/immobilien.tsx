@@ -2,8 +2,8 @@ import DefaultLayout from 'components/DefaultLayout';
 import ImmobilienTemplate from 'templates/ImmobilienTemplate';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
-import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
 import { HomeSectionEntityResponse } from '@/graphql/generated';
+import { GET_IMMOBILIEN_SECTION } from '@/graphql/query/immobilienSection';
 
 interface Props {
   dataResponse: {
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const rs: any = await apolloClient
     .query({
-      query: GET_HOME_SECTION
+      query: GET_IMMOBILIEN_SECTION
     })
     .catch(() => {});
 

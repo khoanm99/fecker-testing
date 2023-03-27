@@ -16,9 +16,11 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  ContactSectionContentsDynamicZoneInput: any;
   DateTime: any;
   FassadenSectionContentsDynamicZoneInput: any;
   HomeSectionContentsDynamicZoneInput: any;
+  ImmobilienSectionContentsDynamicZoneInput: any;
   InnovationSectionContentsDynamicZoneInput: any;
   JSON: any;
   TeamSectionContentsDynamicZoneInput: any;
@@ -54,16 +56,14 @@ export type ComponentAccordionAccordion = {
   content?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   image?: Maybe<UploadFileEntityResponse>;
-  isCollapse?: Maybe<Scalars['Boolean']>;
-  isHorizontal?: Maybe<Scalars['Boolean']>;
+  layout: Enum_Componentaccordionaccordion_Layout;
   title: Scalars['String'];
 };
 
 export type ComponentAccordionAccordionFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentAccordionAccordionFiltersInput>>>;
   content?: InputMaybe<StringFilterInput>;
-  isCollapse?: InputMaybe<BooleanFilterInput>;
-  isHorizontal?: InputMaybe<BooleanFilterInput>;
+  layout?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentAccordionAccordionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentAccordionAccordionFiltersInput>>>;
   title?: InputMaybe<StringFilterInput>;
@@ -250,6 +250,7 @@ export type ComponentTextBlockTextBlockFiltersInput = {
 
 export type ContactSection = {
   __typename?: 'ContactSection';
+  contents?: Maybe<Array<Maybe<ContactSectionContentsDynamicZone>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   heroSlider: ComponentBasicHeroSlider;
   introContent?: Maybe<ComponentBasicIntroContent>;
@@ -257,6 +258,11 @@ export type ContactSection = {
   seo?: Maybe<ComponentBasicSeo>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
+
+export type ContactSectionContentsDynamicZone =
+  | ComponentContentAccordions
+  | ComponentContentTextBlocks
+  | Error;
 
 export type ContactSectionEntity = {
   __typename?: 'ContactSectionEntity';
@@ -270,6 +276,9 @@ export type ContactSectionEntityResponse = {
 };
 
 export type ContactSectionInput = {
+  contents?: InputMaybe<
+    Array<Scalars['ContactSectionContentsDynamicZoneInput']>
+  >;
   heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
   introContent?: InputMaybe<ComponentBasicIntroContentInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
@@ -299,6 +308,12 @@ export type DateTimeFilterInput = {
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
+
+export enum Enum_Componentaccordionaccordion_Layout {
+  Collapse = 'Collapse',
+  Grid = 'Grid',
+  Markdown = 'Markdown'
+}
 
 export type Error = {
   __typename?: 'Error';
@@ -393,6 +408,7 @@ export type GenericMorph =
   | ContactSection
   | FassadenSection
   | HomeSection
+  | ImmobilienSection
   | InnovationSection
   | Project
   | SlugifySlug
@@ -461,6 +477,43 @@ export type IdFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   startsWith?: InputMaybe<Scalars['ID']>;
+};
+
+export type ImmobilienSection = {
+  __typename?: 'ImmobilienSection';
+  contents?: Maybe<Array<Maybe<ImmobilienSectionContentsDynamicZone>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  heroSlider: ComponentBasicHeroSlider;
+  introContent?: Maybe<ComponentBasicIntroContent>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ImmobilienSectionContentsDynamicZone =
+  | ComponentContentAccordions
+  | ComponentContentTextBlocks
+  | Error;
+
+export type ImmobilienSectionEntity = {
+  __typename?: 'ImmobilienSectionEntity';
+  attributes?: Maybe<ImmobilienSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ImmobilienSectionEntityResponse = {
+  __typename?: 'ImmobilienSectionEntityResponse';
+  data?: Maybe<ImmobilienSectionEntity>;
+};
+
+export type ImmobilienSectionInput = {
+  contents?: InputMaybe<
+    Array<Scalars['ImmobilienSectionContentsDynamicZoneInput']>
+  >;
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
+  introContent?: InputMaybe<ComponentBasicIntroContentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
 };
 
 export type InnovationSection = {
@@ -564,6 +617,7 @@ export type Mutation = {
   deleteContactSection?: Maybe<ContactSectionEntityResponse>;
   deleteFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   deleteHomeSection?: Maybe<HomeSectionEntityResponse>;
+  deleteImmobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
   deleteInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   deleteProject?: Maybe<ProjectEntityResponse>;
   deleteSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
@@ -590,6 +644,7 @@ export type Mutation = {
   updateFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHomeSection?: Maybe<HomeSectionEntityResponse>;
+  updateImmobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
   updateInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   updateProject?: Maybe<ProjectEntityResponse>;
   updateSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
@@ -714,6 +769,10 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateHomeSectionArgs = {
   data: HomeSectionInput;
+};
+
+export type MutationUpdateImmobilienSectionArgs = {
+  data: ImmobilienSectionInput;
 };
 
 export type MutationUpdateInnovationSectionArgs = {
@@ -851,6 +910,7 @@ export type Query = {
   fassadenSection?: Maybe<FassadenSectionEntityResponse>;
   findSlug?: Maybe<FindSlugResponse>;
   homeSection?: Maybe<HomeSectionEntityResponse>;
+  immobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
   innovationSection?: Maybe<InnovationSectionEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
   project?: Maybe<ProjectEntityResponse>;
@@ -886,6 +946,10 @@ export type QueryFindSlugArgs = {
 };
 
 export type QueryHomeSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type QueryImmobilienSectionArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
 
