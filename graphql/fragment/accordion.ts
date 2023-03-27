@@ -5,8 +5,7 @@ export const ACCORDION_FRAGMENT = gql`
     id
     title
     content
-    isHorizontal
-    isCollapse
+    layout
     image {
       data {
         ...ImageData
