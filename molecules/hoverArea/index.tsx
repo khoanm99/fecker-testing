@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, ReactNode, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import NavigationSvg from '@/atoms/svg/navigation';
+import PlusCircleSvg from '@/atoms/svg/plusCircle';
 
 interface IProps {
   children: ReactNode;
@@ -39,9 +40,28 @@ const HoverArea = ({ children, icon, className, layout }: IProps) => {
     const x = e.pageX - currentTargetRect.left;
     const y = e.pageY - window.pageYOffset - currentTargetRect.top;
     const w = currentTargetRect.width;
+    const maxX = currentTargetRect.left + currentTargetRect.width;
+    const maxY = currentTargetRect.top + currentTargetRect.height;
+    const minX = currentTargetRect.left;
+    const minY = currentTargetRect.top;
 
     if (layout === 'slider' && x < w * 0.7) {
       return setActive(false);
+    }
+
+    if (layout === 'imageLink' && x < w * 0.7) {
+      if (e.pageX > maxX - 50 || e.pageX < minX + 50) {
+        setActive(false);
+        return;
+      }
+
+      if (
+        e.pageY - window.pageYOffset > maxY - 50 ||
+        e.pageY - window.pageYOffset < minY + 50
+      ) {
+        setActive(false);
+        return;
+      }
     }
 
     setTimeout(() => {
@@ -57,6 +77,24 @@ const HoverArea = ({ children, icon, className, layout }: IProps) => {
 
   const { x, y } = mousePosition;
 
+  const calcX = (layout: string) => {
+    switch (layout) {
+      case 'imageLink':
+        return x - 50;
+      case 'slider':
+        return x - 30;
+    }
+  };
+
+  const calcY = (layout: string) => {
+    switch (layout) {
+      case 'imageLink':
+        return y - 50;
+      case 'slider':
+        return y - 30;
+    }
+  };
+
   return (
     <div
       onMouseMove={mouseMoveHandle}
@@ -64,23 +102,21 @@ const HoverArea = ({ children, icon, className, layout }: IProps) => {
       className={`hover-area overflow-hidden ${className ?? ''}`}
     >
       {children}
-      <motion.div
+      <div
         ref={mouse}
         style={{
-          top: `${y - 30}px`,
-          left: `${x - 30}px`
+          top: `${calcY(layout)}px`,
+          left: `${calcX(layout)}px`
         }}
-        className={`absolute z-[9]`}
+        className={`absolute z-[10]`}
       >
         {!touchDevice && (
           <CursorIcon
             icon={icon}
-            className={`rotate-[180deg] ${
-              isActive ? 'h-auto w-auto' : 'lg:h-0 lg:w-0'
-            }`}
+            className={`${isActive ? 'h-auto w-auto' : ' lg:h-0 lg:w-0'}`}
           />
         )}
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -96,10 +132,12 @@ const CursorIcon = ({
     switch (icon) {
       case 'arrow-right':
         return (
-          <NavigationSvg className={`arrow-right overflow-auto ${className}`} />
+          <NavigationSvg
+            className={`arrow-right rotate-[180deg] overflow-auto ${className}`}
+          />
         );
       case 'plus':
-        return <NavigationSvg className={`plus-icon`} />;
+        return <PlusCircleSvg className={`${className}`} />;
       default:
         return null;
     }
