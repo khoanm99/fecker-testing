@@ -19,14 +19,14 @@ interface Props {
 }
 
 const ProjectOverView = ({ listCategory }: Props) => {
-  const [swiperInstance, setSwiperInstance] = useState<SwiperCore>();
   const [listProject, setListProject] =
     useState<ProjectRelationResponseCollection['data']>();
+  const [isListImage, setIsListImage] = useState<boolean>(true);
   const handleLayout = (state?: boolean) => {
     if (state) {
-      swiperInstance && swiperInstance.slideNext();
+      setIsListImage(false);
     } else {
-      swiperInstance && swiperInstance.slidePrev();
+      setIsListImage(true);
     }
   };
 
@@ -52,42 +52,30 @@ const ProjectOverView = ({ listCategory }: Props) => {
           state={handleLayout}
         />
         <div className={`relative mt-12 overflow-hidden lg:mt-[118px]`}>
-          <Swiper
-            onSwiper={swiper => {
-              setSwiperInstance(swiper);
-            }}
-            speed={500}
-            spaceBetween={30}
-            allowTouchMove={false}
-          >
-            {listProject && (
-              <SwiperSlide>
-                <ProjectOverviewMasonry listProject={listProject} />
-              </SwiperSlide>
-            )}
-            <SwiperSlide>
-              {listProject &&
-                Array.isArray(listProject) &&
-                listProject.map((itemProject, key) => (
-                  <AccordionSection
-                    key={key}
-                    title={itemProject.attributes?.name ?? ''}
-                    layout={`Grid`}
-                    image={
-                      itemProject?.attributes?.image?.data[0]?.attributes ??
-                      undefined
-                    }
-                    content={itemProject.attributes?.content ?? ''}
-                    index={key}
-                    url={
-                      itemProject.attributes?.slug
-                        ? `/projekte/${itemProject.attributes?.slug}`
-                        : ''
-                    }
-                  />
-                ))}
-            </SwiperSlide>
-          </Swiper>
+          {listProject && isListImage && (
+            <ProjectOverviewMasonry listProject={listProject} />
+          )}
+          {listProject &&
+            !isListImage &&
+            Array.isArray(listProject) &&
+            listProject.map((itemProject, key) => (
+              <AccordionSection
+                key={key}
+                title={itemProject.attributes?.name ?? ''}
+                layout={`Grid`}
+                image={
+                  itemProject?.attributes?.image?.data[0]?.attributes ??
+                  undefined
+                }
+                content={itemProject.attributes?.content ?? ''}
+                index={key}
+                url={
+                  itemProject.attributes?.slug
+                    ? `/projekte/${itemProject.attributes?.slug}`
+                    : ''
+                }
+              />
+            ))}
         </div>
         {/* {<div className={`fixed top-0 left-0 h-screen w-full`}></div>} */}
       </div>

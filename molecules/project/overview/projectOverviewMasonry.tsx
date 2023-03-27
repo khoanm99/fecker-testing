@@ -11,10 +11,7 @@ const ProjectOverviewMasonry = ({
   return (
     <>
       <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 1023: 3 }}>
-        <Masonry
-          gutter={`40px`}
-          className={`lg:gap-[40px] max-[1023px]:[&>div]:!gap-[20px]`}
-        >
+        <Masonry gutter={`30px`} className={`max-[1023px]:[&>div]:!gap-[20px]`}>
           {listProject.map((itemProject, key: number) => {
             if (
               itemProject.attributes?.image?.data &&
