@@ -9,8 +9,9 @@ interface IProps {
     right?: string;
   };
   className?: string;
+  state?: Function;
 }
-const ToggleWithText = ({ content, className }: IProps) => {
+const ToggleWithText = ({ content, className, state }: IProps) => {
   const [active, setActive] = useState<boolean>(false);
   const defaultCls = 'flex items-center justify-center space-x-6';
   return (
@@ -23,6 +24,7 @@ const ToggleWithText = ({ content, className }: IProps) => {
               content={content.left}
               onClick={() => {
                 setActive(false);
+                state && state(false);
               }}
               className={`cursor-pointer`}
             />
@@ -31,6 +33,7 @@ const ToggleWithText = ({ content, className }: IProps) => {
             active={active}
             onClick={() => {
               setActive(!active);
+              state && state(!active);
             }}
             className={`cursor-pointer`}
           />
@@ -40,6 +43,7 @@ const ToggleWithText = ({ content, className }: IProps) => {
               content={content.right}
               onClick={() => {
                 setActive(true);
+                state && state(true);
               }}
               className={`cursor-pointer`}
             />

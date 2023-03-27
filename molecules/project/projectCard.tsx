@@ -3,7 +3,7 @@ import { Team } from '@/graphql/generated';
 import useWindowSize from '@/hooks/useWindowSize';
 import { Maybe } from 'graphql/jsutils/Maybe';
 
-const TeamCard = ({
+const ProjectCard = ({
   dataTeam,
   layout
 }: {
@@ -17,27 +17,21 @@ const TeamCard = ({
       ? dataTeam?.imagePortrait.data?.attributes
       : dataTeam?.imageLandscape.data?.attributes;
 
-  const clsLandscape = `lg:pt-[71%]`;
-  const clsPortrait = `lg:w-[72%] lg:pt-[100%]`;
   return (
     <>
-      <div
-        className={`group relative w-full pt-[112%] ${
-          layout == 'layout-landscape' ? clsLandscape : clsPortrait
-        }`}
-      >
+      <div className={`group relative`}>
         <ImageWithHover
           title={dataTeam?.name ?? ''}
           description={dataTeam?.position ?? ''}
           image={
             isMobile ? dataTeam?.imagePortrait.data?.attributes : imageAtDesktop
           }
-          variant={`green`}
-          sharp={`fill`}
+          variant={`black`}
+          sharp={`auto`}
         />
       </div>
     </>
   );
 };
 
-export default TeamCard;
+export default ProjectCard;
