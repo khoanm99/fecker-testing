@@ -1,5 +1,5 @@
 import { ContactSectionEntityResponse } from '@/graphql/generated';
-import HeroSection from '@/organisms/hero';
+import HeroSection from '@/organisms/slider/hero';
 import ContactMap from '@/organisms/contact/map';
 
 // Data
