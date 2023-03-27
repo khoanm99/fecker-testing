@@ -7,7 +7,7 @@ import { IMAGE_FRAGMENT } from '@/graphql/fragment/image';
 import { ACCORDION_FRAGMENT } from '@/graphql/fragment/accordion';
 import { CATEGORY_CONTENT_FRAGMENT } from '@/graphql/fragment/category-content';
 
-export const GET_VERMIETEN_VERKAUFEN_SECTION = gql`
+export const GET_RENT_SELL_SECTION = gql`
   ${IMAGE_FRAGMENT}
   ${HERO_SLIDER_FRAGMENT}
   ${TEXT_BLOCK_FRAGMENT}
@@ -15,8 +15,8 @@ export const GET_VERMIETEN_VERKAUFEN_SECTION = gql`
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
   ${CATEGORY_CONTENT_FRAGMENT}
-  query getVermietenVerkaufenSection {
-    vermietenVerkaufenSection {
+  query getRentSellSection {
+    rentSellSection {
       data {
         id
         attributes {
