@@ -1,6 +1,7 @@
 import Container from '@/components/container';
 import { InnovationSectionEntityResponse } from '@/graphql/generated';
 import Accordion from '@/molecules/commons/accordions';
+import AccordionSection from '@/molecules/commons/accordions/section';
 import IntroContent from '@/molecules/hero/heroIntroContent';
 import HeroSection from '@/organisms/hero';
 
@@ -35,13 +36,25 @@ const InnovationTemplate = ({ dataResponse }: Props) => {
               ) {
                 return (
                   <Container layout={'grid'} key={key}>
-                    <Accordion list={itemContent.accordions} />
+                    {itemContent.accordions.map((itemContent, keyContent) => (
+                      <AccordionSection
+                        key={keyContent}
+                        layout={itemContent?.layout}
+                        image={
+                          itemContent?.image?.data?.attributes ?? undefined
+                        }
+                        content={itemContent?.content ?? ''}
+                        title={itemContent?.title}
+                        index={keyContent}
+                      />
+                    ))}
                   </Container>
                 );
               }
             })}
         </div>
       )}
+      {/* <Accordion list={itemContent.accordions} /> */}
     </>
   );
 };

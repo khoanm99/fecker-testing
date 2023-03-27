@@ -17,7 +17,7 @@ const DetailMasonry = ({ listImage }: { listImage: any[] }) => {
                   console.log('onen popup');
                 }}
               >
-                <ProjectCard dataTeam={itemTeam.attributes} />
+                {/* <ProjectCard dataTeam={itemTeam.attributes} /> */}
               </div>
             );
           })}

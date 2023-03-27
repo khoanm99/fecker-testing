@@ -1,13 +1,13 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
-import { HomeSectionEntityResponse } from '@/graphql/generated';
+import { ProjectSectionEntityResponse } from '@/graphql/generated';
 import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
-import { GET_FASSADEN_SECTION } from '@/graphql/query/fassadenSection';
+import { GET_PROJECT_SECTION } from '@/graphql/query/projectSection';
 
 interface Props {
   dataResponse: {
-    projectSection: HomeSectionEntityResponse;
+    projectSection: ProjectSectionEntityResponse;
   };
 }
 
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const rs: any = await apolloClient
     .query({
-      query: GET_FASSADEN_SECTION
+      query: GET_PROJECT_SECTION
     })
     .catch(() => {});
 

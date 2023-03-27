@@ -1,27 +1,50 @@
 import Container from '@/components/container';
+import { ProjectSectionEntityResponse } from '@/graphql/generated';
+import IntroContent from '@/molecules/hero/heroIntroContent';
 import HeroSection from '@/organisms/hero';
 import ProjectOverView from '@/organisms/project/overview/listProject';
 import ProjectDetailTemplate from './ProjectDetailTemplate';
 
 interface Props {
   dataResponse: {
-    projectSection: any;
+    projectSection: ProjectSectionEntityResponse;
   };
 }
 
 const OverViewProjectTemplate = ({ dataResponse }: Props) => {
-  const ProjectSection = dataResponse?.projectSection;
+  const projectSection = dataResponse?.projectSection;
+  const introContent = projectSection?.data?.attributes?.introContent;
+  const content = projectSection.data?.attributes?.contents;
   return (
     <>
-      {ProjectSection?.data?.attributes?.heroSlider && (
+      {projectSection?.data?.attributes?.heroSlider && (
         <HeroSection
-          heroSectionData={ProjectSection.data.attributes?.heroSlider}
+          heroSectionData={projectSection.data.attributes?.heroSlider}
           templateName={`subPage`}
         />
       )}
-      <Container layout={`grid`}>
-        <ProjectOverView />
-      </Container>
+
+      {introContent && (
+        <IntroContent introContent={introContent} templateName={`subPage`} />
+      )}
+
+      {content &&
+        Array.isArray(content) &&
+        content.map((itemContent, keyContent) => {
+          if (
+            itemContent?.__typename == 'ComponentContentListProject' &&
+            itemContent.category.data.length > 0
+          ) {
+            const listCategory = itemContent.category.data;
+            return (
+              <Container layout={`grid`} key={keyContent}>
+                <ProjectOverView listCategory={listCategory} />
+              </Container>
+            );
+          } else {
+            return <></>;
+          }
+        })}
       <Container layout={`grid`}>
         <ProjectDetailTemplate />
       </Container>

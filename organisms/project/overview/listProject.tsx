@@ -1,203 +1,27 @@
-import { ComponentAccordionAccordion } from '@/graphql/generated';
-import Accordion from '@/molecules/commons/accordions';
+import {
+  CategoryEntity,
+  ComponentAccordionAccordion,
+  ProjectRelationResponseCollection
+} from '@/graphql/generated';
+import { memo } from 'react';
 import ProjectOverviewMasonry from '@/molecules/project/overview/projectOverviewMasonry';
 
 import ToggleWithText from '@/molecules/toggle';
 import { Maybe } from 'graphql/jsutils/Maybe';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import 'swiper/css';
-
-const sampleList = [
-  {
-    attributes: {
-      name: 'Scheune und Wohnhaus AR',
-      imagePortrait: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-1.jpg`,
-            width: 565,
-            height: 890,
-            alternativeText: 'data'
-          }
-        }
-      },
-      imageLandscape: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-1.jpg`,
-            width: 565,
-            height: 890,
-            alternativeText: 'data'
-          }
-        }
-      }
-    }
-  },
-  {
-    attributes: {
-      name: 'Scheune und Wohnhaus AR',
-      imagePortrait: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-2.png`,
-            width: 353,
-            height: 234,
-            alternativeText: 'data'
-          }
-        }
-      },
-      imageLandscape: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-2.png`,
-            width: 353,
-            height: 234,
-            alternativeText: 'data'
-          }
-        }
-      }
-    }
-  },
-  {
-    attributes: {
-      name: 'Scheune und Wohnhaus AR',
-      imagePortrait: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-3.jpg`,
-            width: 353,
-            height: 255,
-            alternativeText: 'data'
-          }
-        }
-      },
-      imageLandscape: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-3.jpg`,
-            width: 353,
-            height: 255,
-            alternativeText: 'data'
-          }
-        }
-      }
-    }
-  },
-  {
-    attributes: {
-      name: 'Scheune und Wohnhaus AR',
-      imagePortrait: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-4.jpg`,
-            width: 255,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      },
-      imageLandscape: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-4.jpg`,
-            width: 353,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      }
-    }
-  },
-  {
-    attributes: {
-      name: 'Scheune und Wohnhaus AR',
-      imagePortrait: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-5.jpg`,
-            width: 353,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      },
-      imageLandscape: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-5.jpg`,
-            width: 353,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      }
-    }
-  },
-  {
-    attributes: {
-      name: 'Scheune und Wohnhaus AR',
-      imagePortrait: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-5.jpg`,
-            width: 353,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      },
-      imageLandscape: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-5.jpg`,
-            width: 353,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      }
-    }
-  },
-  {
-    attributes: {
-      name: 'Scheune und Wohnhaus AR',
-      imagePortrait: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-5.jpg`,
-            width: 353,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      },
-      imageLandscape: {
-        data: {
-          attributes: {
-            url: `/assets/img/img-5.jpg`,
-            width: 353,
-            height: 100,
-            alternativeText: 'data'
-          }
-        }
-      }
-    }
-  }
-];
-
-const listAccordion: Maybe<ComponentAccordionAccordion>[] = [
-  // @ts-ignore
-  { id: `2`, title: 'adasd', layout: 'Markdown' }
-];
+import AccordionSection from '@/molecules/commons/accordions/section';
 
 interface Props {
-  listProject?: any;
+  listCategory?: CategoryEntity[];
 }
 
-const ProjectOverView = ({ listProject }: Props) => {
+const ProjectOverView = ({ listCategory }: Props) => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperCore>();
+  const [listProject, setListProject] =
+    useState<ProjectRelationResponseCollection['data']>();
   const handleLayout = (state?: boolean) => {
     if (state) {
       swiperInstance && swiperInstance.slideNext();
@@ -205,9 +29,24 @@ const ProjectOverView = ({ listProject }: Props) => {
       swiperInstance && swiperInstance.slidePrev();
     }
   };
+
+  useEffect(() => {
+    if (listCategory && Array.isArray(listCategory)) {
+      let transformList: ProjectRelationResponseCollection['data'] = [];
+      listCategory.map(itemCategory => {
+        if (itemCategory.attributes?.project) {
+          transformList = transformList.concat(
+            itemCategory.attributes?.project.data
+          );
+        }
+        setListProject(transformList);
+      });
+    }
+  }, []);
+
   return (
     <>
-      <div className={`pt-[200px]`}>
+      <div className={``}>
         <ToggleWithText
           content={{ left: 'Kachelansicht', right: `Listenansicht` }}
           state={handleLayout}
@@ -219,13 +58,34 @@ const ProjectOverView = ({ listProject }: Props) => {
             }}
             speed={500}
             spaceBetween={30}
-            autoHeight={true}
+            allowTouchMove={false}
           >
+            {listProject && (
+              <SwiperSlide>
+                <ProjectOverviewMasonry listProject={listProject} />
+              </SwiperSlide>
+            )}
             <SwiperSlide>
-              <ProjectOverviewMasonry listProject={sampleList} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Accordion list={listAccordion as any} />
+              {listProject &&
+                Array.isArray(listProject) &&
+                listProject.map((itemProject, key) => (
+                  <AccordionSection
+                    key={key}
+                    title={itemProject.attributes?.name ?? ''}
+                    layout={`Grid`}
+                    image={
+                      itemProject?.attributes?.image?.data[0]?.attributes ??
+                      undefined
+                    }
+                    content={itemProject.attributes?.content ?? ''}
+                    index={key}
+                    url={
+                      itemProject.attributes?.slug
+                        ? `/projekte/${itemProject.attributes?.slug}`
+                        : ''
+                    }
+                  />
+                ))}
             </SwiperSlide>
           </Swiper>
         </div>
@@ -235,4 +95,4 @@ const ProjectOverView = ({ listProject }: Props) => {
   );
 };
 
-export default ProjectOverView;
+export default memo(ProjectOverView);

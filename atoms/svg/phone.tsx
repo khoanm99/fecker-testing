@@ -19,11 +19,6 @@ const Phone = ({ className = '', ...props }: SVGProps) => {
           fill="white"
         />
       </g>
-      <defs>
-        <clipPath>
-          <rect width="19.8738" height="18.4543" fill="white" />
-        </clipPath>
-      </defs>
     </svg>
   );
 };
