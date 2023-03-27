@@ -32,6 +32,7 @@ const ImageWithHover = ({
               alt={image.alternativeText ?? ''}
               width={image.width ?? 0}
               height={image.height ?? 0}
+              className={`h-auto w-full`}
             />
           )}
 

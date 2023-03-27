@@ -1,10 +1,13 @@
 import { ComponentAccordionAccordion } from '@/graphql/generated';
 import Accordion from '@/molecules/commons/accordions';
-import ProjectMasonry from '@/molecules/project/projectMasonry';
+import ProjectOverviewMasonry from '@/molecules/project/overview/projectOverviewMasonry';
 
 import ToggleWithText from '@/molecules/toggle';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore from 'swiper';
+import 'swiper/css';
 
 const sampleList = [
   {
@@ -14,8 +17,8 @@ const sampleList = [
         data: {
           attributes: {
             url: `/assets/img/img-1.jpg`,
-            width: 353,
-            height: 515,
+            width: 565,
+            height: 890,
             alternativeText: 'data'
           }
         }
@@ -24,8 +27,8 @@ const sampleList = [
         data: {
           attributes: {
             url: `/assets/img/img-1.jpg`,
-            width: 353,
-            height: 515,
+            width: 565,
+            height: 890,
             alternativeText: 'data'
           }
         }
@@ -65,7 +68,7 @@ const sampleList = [
           attributes: {
             url: `/assets/img/img-3.jpg`,
             width: 353,
-            height: 515,
+            height: 255,
             alternativeText: 'data'
           }
         }
@@ -75,7 +78,7 @@ const sampleList = [
           attributes: {
             url: `/assets/img/img-3.jpg`,
             width: 353,
-            height: 515,
+            height: 255,
             alternativeText: 'data'
           }
         }
@@ -89,8 +92,8 @@ const sampleList = [
         data: {
           attributes: {
             url: `/assets/img/img-4.jpg`,
-            width: 353,
-            height: 234,
+            width: 255,
+            height: 100,
             alternativeText: 'data'
           }
         }
@@ -100,7 +103,7 @@ const sampleList = [
           attributes: {
             url: `/assets/img/img-4.jpg`,
             width: 353,
-            height: 234,
+            height: 100,
             alternativeText: 'data'
           }
         }
@@ -115,7 +118,7 @@ const sampleList = [
           attributes: {
             url: `/assets/img/img-5.jpg`,
             width: 353,
-            height: 515,
+            height: 100,
             alternativeText: 'data'
           }
         }
@@ -125,7 +128,57 @@ const sampleList = [
           attributes: {
             url: `/assets/img/img-5.jpg`,
             width: 353,
-            height: 515,
+            height: 100,
+            alternativeText: 'data'
+          }
+        }
+      }
+    }
+  },
+  {
+    attributes: {
+      name: 'Scheune und Wohnhaus AR',
+      imagePortrait: {
+        data: {
+          attributes: {
+            url: `/assets/img/img-5.jpg`,
+            width: 353,
+            height: 100,
+            alternativeText: 'data'
+          }
+        }
+      },
+      imageLandscape: {
+        data: {
+          attributes: {
+            url: `/assets/img/img-5.jpg`,
+            width: 353,
+            height: 100,
+            alternativeText: 'data'
+          }
+        }
+      }
+    }
+  },
+  {
+    attributes: {
+      name: 'Scheune und Wohnhaus AR',
+      imagePortrait: {
+        data: {
+          attributes: {
+            url: `/assets/img/img-5.jpg`,
+            width: 353,
+            height: 100,
+            alternativeText: 'data'
+          }
+        }
+      },
+      imageLandscape: {
+        data: {
+          attributes: {
+            url: `/assets/img/img-5.jpg`,
+            width: 353,
+            height: 100,
             alternativeText: 'data'
           }
         }
@@ -134,17 +187,22 @@ const sampleList = [
   }
 ];
 
-// const listAccordion: Maybe<ComponentAccordionAccordion>[] = [
-//   { id: `2`, title: 'adasd' }
-// ];
+const listAccordion: Maybe<ComponentAccordionAccordion>[] = [
+  // @ts-ignore
+  { id: `2`, title: 'adasd', layout: 'Markdown' }
+];
 
-const ProjectOverView = () => {
-  const [layout, setLayout] = useState<'accordion' | 'masonry'>('masonry');
+interface Props {
+  listProject?: any;
+}
+
+const ProjectOverView = ({ listProject }: Props) => {
+  const [swiperInstance, setSwiperInstance] = useState<SwiperCore>();
   const handleLayout = (state?: boolean) => {
     if (state) {
-      setLayout('accordion');
+      swiperInstance && swiperInstance.slideNext();
     } else {
-      setLayout('masonry');
+      swiperInstance && swiperInstance.slidePrev();
     }
   };
   return (
@@ -154,8 +212,24 @@ const ProjectOverView = () => {
           content={{ left: 'Kachelansicht', right: `Listenansicht` }}
           state={handleLayout}
         />
-        {/* {layout == 'masonry' && <ProjectMasonry listProject={sampleList} />} */}
-        {/* {layout == 'accordion' && <Accordion list={listAccordion} />} */}
+        <div className={`relative mt-12 overflow-hidden lg:mt-[118px]`}>
+          <Swiper
+            onSwiper={swiper => {
+              setSwiperInstance(swiper);
+            }}
+            speed={500}
+            spaceBetween={30}
+            autoHeight={true}
+          >
+            <SwiperSlide>
+              <ProjectOverviewMasonry listProject={sampleList} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Accordion list={listAccordion as any} />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+        {/* {<div className={`fixed top-0 left-0 h-screen w-full`}></div>} */}
       </div>
     </>
   );

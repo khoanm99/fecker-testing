@@ -8,7 +8,7 @@ const ProjectCard = ({
   layout
 }: {
   dataTeam?: Maybe<Team>;
-  layout: 'layout-landscape' | 'layout-portrait';
+  layout?: 'layout-landscape' | 'layout-portrait';
 }) => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width < 1024 ? true : false;

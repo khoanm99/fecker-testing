@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import ProjectCard from './projectCard';
+import ProjectCard from '../projectCard';
 
-const ProjectMasonry = ({ listProject }: { listProject: any[] }) => {
+const ProjectOverviewMasonry = ({ listProject }: { listProject: any[] }) => {
   return (
     <>
       <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 1023: 3 }}>
@@ -11,11 +12,9 @@ const ProjectMasonry = ({ listProject }: { listProject: any[] }) => {
         >
           {listProject.map((itemTeam: any, key: number) => {
             return (
-              <ProjectCard
-                dataTeam={itemTeam.attributes}
-                key={key}
-                layout={`layout-landscape`}
-              />
+              <Link key={key} href={`${itemTeam.url ? '' : '#'}`}>
+                <ProjectCard dataTeam={itemTeam.attributes} />
+              </Link>
             );
           })}
         </Masonry>
@@ -24,4 +23,4 @@ const ProjectMasonry = ({ listProject }: { listProject: any[] }) => {
   );
 };
 
-export default ProjectMasonry;
+export default ProjectOverviewMasonry;
