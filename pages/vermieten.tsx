@@ -2,7 +2,7 @@ import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { ProjectSectionEntityResponse } from '@/graphql/generated';
-import { GET_REFERENCE_SECTION } from '@/graphql/query/referenceSection';
+import { GET_VERMIETEN_VERKAUFEN_SECTION } from '@/graphql/query/vermietenVerkaufenSection';
 
 interface Props {
   dataResponse: {
@@ -10,23 +10,22 @@ interface Props {
   };
 }
 
-const Reference = ({ dataResponse }: Props) => {
-  console.log('dataResponse', dataResponse);
+const Vermieten = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      <>Reference</>
+      <>VERMIETEN_VERKAUFEN</>
     </DefaultLayout>
   );
 };
 
-export default Reference;
+export default Vermieten;
 
 export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   const rs: any = await apolloClient
     .query({
-      query: GET_REFERENCE_SECTION
+      query: GET_VERMIETEN_VERKAUFEN_SECTION
     })
     .catch(() => {});
 
