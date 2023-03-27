@@ -24,8 +24,10 @@ export type Scalars = {
   InnovationSectionContentsDynamicZoneInput: any;
   JSON: any;
   ProjectSectionContentsDynamicZoneInput: any;
+  ReferenceSectionContentsDynamicZoneInput: any;
   TeamSectionContentsDynamicZoneInput: any;
   Upload: any;
+  VermietenVerkaufenSectionContentsDynamicZoneInput: any;
 };
 
 export type BooleanFilterInput = {
@@ -484,6 +486,7 @@ export type GenericMorph =
   | InnovationSection
   | Project
   | ProjectSection
+  | ReferenceSection
   | SlugifySlug
   | Team
   | TeamSection
@@ -491,7 +494,8 @@ export type GenericMorph =
   | UploadFolder
   | UsersPermissionsPermission
   | UsersPermissionsRole
-  | UsersPermissionsUser;
+  | UsersPermissionsUser
+  | VermietenVerkaufenSection;
 
 export type HomeSection = {
   __typename?: 'HomeSection';
@@ -696,6 +700,7 @@ export type Mutation = {
   deleteInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   deleteProject?: Maybe<ProjectEntityResponse>;
   deleteProjectSection?: Maybe<ProjectSectionEntityResponse>;
+  deleteReferenceSection?: Maybe<ReferenceSectionEntityResponse>;
   deleteSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   deleteTeam?: Maybe<TeamEntityResponse>;
   deleteTeamSection?: Maybe<TeamSectionEntityResponse>;
@@ -705,6 +710,7 @@ export type Mutation = {
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteVermietenVerkaufenSection?: Maybe<VermietenVerkaufenSectionEntityResponse>;
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
   /** Request a reset password token */
@@ -725,6 +731,7 @@ export type Mutation = {
   updateInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   updateProject?: Maybe<ProjectEntityResponse>;
   updateProjectSection?: Maybe<ProjectSectionEntityResponse>;
+  updateReferenceSection?: Maybe<ReferenceSectionEntityResponse>;
   updateSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   updateTeam?: Maybe<TeamEntityResponse>;
   updateTeamSection?: Maybe<TeamSectionEntityResponse>;
@@ -734,6 +741,7 @@ export type Mutation = {
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  updateVermietenVerkaufenSection?: Maybe<VermietenVerkaufenSectionEntityResponse>;
   upload: UploadFileEntityResponse;
 };
 
@@ -879,6 +887,10 @@ export type MutationUpdateProjectSectionArgs = {
   data: ProjectSectionInput;
 };
 
+export type MutationUpdateReferenceSectionArgs = {
+  data: ReferenceSectionInput;
+};
+
 export type MutationUpdateSlugifySlugArgs = {
   data: SlugifySlugInput;
   id: Scalars['ID'];
@@ -913,6 +925,10 @@ export type MutationUpdateUsersPermissionsUserArgs = {
   id: Scalars['ID'];
 };
 
+export type MutationUpdateVermietenVerkaufenSectionArgs = {
+  data: VermietenVerkaufenSectionInput;
+};
+
 export type MutationUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
   file: Scalars['Upload'];
@@ -939,9 +955,8 @@ export type PaginationArg = {
 export type Project = {
   __typename?: 'Project';
   category?: Maybe<CategoryRelationResponseCollection>;
-  content: Scalars['String'];
+  content?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description: Scalars['String'];
   image: UploadFileRelationResponseCollection;
   name: Scalars['String'];
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -984,7 +999,6 @@ export type ProjectFiltersInput = {
   category?: InputMaybe<CategoryFiltersInput>;
   content?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ProjectFiltersInput>;
@@ -997,7 +1011,6 @@ export type ProjectFiltersInput = {
 export type ProjectInput = {
   category?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   content?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
@@ -1067,6 +1080,7 @@ export type Query = {
   projectBySlug?: Maybe<ProjectEntityResponse>;
   projectSection?: Maybe<ProjectSectionEntityResponse>;
   projects?: Maybe<ProjectEntityResponseCollection>;
+  referenceSection?: Maybe<ReferenceSectionEntityResponse>;
   slugifySlug?: Maybe<SlugifySlugEntityResponse>;
   slugifySlugs?: Maybe<SlugifySlugEntityResponseCollection>;
   team?: Maybe<TeamEntityResponse>;
@@ -1080,6 +1094,7 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+  vermietenVerkaufenSection?: Maybe<VermietenVerkaufenSectionEntityResponse>;
 };
 
 export type QueryCategoriesArgs = {
@@ -1136,6 +1151,10 @@ export type QueryProjectsArgs = {
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryReferenceSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type QuerySlugifySlugArgs = {
@@ -1201,6 +1220,48 @@ export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryVermietenVerkaufenSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type ReferenceSection = {
+  __typename?: 'ReferenceSection';
+  contents?: Maybe<Array<Maybe<ReferenceSectionContentsDynamicZone>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  heroSlider: ComponentBasicHeroSlider;
+  introContent?: Maybe<ComponentBasicIntroContent>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ReferenceSectionContentsDynamicZone =
+  | ComponentContentAccordions
+  | ComponentContentListProject
+  | ComponentContentTextBlocks
+  | Error;
+
+export type ReferenceSectionEntity = {
+  __typename?: 'ReferenceSectionEntity';
+  attributes?: Maybe<ReferenceSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ReferenceSectionEntityResponse = {
+  __typename?: 'ReferenceSectionEntityResponse';
+  data?: Maybe<ReferenceSectionEntity>;
+};
+
+export type ReferenceSectionInput = {
+  contents?: InputMaybe<
+    Array<Scalars['ReferenceSectionContentsDynamicZoneInput']>
+  >;
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
+  introContent?: InputMaybe<ComponentBasicIntroContentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
 };
 
 export type ResponseCollectionMeta = {
@@ -1723,4 +1784,42 @@ export type UsersPermissionsUserInput = {
 export type UsersPermissionsUserRelationResponseCollection = {
   __typename?: 'UsersPermissionsUserRelationResponseCollection';
   data: Array<UsersPermissionsUserEntity>;
+};
+
+export type VermietenVerkaufenSection = {
+  __typename?: 'VermietenVerkaufenSection';
+  contents?: Maybe<Array<Maybe<VermietenVerkaufenSectionContentsDynamicZone>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  heroSlider: ComponentBasicHeroSlider;
+  introContent?: Maybe<ComponentBasicIntroContent>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type VermietenVerkaufenSectionContentsDynamicZone =
+  | ComponentContentAccordions
+  | ComponentContentListProject
+  | ComponentContentTextBlocks
+  | Error;
+
+export type VermietenVerkaufenSectionEntity = {
+  __typename?: 'VermietenVerkaufenSectionEntity';
+  attributes?: Maybe<VermietenVerkaufenSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type VermietenVerkaufenSectionEntityResponse = {
+  __typename?: 'VermietenVerkaufenSectionEntityResponse';
+  data?: Maybe<VermietenVerkaufenSectionEntity>;
+};
+
+export type VermietenVerkaufenSectionInput = {
+  contents?: InputMaybe<
+    Array<Scalars['VermietenVerkaufenSectionContentsDynamicZoneInput']>
+  >;
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
+  introContent?: InputMaybe<ComponentBasicIntroContentInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
 };
