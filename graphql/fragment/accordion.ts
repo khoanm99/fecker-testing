@@ -5,6 +5,7 @@ export const ACCORDION_FRAGMENT = gql`
     id
     title
     content
+    layout
     image {
       data {
         ...ImageData
