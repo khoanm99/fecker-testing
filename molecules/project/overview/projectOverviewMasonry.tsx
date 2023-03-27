@@ -25,6 +25,7 @@ const ProjectOverviewMasonry = ({
                       ? `/projekte/${itemProject.attributes?.slug}`
                       : '#'
                   }`}
+                  className={'relative'}
                 >
                   <ProjectCard dataProject={itemProject.attributes} />
                 </Link>
