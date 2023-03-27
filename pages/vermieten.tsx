@@ -1,10 +1,8 @@
-import DefaultLayout from '@/components/DefaultLayout';
+import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { ProjectSectionEntityResponse } from '@/graphql/generated';
-import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
-import { GET_PROJECT_SECTION } from '@/graphql/query/projectSection';
-// import { GET_REFERENCE_SECTION } from '@/graphql/query/referenceSection';
+import { GET_RENT_SELL_SECTION } from '@/graphql/query/rentSellSection';
 
 interface Props {
   dataResponse: {
@@ -12,22 +10,22 @@ interface Props {
   };
 }
 
-const Referenzen = ({ dataResponse }: Props) => {
+const Vermieten = ({ dataResponse }: Props) => {
   return (
-    <DefaultLayout title={'Fecker Holzbau AG'} description={'Lorem Ipsum...'}>
-      {dataResponse && <OverViewProjectTemplate dataResponse={dataResponse} />}
+    <DefaultLayout>
+      <>VERMIETEN_VERKAUFEN</>
     </DefaultLayout>
   );
 };
 
-export default Referenzen;
+export default Vermieten;
 
 export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   const rs: any = await apolloClient
     .query({
-      query: GET_PROJECT_SECTION
+      query: GET_RENT_SELL_SECTION
     })
     .catch(() => {});
 

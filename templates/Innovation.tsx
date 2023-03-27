@@ -3,7 +3,7 @@ import { InnovationSectionEntityResponse } from '@/graphql/generated';
 import Accordion from '@/molecules/commons/accordions';
 import AccordionSection from '@/molecules/commons/accordions';
 import IntroContent from '@/molecules/hero/heroIntroContent';
-import HeroSection from '@/organisms/hero';
+import HeroSection from '@/organisms/slider/hero';
 
 interface Props {
   dataResponse: {

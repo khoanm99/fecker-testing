@@ -20,6 +20,10 @@
   @import './components/swiper/pagination.scss';
 }
 
+.grecaptcha-badge{
+  @apply hidden
+}
+
 .gm-style {
   .gm-style-iw-c {
     box-shadow: none;

@@ -1,7 +1,7 @@
 import Container from '@/components/container';
 import { ProjectSectionEntityResponse } from '@/graphql/generated';
 import IntroContent from '@/molecules/hero/heroIntroContent';
-import HeroSection from '@/organisms/hero';
+import HeroSection from '@/organisms/slider/hero';
 import ProjectOverView from '@/organisms/project/overview/listProject';
 import ProjectDetailTemplate from './ProjectDetailTemplate';
 
