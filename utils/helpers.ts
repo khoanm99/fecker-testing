@@ -1,3 +1,5 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+
 export const setTextLimit = (str: string, length: number): string => {
   if (str.length > length) {
     str = str.substring(0, length) + '...';
@@ -45,4 +47,35 @@ export const isValidHttpUrl = (url: string) => {
   return _url.protocol === 'http:' || _url.protocol === 'https:';
 };
 
-// for md
+export const validateGoogleRecaptcha = (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  callback: any
+) => {
+  const body = JSON.parse(req?.body);
+  return fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: `secret=${process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY}&response=${body.gReCaptchaToken}`
+  })
+    .then(reCaptchaRes => reCaptchaRes.json())
+    .then(reCaptchaRes => {
+      console.log(
+        reCaptchaRes,
+        'Response from Google reCatpcha verification API'
+      );
+      if (reCaptchaRes?.score > 0.5) {
+        callback();
+      } else {
+        res.status(500).json({
+          status: 'failure',
+          message: 'Google ReCaptcha Failure'
+        });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
