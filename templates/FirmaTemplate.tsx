@@ -2,7 +2,7 @@ import {
   TeamEntityResponseCollection,
   TeamSectionEntityResponse
 } from '@/graphql/generated';
-import HeroSection from '@/organisms/hero';
+import HeroSection from '@/organisms/slider/hero';
 
 import { Fragment } from 'react';
 import StorySlider from '@/organisms/slider/story';

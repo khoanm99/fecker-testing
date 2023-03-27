@@ -1,6 +1,6 @@
 import { FassadenSectionEntityResponse } from '@/graphql/generated';
 import IntroContent from '@/molecules/hero/heroIntroContent';
-import HeroSection from '@/organisms/hero';
+import HeroSection from '@/organisms/slider/hero';
 
 interface Props {
   dataResponse: {
