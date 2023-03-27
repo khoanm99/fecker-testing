@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect, ReactNode, MouseEvent } from 'react';
+import { motion } from 'framer-motion';
 import NavigationSvg from '@/atoms/svg/navigation';
 
 interface IProps {
   children: ReactNode;
   icon: string;
+  className?: string;
+  layout: 'slider' | 'imageLink';
 }
 
 interface IMousePos {
@@ -11,24 +14,21 @@ interface IMousePos {
   y: number;
 }
 
-const HoverArea = ({ children, icon }: IProps) => {
-  const [isActive, setActive] = useState<boolean>(false);
+const HoverArea = ({ children, icon, className, layout }: IProps) => {
+  const [isActive, setActive] = useState<Boolean>(false);
   const [touchDevice, setTouchDevice] = useState<boolean>(true);
   const [mousePosition, setMousePosition] = useState<IMousePos>({ x: 0, y: 0 });
-  const [iconCls, setIconCls] = useState<string>('');
   const mouse = useRef(null);
 
   useEffect(() => {
     if ('ontouchstart' in document.documentElement) {
       setTouchDevice(true);
-      setActive(true);
     } else {
       setTouchDevice(false);
     }
 
     return () => {
       setTouchDevice(true);
-      setActive(false);
     };
   }, []);
 
@@ -38,6 +38,11 @@ const HoverArea = ({ children, icon }: IProps) => {
     const currentTargetRect = e.currentTarget.getBoundingClientRect();
     const x = e.pageX - currentTargetRect.left;
     const y = e.pageY - window.pageYOffset - currentTargetRect.top;
+    const w = currentTargetRect.width;
+
+    if (layout === 'slider' && x < w * 0.7) {
+      return setActive(false);
+    }
 
     setTimeout(() => {
       setMousePosition({ x, y });
@@ -52,42 +57,47 @@ const HoverArea = ({ children, icon }: IProps) => {
 
   const { x, y } = mousePosition;
 
-  switch (icon) {
-    case 'arrow-right':
-      setIconCls('arrow-right');
-      break;
-    case 'arrow-left':
-      setIconCls('arrow-left');
-  }
-
   return (
     <div
       onMouseMove={mouseMoveHandle}
       onMouseLeave={mouseOutHandle}
-      className="hover-area"
+      className={`hover-area overflow-hidden ${className ?? ''}`}
     >
       {children}
-      <div
+      <motion.div
         ref={mouse}
         style={{
-          top: `${y}px`,
-          left: `${x}px`
+          top: `${y - 30}px`,
+          left: `${x - 30}px`
         }}
-        className={`custom-cursor ${iconCls}`}
+        className={`absolute z-[9]`}
       >
-        <CursorIcon icon={icon} />
-      </div>
+        {!touchDevice && (
+          <CursorIcon
+            icon={icon}
+            className={`rotate-[180deg] ${
+              isActive ? 'h-auto w-auto' : 'lg:h-0 lg:w-0'
+            }`}
+          />
+        )}
+      </motion.div>
     </div>
   );
 };
 
-const CursorIcon = ({ icon }: { icon: string }) => {
+const CursorIcon = ({
+  icon,
+  className
+}: {
+  icon: string;
+  className: string;
+}) => {
   return (() => {
     switch (icon) {
       case 'arrow-right':
-        return <NavigationSvg className={`arrow-right`} />;
-      case 'arrow-left':
-        return <NavigationSvg className={`arrow-left`} />;
+        return (
+          <NavigationSvg className={`arrow-right overflow-auto ${className}`} />
+        );
       case 'plus':
         return <NavigationSvg className={`plus-icon`} />;
       default:

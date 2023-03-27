@@ -27,9 +27,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* <GoogleReCaptchaProvider
           reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY ?? ''}
         > */}
-        <MouseProvider>
-          <Component {...pageProps} />
-        </MouseProvider>
+        {/*<MouseProvider>*/}
+        <Component {...pageProps} />
+        {/*</MouseProvider>*/}
         {/* </GoogleReCaptchaProvider> */}
       </AppProvider>
     </>
