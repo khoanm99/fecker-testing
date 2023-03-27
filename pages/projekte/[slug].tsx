@@ -15,6 +15,7 @@ interface Props {
 }
 
 const ProjectDetail = ({ dataResponse }: Props) => {
+  console.log('dataResponse', dataResponse);
   return (
     <DefaultLayout>
       <>Project detail</>
