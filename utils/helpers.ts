@@ -45,4 +45,6 @@ export const isValidHttpUrl = (url: string) => {
   return _url.protocol === 'http:' || _url.protocol === 'https:';
 };
 
-// for md
+export const getRevalidationTTL = () => {
+  return process.env.NODE_ENV === 'production' ? 60 : 20;
+};
