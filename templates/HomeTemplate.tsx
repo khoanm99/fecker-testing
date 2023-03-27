@@ -1,7 +1,7 @@
 import { HomeSectionEntityResponse } from '@/graphql/generated';
 import IntroContent from '@/molecules/hero/heroIntroContent';
 import ListContentBlock from '@/organisms/commons/ContentBlock';
-import HeroSection from '@/organisms/hero';
+import HeroSection from '@/organisms/slider/hero';
 import Container from '@/components/container';
 
 interface Props {
