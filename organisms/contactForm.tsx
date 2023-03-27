@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import useSubmit from '@/hooks/useSubmit';
 import InputError from '@/atoms/inputError';
 import { useState } from 'react';
-import clsx from 'clsx';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 type Inputs = {
   name: string;
@@ -29,21 +29,28 @@ const ContactForm = ({
   const submit = useSubmit();
   const [loading, setLoading] = useState<boolean>(false);
   const [resultSend, setResultSend] = useState<boolean | null>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const onSubmit: SubmitHandler<Inputs> = async data => {
     setLoading(true);
     try {
-      const result = await submit(data);
-      if (result?.success) {
-        setResultSend(true);
-        setTimeout(() => {
-          reset();
-          setResultSend(null);
-          setLoading(false);
-        }, 4000);
-      } else {
-        setLoading(false);
-        setResultSend(false);
+      if (!executeRecaptcha) {
+        return;
       }
+
+      executeRecaptcha('enquiryFormSubmit').then(async gReCaptchaToken => {
+        const result = await submit({ ...data, ...{ gReCaptchaToken } });
+        if (result?.success) {
+          setResultSend(true);
+          setTimeout(() => {
+            reset();
+            setResultSend(null);
+            setLoading(false);
+          }, 4000);
+        } else {
+          setLoading(false);
+          setResultSend(false);
+        }
+      });
     } catch (error) {
       setLoading(false);
       setResultSend(false);

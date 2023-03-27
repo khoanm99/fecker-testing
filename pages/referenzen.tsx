@@ -11,7 +11,6 @@ interface Props {
 }
 
 const Reference = ({ dataResponse }: Props) => {
-  console.log('dataResponse', dataResponse);
   return (
     <DefaultLayout>
       <>Reference</>
