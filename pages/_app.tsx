@@ -5,6 +5,7 @@ import { AppProvider } from '../contexts/appContext';
 import { MouseProvider } from '@/contexts/mouseContext';
 // import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Script from 'next/script';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -24,13 +25,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       />
       <AppProvider>
-        {/* <GoogleReCaptchaProvider
-          reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY ?? ''}
-        > */}
-        {/*<MouseProvider>*/}
-        <Component {...pageProps} />
-        {/*</MouseProvider>*/}
-        {/* </GoogleReCaptchaProvider> */}
+        <GoogleReCaptchaProvider
+          reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+          language={'de'}
+          scriptProps={{
+            async: false,
+            defer: false,
+            appendTo: 'head',
+            nonce: undefined
+          }}
+        >
+          <Component {...pageProps} />
+        </GoogleReCaptchaProvider>
       </AppProvider>
     </>
   );
