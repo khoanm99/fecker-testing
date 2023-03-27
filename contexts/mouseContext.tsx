@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import { IMouseState } from '../types';
+import React, { createContext, useEffect, useState } from 'react';
+import { IMouseState } from '@/types';
 import useMouse from '@react-hook/mouse-position';
 import { motion, Variants } from 'framer-motion';
 
