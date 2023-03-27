@@ -2,7 +2,7 @@ import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { ProjectSectionEntityResponse } from '@/graphql/generated';
-import { GET_VERMIETEN_VERKAUFEN_SECTION } from '@/graphql/query/vermietenVerkaufenSection';
+import { GET_RENT_SELL_SECTION } from '@/graphql/query/rentSellSection';
 
 interface Props {
   dataResponse: {
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const rs: any = await apolloClient
     .query({
-      query: GET_VERMIETEN_VERKAUFEN_SECTION
+      query: GET_RENT_SELL_SECTION
     })
     .catch(() => {});
 
