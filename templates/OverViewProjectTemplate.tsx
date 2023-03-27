@@ -3,7 +3,6 @@ import { ProjectSectionEntityResponse } from '@/graphql/generated';
 import IntroContent from '@/molecules/hero/heroIntroContent';
 import HeroSection from '@/organisms/slider/hero';
 import ProjectOverView from '@/organisms/project/overview/listProject';
-import ProjectDetailTemplate from './ProjectDetailTemplate';
 
 interface Props {
   dataResponse: {
@@ -45,9 +44,6 @@ const OverViewProjectTemplate = ({ dataResponse }: Props) => {
             return <></>;
           }
         })}
-      <Container layout={`grid`}>
-        <ProjectDetailTemplate />
-      </Container>
     </>
   );
 };
