@@ -1,8 +1,7 @@
 import Container from '@/components/container';
 import {
   ComponentBasicHeroSlider,
-  ComponentBasicIntroContent,
-  ProjectSectionEntityResponse
+  ComponentBasicIntroContent
 } from '@/graphql/generated';
 import IntroContent from '@/molecules/hero/heroIntroContent';
 import HeroSection from '@/organisms/slider/hero';
