@@ -5,26 +5,29 @@ import {
   CategoryEntity,
   CategoryEntityResponseCollection,
   ProjectEntity,
-  ProjectEntityResponse,
-  ProjectSectionEntityResponse
+  ProjectEntityResponse
 } from '@/graphql/generated';
 import { GET_PROJECT_DETAIL } from '@/graphql/query/projectDetail';
 import { GET_PROJECT_LIST_SLUG } from '@/graphql/query/projectListSlug';
 import { GET_CATEGORY_LIST_SLUG } from '@/graphql/query/categoryBySlug';
+import ProjectDetailTemplate from '@/templates/ProjectDetailTemplate';
 import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
-    projectSection: ProjectSectionEntityResponse;
+    projectBySlug: ProjectEntityResponse;
     listProjects: CategoryEntityResponseCollection;
   };
 }
 
 const ProjectDetail = ({ dataResponse }: Props) => {
-  console.log('dataResponse', dataResponse);
   return (
     <DefaultLayout>
-      <>Project detail</>
+      {dataResponse && (
+        <ProjectDetailTemplate
+          projectBySlug={dataResponse?.projectBySlug ?? null}
+        />
+      )}
     </DefaultLayout>
   );
 };

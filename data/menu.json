@@ -66,11 +66,11 @@
       "list": [
         {
           "title": "Projekte",
-          "url": "projekte"
+          "url": "/projekte"
         },
         {
           "title": "Vermieten / verkaufen",
-          "url": "vermieten-verkaufen"
+          "url": "/vermieten-verkaufen"
         }
       ]
     }
