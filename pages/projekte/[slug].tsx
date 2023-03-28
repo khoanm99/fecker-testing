@@ -23,9 +23,11 @@ interface Props {
 const ProjectDetail = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      <ProjectDetailTemplate
-        projectBySlug={dataResponse.projectBySlug ?? null}
-      />
+      {dataResponse && (
+        <ProjectDetailTemplate
+          projectBySlug={dataResponse?.projectBySlug ?? null}
+        />
+      )}
     </DefaultLayout>
   );
 };
