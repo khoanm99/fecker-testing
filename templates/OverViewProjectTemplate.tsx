@@ -8,8 +8,8 @@ import HeroSection from '@/organisms/slider/hero';
 import ProjectOverView from '@/organisms/project/overview/listProject';
 
 interface Props {
-  heroSlider?: ComponentBasicHeroSlider;
-  introContent?: ComponentBasicIntroContent;
+  heroSlider?: ComponentBasicHeroSlider | null;
+  introContent?: ComponentBasicIntroContent | null;
   content?: any[];
 }
 

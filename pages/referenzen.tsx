@@ -4,6 +4,7 @@ import { initializeApollo } from '@/utils/apolloClient';
 import { ReferenceSectionEntityResponse } from '@/graphql/generated';
 import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
 import { GET_REFERENCE_SECTION } from '@/graphql/query/referenceSection';
+import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
@@ -17,16 +18,14 @@ const Referenzen = ({ dataResponse }: Props) => {
       {dataResponse && (
         <OverViewProjectTemplate
           heroSlider={
-            dataResponse.referenceSection?.data?.attributes?.heroSlider ??
-            undefined
+            dataResponse.referenceSection?.data?.attributes?.heroSlider ?? null
           }
           introContent={
             dataResponse.referenceSection?.data?.attributes?.introContent ??
-            undefined
+            null
           }
           content={
-            dataResponse.referenceSection?.data?.attributes?.contents ??
-            undefined
+            dataResponse.referenceSection?.data?.attributes?.contents ?? []
           }
         />
       )}
@@ -43,11 +42,14 @@ export const getStaticProps: GetStaticProps = async () => {
     .query({
       query: GET_REFERENCE_SECTION
     })
-    .catch(() => {});
+    .catch(e => {
+      console.log('e', e);
+    });
 
   return {
     props: {
-      dataResponse: rs?.data ?? {}
+      dataResponse: rs?.data ?? {},
+      revalidate: getRevalidationTTL()
     }
   };
 };
