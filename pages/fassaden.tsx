@@ -4,6 +4,7 @@ import { initializeApollo } from '@/utils/apolloClient';
 import { GET_FASSADEN_SECTION } from '@/graphql/query/fassadenSection';
 import FassadenTemplate from '@/templates/FassadenTemplate';
 import { FassadenSectionEntityResponse } from '@/graphql/generated';
+import { getRevalidationTTL } from '@/utils/helpers';
 interface Props {
   dataResponse: {
     fassadenSection: FassadenSectionEntityResponse;
@@ -26,19 +27,11 @@ export const getStaticProps: GetStaticProps = async () => {
     .query({
       query: GET_FASSADEN_SECTION
     })
-    .catch(() => {
-      // return {
-      //   notFound: true
-      // };
-    });
-  // if (!rs?.data) {
-  //   return {
-  //     notFound: true
-  //   };
-  // }
+    .catch(() => {});
   return {
     props: {
-      dataResponse: rs?.data ?? {}
+      dataResponse: rs?.data ?? {},
+      revalidate: getRevalidationTTL()
     }
   };
 };

@@ -1,45 +1,48 @@
 import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
-import { ProjectSectionEntityResponse } from '@/graphql/generated';
-import { GET_PROJECT_SECTION } from '@/graphql/query/projectSection';
+import {
+  ProjectSectionEntityResponse,
+  RentSellSectionEntityResponse
+} from '@/graphql/generated';
+import { GET_RENT_SELL_SECTION } from '@/graphql/query/rentSellSection';
 import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
 import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
-    projectSection: ProjectSectionEntityResponse;
+    rentSellSection: RentSellSectionEntityResponse;
   };
 }
 
-const Project = ({ dataResponse }: Props) => {
+const VermietenVerkaufen = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
       {dataResponse && (
         <OverViewProjectTemplate
           heroSlider={
-            dataResponse.projectSection.data?.attributes?.heroSlider ??
-            undefined
+            dataResponse.rentSellSection?.data?.attributes?.heroSlider ?? null
           }
           introContent={
-            dataResponse.projectSection.data?.attributes?.introContent ??
-            undefined
+            dataResponse.rentSellSection?.data?.attributes?.introContent ?? null
           }
-          content={dataResponse.projectSection.data?.attributes?.contents ?? []}
+          content={
+            dataResponse.rentSellSection?.data?.attributes?.contents ?? []
+          }
         />
       )}
     </DefaultLayout>
   );
 };
 
-export default Project;
+export default VermietenVerkaufen;
 
 export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   const rs: any = await apolloClient
     .query({
-      query: GET_PROJECT_SECTION
+      query: GET_RENT_SELL_SECTION
     })
     .catch(() => {});
 
