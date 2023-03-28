@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 
-export const useLockBody = (isOpen?: boolean) => {
-  const [isStack, setIsStack] = useState<boolean>();
+export const useLockScroll = (isOpen?: boolean) => {
+  const [isLockScroll, setIsLockScroll] = useState<boolean>();
   useEffect(() => {
     if (isOpen !== undefined) {
       if (isOpen) {
         if (document.documentElement.style.overflow === `hidden`) {
-          setIsStack(true);
+          setIsLockScroll(true);
         } else {
           document.documentElement.style.overflow = `hidden`;
         }
       } else {
-        if (!isStack) {
+        if (!isLockScroll) {
           document.documentElement.style.overflow = ``;
           document.documentElement.removeAttribute(`style`);
         }

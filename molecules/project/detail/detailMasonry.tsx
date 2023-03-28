@@ -1,6 +1,6 @@
 import Close from '@/atoms/svg/close';
 import { UploadFile, UploadFileEntity } from '@/graphql/generated';
-import { useLockBody } from '@/hooks/useLockBody';
+import { useLockScroll } from '@/hooks/useLockBody';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ import ProjectCard from '../projectCard';
 
 const DetailMasonry = ({ listImage }: { listImage: UploadFileEntity[] }) => {
   const [popupData, setPopupData] = useState<Maybe<UploadFile>>(null);
-  useLockBody(popupData ? true : false);
+  useLockScroll(popupData ? true : false);
   return (
     <>
       <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 1023: 2 }}>
