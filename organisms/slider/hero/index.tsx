@@ -41,11 +41,11 @@ const HeroSection = ({
     });
   };
   return (
-    <div className={`mb-14 overflow-hidden lg:relative`}>
+    <div className={`relative mb-14 overflow-hidden`}>
       <div
         onMouseEnter={mouseMoveHandle}
         onMouseLeave={mouseLeaveHandle}
-        className={`absolute top-0 right-0 z-[10] h-full w-[30%] cursor-pointer ${
+        className={`absolute top-0 right-0 z-[10] hidden h-full w-[30%] cursor-pointer lg:block ${
           listImage.length > 1 ? '' : 'hidden'
         }`}
         onClick={handleClick}

@@ -14,6 +14,7 @@ const MouseContext = createContext<any | undefined>(undefined);
 
 export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, setState] = useState({ ...mouseState });
+  const [touchDevice, setTouchDevice] = useState<boolean>(true);
 
   const mouseRef = React.useRef<{ x: null | number; y: null | number }>({
     x: null,
@@ -26,6 +27,16 @@ export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
       ...newState
     }));
   };
+
+  useEffect(() => {
+    'ontouchstart' in document.documentElement
+      ? setTouchDevice(true)
+      : setTouchDevice(false);
+
+    return () => {
+      setTouchDevice(true);
+    };
+  }, []);
 
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {
@@ -55,22 +66,29 @@ export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
       width: 65,
       x: mouseRef.current.x ? mouseRef.current.x - 30 : 0,
       y: mouseRef.current.y ? mouseRef.current.y - 30 : 0
+    },
+    projectCard: {
+      opacity: 1,
+      height: 100,
+      width: 100,
+      x: mouseRef.current.x ? mouseRef.current.x - 50 : 0,
+      y: mouseRef.current.y ? mouseRef.current.y - 50 : 0
     }
   };
 
   const spring = {
     type: 'spring',
-    mass: 0.6
+    stiffness: 250,
+    damping: 28
   };
 
   return (
     <MouseContext.Provider value={{ ...state, updateState: updateState }}>
       <div className="relative m-0 p-0" ref={ref}>
         {children}
-
         <motion.div
           variants={variants}
-          className={`mouse-circle ${
+          className={`mouse-circle hidden lg:block ${
             state.cursorActive ? 'h-[0] w-[0] overflow-hidden' : ''
           } bg-red fixed top-0 left-0`}
           animate={state.cursorVariant}
@@ -79,7 +97,7 @@ export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
             zIndex: 5
           }}
         >
-          {state.cursorActive && (
+          {state.cursorActive && !touchDevice && (
             <CursorIcon icon={'arrow-right'} className={`h-auto w-auto`} />
           )}
         </motion.div>
