@@ -6,15 +6,10 @@ import DownloadSvg from '@/atoms/svg/download';
 import InstagramSvg from '@/atoms/svg/instagram';
 import Heading from '@/atoms/typo/heading';
 import Text from '@/atoms/typo/text';
-import Collapse from '@/molecules/collapse';
-import Accordion from '@/molecules/commons/accordions';
-import ContentBlock from '@/molecules/commons/contentBlock';
 import ToggleWithText from '@/molecules/toggle';
-import ListContentBlock from '@/organisms/commons/ContentBlock';
 import ContactMap from '@/organisms/contact/map';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import sampleBlockTextJson from '../data/sampleBlockText.json';
 import 'swiper/css';
 import 'swiper/css/pagination';
 

@@ -7,6 +7,7 @@ import {
 } from '@/graphql/generated';
 import { GET_RENT_SELL_SECTION } from '@/graphql/query/rentSellSection';
 import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
+import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
@@ -47,7 +48,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      dataResponse: rs?.data ?? {}
+      dataResponse: rs?.data ?? {},
+      revalidate: getRevalidationTTL()
     }
   };
 };

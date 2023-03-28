@@ -23,6 +23,7 @@ interface IMenuItem {
       title: string;
     }[];
   };
+  onClick: any;
   id: number;
 }
 
@@ -33,11 +34,17 @@ const Menu = () => {
     ctx.isMenuOpen ? 'translate-x-[0]' : 'translate-x-[100%]'
   }`;
 
+  const onClick = () => {
+    ctx.updateState({
+      isMenuOpen: false
+    });
+  };
+
   return (
     <motion.div className={twMerge(clsDefault, clsState)}>
-      <div className="">
+      <div>
         <MenuHeader />
-        <MenuBody />
+        <MenuBody onClick={onClick} />
       </div>
       <Sidebar locate={'menu'} />
     </motion.div>
@@ -52,7 +59,7 @@ const MenuHeader = () => {
     });
   };
   return (
-    <div className="menu-panel-header flex flex-row justify-between border-b-[1px] border-black pb-[25px] lg:border-transparent lg:pr-[7px] xl:pr-[25px] xl:pr-[20px] xl:pl-[55px]">
+    <div className="menu-panel-header flex flex-row justify-between border-b-[1px] border-black pb-[25px] lg:border-transparent lg:pr-[7px] xl:pr-[25px] xl:pr-[27px] xl:pl-[55px]">
       <Link href="/" className="inline-block w-[70px] xl:w-[118px]">
         <LogoSVG textColor={'#000'} />
       </Link>
@@ -63,16 +70,17 @@ const MenuHeader = () => {
   );
 };
 
-const MenuBody = () => {
+const MenuBody = ({ onClick }: any) => {
   return (
     <div className="menu-panel-body flex-row flex-wrap lg:flex xl:px-[75px] xl:pt-[20px] 2xl:mx-auto 2xl:max-w-[1680px]">
       {menuData.main.map((item, index) => (
         <Fragment key={index}>
-          <MenuItem menuItem={item} id={index} />
+          <MenuItem menuItem={item} id={index} onClick={onClick} />
         </Fragment>
       ))}
       <div className="border-b-[1px] border-black py-[12px] lg:w-3/12 lg:border-transparent">
         <Link
+          onClick={onClick}
           href="/kontakt"
           className="text-[30px] font-extrabold uppercase leading-[45px] text-black transition-all duration-300 hover:text-primary lg:inline-block lg:pb-[8px] lg:text-[30px]"
         >
@@ -109,7 +117,7 @@ const MenuBody = () => {
   );
 };
 
-const MenuItem = ({ menuItem, id }: IMenuItem) => {
+const MenuItem = ({ menuItem, id, onClick }: IMenuItem) => {
   const [open, setOpen] = useState<boolean>(false);
   const submenuHandle = (e: any) => {
     e.preventDefault();
@@ -122,6 +130,7 @@ const MenuItem = ({ menuItem, id }: IMenuItem) => {
       }`}
     >
       <Link
+        onClick={onClick}
         href={menuItem.url}
         className="text-[30px] font-extrabold uppercase leading-[45px] text-black transition-all duration-300 hover:text-primary lg:inline-block lg:pb-[8px] lg:text-[30px]"
       >
@@ -147,6 +156,7 @@ const MenuItem = ({ menuItem, id }: IMenuItem) => {
                   className="pb-[15px]  uppercase leading-[20px] lg:pb-[15px]"
                 >
                   <Link
+                    onClick={onClick}
                     href={item.url}
                     className="text-[20px] font-light text-black transition-all duration-300 hover:text-primary"
                   >

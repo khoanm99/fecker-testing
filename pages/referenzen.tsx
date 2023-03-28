@@ -4,6 +4,7 @@ import { initializeApollo } from '@/utils/apolloClient';
 import { ReferenceSectionEntityResponse } from '@/graphql/generated';
 import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
 import { GET_REFERENCE_SECTION } from '@/graphql/query/referenceSection';
+import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
@@ -47,7 +48,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      dataResponse: rs?.data ?? {}
+      dataResponse: rs?.data ?? {},
+      revalidate: getRevalidationTTL()
     }
   };
 };

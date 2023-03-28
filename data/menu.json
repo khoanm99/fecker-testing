@@ -40,15 +40,15 @@
       "list": [
         {
           "title": "Team",
-          "url": "firma#team"
+          "url": "/firma#team"
         },
         {
           "title": "Geschichte",
-          "url": "geschichte"
+          "url": "/firma#geschichte"
         },
         {
           "title": "Verbände & partner",
-          "url": "verbaende-partner"
+          "url": "/firma#verbaende-partner"
         },
         {
           "title": "Karriere",

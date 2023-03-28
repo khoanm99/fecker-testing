@@ -11,6 +11,7 @@ import {
 import { GET_PROJECT_DETAIL } from '@/graphql/query/projectDetail';
 import { GET_PROJECT_LIST_SLUG } from '@/graphql/query/projectListSlug';
 import { GET_CATEGORY_LIST_SLUG } from '@/graphql/query/categoryBySlug';
+import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
@@ -95,6 +96,7 @@ export const getStaticProps: GetStaticProps = async _context => {
     props: {
       dataResponse: rs?.data || {},
       listProjects: rs2?.data?.categoryBySlug || []
-    }
+    },
+    revalidate: getRevalidationTTL()
   };
 };

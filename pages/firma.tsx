@@ -7,6 +7,7 @@ import {
 } from '@/graphql/generated';
 import { GET_TEAM_SECTION } from '@/graphql/query/teamSection';
 import FirmaTemplate from '@/templates/FirmaTemplate';
+import { getRevalidationTTL } from '@/utils/helpers';
 interface Props {
   dataResponse: {
     teamSection?: TeamSectionEntityResponse;
@@ -32,7 +33,8 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch(() => {});
   return {
     props: {
-      dataResponse: rs?.data ?? {}
+      dataResponse: rs?.data ?? {},
+      revalidate: getRevalidationTTL()
     }
   };
 };
