@@ -62,7 +62,7 @@ const ProjectOverView = ({ listCategory }: Props) => {
                   itemProject?.attributes?.image?.data[0]?.attributes ??
                   undefined
                 }
-                content={itemProject.attributes?.content ?? ''}
+                content={itemProject?.attributes?.content ?? ''}
                 index={key}
                 url={
                   itemProject.attributes?.slug
