@@ -5,16 +5,17 @@ import {
   CategoryEntity,
   CategoryEntityResponseCollection,
   ProjectEntity,
-  ProjectEntityResponse,
-  ProjectSectionEntityResponse
+  ProjectEntityResponse
 } from '@/graphql/generated';
 import { GET_PROJECT_DETAIL } from '@/graphql/query/projectDetail';
 import { GET_PROJECT_LIST_SLUG } from '@/graphql/query/projectListSlug';
 import { GET_CATEGORY_LIST_SLUG } from '@/graphql/query/categoryBySlug';
+import ProjectDetailTemplate from '@/templates/ProjectDetailTemplate';
+import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
-    projectSection: ProjectSectionEntityResponse;
+    projectBySlug: ProjectEntityResponse;
     listProjects: CategoryEntityResponseCollection;
   };
 }
@@ -23,7 +24,11 @@ const ProjectDetail = ({ dataResponse, listProjects }: any) => {
   // console.log('listProjects', listProjects);
   return (
     <DefaultLayout>
-      <>Project detail</>
+      {dataResponse && (
+        <ProjectDetailTemplate
+          projectBySlug={dataResponse?.projectBySlug ?? null}
+        />
+      )}
     </DefaultLayout>
   );
 };
@@ -85,8 +90,6 @@ export const getStaticProps: GetStaticProps = async _context => {
     .catch(e => {
       console.log('rs2', e);
     });
-  console.log('rs2', rs2);
-
   if (!rs?.data) {
     return {
       notFound: true
@@ -97,6 +100,7 @@ export const getStaticProps: GetStaticProps = async _context => {
     props: {
       dataResponse: rs?.data || {},
       listProjects: rs2?.data?.categoryBySlug || []
-    }
+    },
+    revalidate: getRevalidationTTL()
   };
 };

@@ -85,7 +85,7 @@ const renderImage = ({ image }: { image: UploadFile }) => {
           alt={image.alternativeText ?? ''}
           width={image.width ?? 0}
           height={image.height ?? 0}
-          className={`w-full lg:w-[65%]`}
+          className={`w-full object-cover lg:w-[65%]`}
         />
       )}
     </>
@@ -98,7 +98,7 @@ const renderGrid = ({ content, url }: { content: string; url: string }) => {
       <Text
         size={`bodyTextSmall`}
         content={content}
-        className={`pb-[25px] lg:max-w-[305px] xl:pb-11`}
+        className={`pb-[25px] xl:pb-11`}
       />
       {url && (
         <Link href={url} title={`mehr erfahren`}>

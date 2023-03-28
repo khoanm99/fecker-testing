@@ -8,7 +8,7 @@ const ProjectCard = ({
   dataImage,
   name
 }: {
-  dataImage?: UploadFile;
+  dataImage?: UploadFile | null;
   name?: string;
 }) => {
   const ctx: IMouseContext = useContext(MouseContext) as IMouseContext;
@@ -30,7 +30,7 @@ const ProjectCard = ({
     <>
       {dataImage && (
         <div
-          className={`group relative`}
+          className={`group relative cursor-pointer`}
           onMouseEnter={mouseMoveHandle}
           onMouseLeave={mouseLeaveHandle}
         >

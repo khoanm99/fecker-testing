@@ -4,6 +4,7 @@ import { initializeApollo } from '@/utils/apolloClient';
 import { GET_KONTACKT_SECTION } from '@/graphql/query/contactSection';
 import ContactTemplate from '@/templates/ContactTemplate';
 import { ContactSectionEntityResponse } from '@/graphql/generated';
+import { getRevalidationTTL } from '@/utils/helpers';
 
 interface IProps {
   dataResponse?: {
@@ -30,7 +31,8 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch(() => {});
   return {
     props: {
-      dataResponse: rs?.data || {}
+      dataResponse: rs?.data || {},
+      revalidate: getRevalidationTTL()
     }
   };
 };
