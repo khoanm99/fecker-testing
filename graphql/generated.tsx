@@ -312,22 +312,6 @@ export type ComponentPartnerPartnerFiltersInput = {
   title?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentProjectGallery = {
-  __typename?: 'ComponentProjectGallery';
-  id: Scalars['ID'];
-  image: UploadFileEntityResponse;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type ComponentProjectProject = {
-  __typename?: 'ComponentProjectProject';
-  content?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  slug: Scalars['String'];
-  subtitle: Scalars['String'];
-  title: Scalars['String'];
-};
-
 export type ComponentStoryStory = {
   __typename?: 'ComponentStoryStory';
   description: Scalars['String'];
@@ -521,8 +505,6 @@ export type GenericMorph =
   | ComponentContentStory
   | ComponentContentTextBlocks
   | ComponentPartnerPartner
-  | ComponentProjectGallery
-  | ComponentProjectProject
   | ComponentStoryStory
   | ComponentTextBlockTextBlock
   | ContactSection

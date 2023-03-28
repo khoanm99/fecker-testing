@@ -1,24 +1,23 @@
 import ImageWithHover from '@/atoms/imageWithHover';
-import { Project } from '@/graphql/generated';
-import { Maybe } from 'graphql/jsutils/Maybe';
+import { UploadFile } from '@/graphql/generated';
 import HoverArea from '../hoverArea';
 
 const ProjectCard = ({
-  dataProject,
-  layout
+  dataImage,
+  name
 }: {
-  dataProject?: Maybe<Project>;
-  layout?: 'layout-landscape' | 'layout-portrait';
+  dataImage?: UploadFile;
+  name?: string;
 }) => {
   return (
     <>
-      {dataProject?.image?.data[0] && (
+      {dataImage && (
         <div className={`group relative`}>
           <HoverArea icon={'plus'} layout={'imageLink'}>
             <ImageWithHover
-              title={dataProject?.name ?? ''}
+              title={name ?? ''}
               description={''}
-              image={dataProject?.image.data[0].attributes}
+              image={dataImage}
               variant={`black`}
               sharp={`auto`}
             />
