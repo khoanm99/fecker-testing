@@ -1,26 +1,27 @@
 import Container from '@/components/container';
-import { ProjectSectionEntityResponse } from '@/graphql/generated';
+import {
+  ComponentBasicHeroSlider,
+  ComponentBasicIntroContent
+} from '@/graphql/generated';
 import IntroContent from '@/molecules/hero/heroIntroContent';
 import HeroSection from '@/organisms/slider/hero';
 import ProjectOverView from '@/organisms/project/overview/listProject';
 
 interface Props {
-  dataResponse: {
-    projectSection: ProjectSectionEntityResponse;
-  };
+  heroSlider?: ComponentBasicHeroSlider | null;
+  introContent?: ComponentBasicIntroContent | null;
+  content?: any[];
 }
 
-const OverViewProjectTemplate = ({ dataResponse }: Props) => {
-  const projectSection = dataResponse?.projectSection;
-  const introContent = projectSection?.data?.attributes?.introContent;
-  const content = projectSection?.data?.attributes?.contents;
+const OverViewProjectTemplate = ({
+  heroSlider,
+  introContent,
+  content
+}: Props) => {
   return (
     <>
-      {projectSection?.data?.attributes?.heroSlider && (
-        <HeroSection
-          heroSectionData={projectSection.data.attributes?.heroSlider}
-          templateName={`subPage`}
-        />
+      {heroSlider && (
+        <HeroSection heroSectionData={heroSlider} templateName={`subPage`} />
       )}
 
       {introContent && (

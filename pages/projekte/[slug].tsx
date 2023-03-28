@@ -2,24 +2,25 @@ import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import {
-  CategoryEntity, CategoryEntityResponseCollection,
-  ProjectEntity, ProjectEntityResponse,
+  CategoryEntity,
+  CategoryEntityResponseCollection,
+  ProjectEntity,
+  ProjectEntityResponse,
   ProjectSectionEntityResponse
 } from '@/graphql/generated';
 import { GET_PROJECT_DETAIL } from '@/graphql/query/projectDetail';
 import { GET_PROJECT_LIST_SLUG } from '@/graphql/query/projectListSlug';
-import {GET_CATEGORY_LIST_SLUG} from "@/graphql/query/categoryBySlug";
+import { GET_CATEGORY_LIST_SLUG } from '@/graphql/query/categoryBySlug';
 
 interface Props {
   dataResponse: {
     projectSection: ProjectSectionEntityResponse;
-    listProjects: CategoryEntityResponseCollection
+    listProjects: CategoryEntityResponseCollection;
   };
 }
 
-const ProjectDetail = ({ dataResponse, listProjects }: Props) => {
+const ProjectDetail = ({ dataResponse }: Props) => {
   console.log('dataResponse', dataResponse);
-  console.log('listProjects', listProjects)
   return (
     <DefaultLayout>
       <>Project detail</>
@@ -59,7 +60,7 @@ export const getStaticPaths = async (_context: any) => {
 
 export const getStaticProps: GetStaticProps = async _context => {
   const apolloClient = initializeApollo();
-  const rs : any = await apolloClient
+  const rs: any = await apolloClient
     .query({
       query: GET_PROJECT_DETAIL,
       variables: {
@@ -67,19 +68,22 @@ export const getStaticProps: GetStaticProps = async _context => {
       }
     })
     .catch(e => {});
-  const project : ProjectEntityResponse = rs?.data?.projectBySlug;
+  const project: ProjectEntityResponse = rs?.data?.projectBySlug;
 
-  const listCategory = project?.data?.attributes?.category?.data.map((category : CategoryEntity)=> {
-    return category?.attributes?.slug
-  })
-  const rs2: any = await apolloClient.query({
+  const listCategory = project?.data?.attributes?.category?.data.map(
+    (category: CategoryEntity) => {
+      return category?.attributes?.slug;
+    }
+  );
+  const rs2: any = await apolloClient
+    .query({
       query: GET_CATEGORY_LIST_SLUG,
       variables: {
         slug: listCategory || []
       }
     })
     .catch(e => {
-      console.log("rs2",e)
+      console.log('rs2', e);
     });
   if (!rs?.data) {
     return {
