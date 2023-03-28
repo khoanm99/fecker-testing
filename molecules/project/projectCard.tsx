@@ -5,7 +5,7 @@ const ProjectCard = ({
   dataImage,
   name
 }: {
-  dataImage?: UploadFile;
+  dataImage?: UploadFile | null;
   name?: string;
 }) => {
   return (

@@ -5,25 +5,26 @@ import {
   CategoryEntity,
   CategoryEntityResponseCollection,
   ProjectEntity,
-  ProjectEntityResponse,
-  ProjectSectionEntityResponse
+  ProjectEntityResponse
 } from '@/graphql/generated';
 import { GET_PROJECT_DETAIL } from '@/graphql/query/projectDetail';
 import { GET_PROJECT_LIST_SLUG } from '@/graphql/query/projectListSlug';
 import { GET_CATEGORY_LIST_SLUG } from '@/graphql/query/categoryBySlug';
+import ProjectDetailTemplate from '@/templates/ProjectDetailTemplate';
 
 interface Props {
   dataResponse: {
-    projectSection: ProjectSectionEntityResponse;
+    projectBySlug: ProjectEntityResponse;
     listProjects: CategoryEntityResponseCollection;
   };
 }
 
 const ProjectDetail = ({ dataResponse }: Props) => {
-  console.log('dataResponse', dataResponse);
   return (
     <DefaultLayout>
-      <>Project detail</>
+      <ProjectDetailTemplate
+        projectBySlug={dataResponse.projectBySlug ?? null}
+      />
     </DefaultLayout>
   );
 };
@@ -82,10 +83,7 @@ export const getStaticProps: GetStaticProps = async _context => {
         slug: listCategory || []
       }
     })
-    .catch(e => {
-      console.log('rs2', e);
-    });
-  console.log('rs2', rs2);
+    .catch(e => {});
 
   if (!rs?.data) {
     return {
