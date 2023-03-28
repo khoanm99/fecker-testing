@@ -60,6 +60,7 @@ export type Category = {
   name: Scalars['String'];
   project?: Maybe<ProjectRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -96,6 +97,7 @@ export type CategoryFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
   project?: InputMaybe<ProjectFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -103,6 +105,7 @@ export type CategoryInput = {
   name?: InputMaybe<Scalars['String']>;
   project?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type CategoryRelationResponseCollection = {
@@ -163,6 +166,14 @@ export type ComponentBasicHeroSliderImageArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentBasicHeroSliderFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBasicHeroSliderFiltersInput>>>;
+  buttonLink?: InputMaybe<ComponentBasicButtonLinkFiltersInput>;
+  not?: InputMaybe<ComponentBasicHeroSliderFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBasicHeroSliderFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
 export type ComponentBasicHeroSliderInput = {
   buttonLink?: InputMaybe<ComponentBasicButtonLinkInput>;
   id?: InputMaybe<Scalars['ID']>;
@@ -178,6 +189,15 @@ export type ComponentBasicIntroContent = {
   title?: Maybe<Scalars['String']>;
 };
 
+export type ComponentBasicIntroContentFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBasicIntroContentFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBasicIntroContentFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBasicIntroContentFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
 export type ComponentBasicIntroContentInput = {
   content?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
@@ -190,6 +210,14 @@ export type ComponentBasicSeo = {
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBasicSeoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBasicSeoFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBasicSeoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBasicSeoFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentBasicSeoInput = {
@@ -437,7 +465,7 @@ export type FileInfoInput = {
 };
 
 /** Union Type of all registered slug content types */
-export type FindSlugResponse = ProjectEntityResponse;
+export type FindSlugResponse = CategoryEntityResponse | ProjectEntityResponse;
 
 export type FloatFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
@@ -955,12 +983,14 @@ export type PaginationArg = {
 export type Project = {
   __typename?: 'Project';
   category?: Maybe<CategoryRelationResponseCollection>;
-  content?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  heroSlider: ComponentBasicHeroSlider;
   image: UploadFileRelationResponseCollection;
+  introContent?: Maybe<ComponentBasicIntroContent>;
   name: Scalars['String'];
   publishedAt?: Maybe<Scalars['DateTime']>;
-  slug?: Maybe<Scalars['String']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -997,23 +1027,27 @@ export type ProjectEntityResponseCollection = {
 export type ProjectFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
   category?: InputMaybe<CategoryFiltersInput>;
-  content?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
+  introContent?: InputMaybe<ComponentBasicIntroContentFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ProjectFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentBasicSeoFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type ProjectInput = {
   category?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  content?: InputMaybe<Scalars['String']>;
+  heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
   image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  introContent?: InputMaybe<ComponentBasicIntroContentInput>;
   name?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
   slug?: InputMaybe<Scalars['String']>;
 };
 
@@ -1069,6 +1103,7 @@ export type Query = {
   __typename?: 'Query';
   categories?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<CategoryEntityResponse>;
+  categoryBySlug?: Maybe<CategoryEntityResponseCollection>;
   contactSection?: Maybe<ContactSectionEntityResponse>;
   fassadenSection?: Maybe<FassadenSectionEntityResponse>;
   findSlug?: Maybe<FindSlugResponse>;
@@ -1106,6 +1141,10 @@ export type QueryCategoriesArgs = {
 
 export type QueryCategoryArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+export type QueryCategoryBySlugArgs = {
+  slug: Array<InputMaybe<Scalars['String']>>;
 };
 
 export type QueryContactSectionArgs = {

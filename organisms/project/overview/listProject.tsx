@@ -62,7 +62,7 @@ const ProjectOverView = ({ listCategory }: Props) => {
                   itemProject?.attributes?.image?.data[0]?.attributes ??
                   undefined
                 }
-                content={itemProject.attributes?.content ?? ''}
+                content={itemProject?.attributes?.name ?? ''}
                 index={key}
                 url={
                   itemProject.attributes?.slug
@@ -72,7 +72,6 @@ const ProjectOverView = ({ listCategory }: Props) => {
               />
             ))}
         </div>
-        {/* {<div className={`fixed top-0 left-0 h-screen w-full`}></div>} */}
       </div>
     </>
   );
