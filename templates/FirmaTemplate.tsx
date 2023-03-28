@@ -37,7 +37,7 @@ const FirmaTemplate = ({ dataResponse }: Props) => {
           )}
 
           {teams && (
-            <Container layout={'grid'} className={''}>
+            <Container layout={'grid'} id={'team'}>
               <TeamSection dataTeams={teams} />
             </Container>
           )}
@@ -49,7 +49,7 @@ const FirmaTemplate = ({ dataResponse }: Props) => {
                   case 'ComponentContentStory':
                     return (
                       <Fragment key={key}>
-                        <Container layout={'grid'}>
+                        <Container layout={'grid'} id={'geschichte'}>
                           <StorySlider data={item} title={item.title} />
                         </Container>
                       </Fragment>
@@ -57,7 +57,7 @@ const FirmaTemplate = ({ dataResponse }: Props) => {
                   case 'ComponentContentPartner':
                     return (
                       <Fragment key={key}>
-                        <Container layout={'full'}>
+                        <Container layout={'full'} id={'verbaende-partner'}>
                           <PartnerSlider data={item} title={item.title} />
                         </Container>
                       </Fragment>

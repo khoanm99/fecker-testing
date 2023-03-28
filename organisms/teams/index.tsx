@@ -20,7 +20,6 @@ const TeamSection = ({
   return (
     <div
       className={`max-w-[1440px] 2xl:mx-auto 3xl:mx-auto 3xl:max-w-[1660px]`}
-      id={`team`}
     >
       <Heading
         size="h3"

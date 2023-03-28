@@ -3,10 +3,12 @@ import { twMerge } from 'tailwind-merge';
 
 const Container = ({
   layout,
+  id,
   className,
   children
 }: {
   layout: 'grid' | 'full';
+  id?: string;
   className?: string;
   children: ReactNode;
 }) => {
@@ -17,7 +19,7 @@ const Container = ({
   const fullCls = `${layout === 'full' ? '' : ''}`;
 
   return (
-    <div className={twMerge(defaultCls, gridCls, fullCls, className)}>
+    <div id={id} className={twMerge(defaultCls, gridCls, fullCls, className)}>
       {children}
     </div>
   );
