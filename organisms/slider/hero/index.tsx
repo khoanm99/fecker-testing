@@ -46,7 +46,7 @@ const HeroSection = ({
         onMouseEnter={mouseMoveHandle}
         onMouseLeave={mouseLeaveHandle}
         className={`absolute top-0 right-0 z-[10] hidden h-full w-[30%] cursor-pointer lg:block ${
-          listImage.length > 1 ? '' : 'hidden'
+          listImage.length > 1 ? '' : 'lg:hidden'
         }`}
         onClick={handleClick}
       ></div>
