@@ -13,7 +13,7 @@ interface Props {
 const OverViewProjectTemplate = ({ dataResponse }: Props) => {
   const projectSection = dataResponse?.projectSection;
   const introContent = projectSection?.data?.attributes?.introContent;
-  const content = projectSection.data?.attributes?.contents;
+  const content = projectSection?.data?.attributes?.contents;
   return (
     <>
       {projectSection?.data?.attributes?.heroSlider && (

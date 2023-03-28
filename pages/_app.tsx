@@ -1,11 +1,10 @@
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
-import { AppProvider } from '../contexts/appContext';
+import { AppProvider } from '@/contexts/appContext';
 import { MouseProvider } from '@/contexts/mouseContext';
-// import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-import Script from 'next/script';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -35,7 +34,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             nonce: undefined
           }}
         >
-          <Component {...pageProps} />
+          <MouseProvider>
+            <Component {...pageProps} />
+          </MouseProvider>
         </GoogleReCaptchaProvider>
       </AppProvider>
     </>
