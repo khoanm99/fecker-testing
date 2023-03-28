@@ -6,7 +6,6 @@ import DownloadSvg from '@/atoms/svg/download';
 import InstagramSvg from '@/atoms/svg/instagram';
 import Heading from '@/atoms/typo/heading';
 import Text from '@/atoms/typo/text';
-import { IAccordionList } from '@/models/molecules/accordions';
 import Collapse from '@/molecules/collapse';
 import Accordion from '@/molecules/commons/accordions';
 import ContentBlock from '@/molecules/commons/contentBlock';
@@ -20,7 +19,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 const StyleGuideTemplate = () => {
-  const list: IAccordionList = [
+  const list = [
     {
       title: 'Scheune und Wohnhaus AR',
       item: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'

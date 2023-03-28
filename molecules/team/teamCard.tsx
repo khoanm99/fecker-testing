@@ -16,17 +16,26 @@ const TeamCard = ({
     layout == 'layout-portrait'
       ? dataTeam?.imagePortrait.data?.attributes
       : dataTeam?.imageLandscape.data?.attributes;
+
+  const clsLandscape = `lg:pt-[71%]`;
+  const clsPortrait = `lg:w-[72%] lg:pt-[100%]`;
   return (
     <>
-      <ImageWithHover
-        title={dataTeam?.name ?? ''}
-        description={dataTeam?.position ?? ''}
-        image={
-          isMobile ? dataTeam?.imagePortrait.data?.attributes : imageAtDesktop
-        }
-        variant={`green`}
-        layout={layout}
-      />
+      <div
+        className={`group relative w-full pt-[112%] ${
+          layout == 'layout-landscape' ? clsLandscape : clsPortrait
+        }`}
+      >
+        <ImageWithHover
+          title={dataTeam?.name ?? ''}
+          description={dataTeam?.position ?? ''}
+          image={
+            isMobile ? dataTeam?.imagePortrait.data?.attributes : imageAtDesktop
+          }
+          variant={`green`}
+          sharp={`fill`}
+        />
+      </div>
     </>
   );
 };

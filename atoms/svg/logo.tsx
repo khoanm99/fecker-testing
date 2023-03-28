@@ -29,11 +29,6 @@ const Logo = ({ textColor }: { textColor?: string }) => {
           fill="#39C66B"
         />
       </g>
-      <defs>
-        <clipPath>
-          <rect width="71" height="48" fill="white" />
-        </clipPath>
-      </defs>
     </svg>
   );
 };

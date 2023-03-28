@@ -1,5 +1,5 @@
 import Typo from '@/components/foundation/typo';
-import { IKeyString } from '@/models/common';
+import { Items } from '@/types';
 import { HTMLAttributes, memo } from 'react';
 import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { twMerge } from 'tailwind-merge';
@@ -19,7 +19,7 @@ const Heading = ({
   ...props
 }: Props) => {
   const defaultCls = 'font-primary leading-normal';
-  const listSize: IKeyString = {
+  const listSize: Items = {
     h1: 'text-[40px] leading-none font-bold uppercase lg:text-[120px]',
     h2: 'text-[20px] font-bold uppercase lg:text-[45px]',
     h3: 'text-[20px] font-extrabold uppercase lg:text-[45px]',

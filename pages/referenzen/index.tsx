@@ -1,8 +1,10 @@
-import DefaultLayout from 'components/DefaultLayout';
+import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { ProjectSectionEntityResponse } from '@/graphql/generated';
-import { GET_REFERENCE_SECTION } from '@/graphql/query/referenceSection';
+import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
+import { GET_PROJECT_SECTION } from '@/graphql/query/projectSection';
+// import { GET_REFERENCE_SECTION } from '@/graphql/query/referenceSection';
 
 interface Props {
   dataResponse: {
@@ -10,22 +12,22 @@ interface Props {
   };
 }
 
-const Reference = ({ dataResponse }: Props) => {
+const Referenzen = ({ dataResponse }: Props) => {
   return (
-    <DefaultLayout>
-      <>Reference</>
+    <DefaultLayout title={'Fecker Holzbau AG'} description={'Lorem Ipsum...'}>
+      {dataResponse && <OverViewProjectTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
 };
 
-export default Reference;
+export default Referenzen;
 
 export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   const rs: any = await apolloClient
     .query({
-      query: GET_REFERENCE_SECTION
+      query: GET_PROJECT_SECTION
     })
     .catch(() => {});
 
