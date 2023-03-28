@@ -49,7 +49,11 @@ export interface IAppContext extends IAppState {
 
 export interface IMouseState {
   cursorVariant: string;
-  cursorText: string;
+  cursorActive: Boolean;
+}
+
+export interface IMouseContext extends IMouseState {
+  updateState: updateState<IMouseState>;
 }
 
 export interface ILatLngCMS {
