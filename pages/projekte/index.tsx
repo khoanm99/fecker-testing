@@ -12,10 +12,9 @@ interface Props {
 }
 
 const Project = ({ dataResponse }: Props) => {
-  console.log("dataResponse",dataResponse)
   return (
     <DefaultLayout>
-      {dataResponse && <OverViewProjectTemplate dataResponse={dataResponse} />}
+      {dataResponse && <OverViewProjectTemplate projectSection={dataResponse?.projectSection} />}
     </DefaultLayout>
   );
 };

@@ -81,8 +81,6 @@ export const getStaticProps: GetStaticProps = async _context => {
     .catch(e => {
       console.log("rs2",e)
     });
-  console.log("rs2",rs2)
-
   if (!rs?.data) {
     return {
       notFound: true
