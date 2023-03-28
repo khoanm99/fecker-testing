@@ -14,7 +14,19 @@ interface Props {
 const Project = ({ dataResponse }: Props) => {
   return (
     <DefaultLayout>
-      {dataResponse && <OverViewProjectTemplate dataResponse={dataResponse} />}
+      {dataResponse && (
+        <OverViewProjectTemplate
+          heroSlider={
+            dataResponse.projectSection.data?.attributes?.heroSlider ??
+            undefined
+          }
+          introContent={
+            dataResponse.projectSection.data?.attributes?.introContent ??
+            undefined
+          }
+          content={dataResponse.projectSection.data?.attributes?.contents ?? []}
+        />
+      )}
     </DefaultLayout>
   );
 };

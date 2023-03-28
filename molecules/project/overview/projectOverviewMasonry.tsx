@@ -27,13 +27,20 @@ const ProjectOverviewMasonry = ({
                   }`}
                   className={'relative'}
                 >
-                  <ProjectCard dataProject={itemProject.attributes} />
+                  <ProjectCard
+                    dataImage={
+                      itemProject.attributes.image.data[0].attributes ??
+                      undefined
+                    }
+                    name={itemProject.attributes.name}
+                  />
                 </Link>
               );
             }
           })}
         </Masonry>
       </ResponsiveMasonry>
+      {/* {<div className={`fixed top-0 left-0 h-screen w-full`}></div>} */}
     </>
   );
 };

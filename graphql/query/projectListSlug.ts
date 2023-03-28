@@ -4,7 +4,7 @@ export const GET_PROJECT_LIST_SLUG = gql`
     projects {
       data {
         attributes {
-          slug
+            slug
         }
       }
     }
