@@ -64,7 +64,7 @@ const renderPopup = ({
                 alt={popupData.alternativeText ?? ''}
                 width={popupData.width ?? 0}
                 height={popupData.height ?? 0}
-                className={`w-full object-contain`}
+                className={`w-full object-contain lg:max-w-[50vw]`}
               />
             </div>
           </div>
