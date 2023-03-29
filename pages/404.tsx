@@ -1,11 +1,11 @@
-import { NextSeo } from 'next-seo';
+import DefaultLayout from '@/components/DefaultLayout';
+import Template404 from '@/templates/Template404';
 
 const Custom404 = () => {
   return (
-    <>
-      <h1>404 - Page Not Found</h1>
-      <NextSeo title={''} description={''} />
-    </>
+    <DefaultLayout>
+      <Template404 />
+    </DefaultLayout>
   );
 };
 
