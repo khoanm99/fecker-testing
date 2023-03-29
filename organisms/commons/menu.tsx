@@ -128,7 +128,7 @@ const MenuItem = ({ menuItem, id, onClick }: IMenuItem) => {
   }, []);
 
   useEffect(() => {
-    if (window && window.innerWidth < 769 && divRef.current) {
+    if (window && window.innerWidth < 1024 && divRef.current) {
       if (open) {
         divRef.current.style.height = `${
           defaultHeightRef.current + heightRef.current
