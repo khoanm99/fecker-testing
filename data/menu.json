@@ -1,36 +1,36 @@
 {
   "main": [
     {
-      "url": "/angebot",
+      "url": "/",
       "title": "Angebot",
       "list": [
         {
           "title": "Beratung & planung",
-          "url": "beratung-planung"
+          "url": "/beratung-planung"
         },
         {
           "title": "Neubauten",
-          "url": "neubauten"
+          "url": "/neubauten"
         },
         {
           "title": "Gebäudesanierung",
-          "url": "gebaeudesanierung"
+          "url": "/gebaeudesanierung"
         },
         {
           "title": "Reparaturen",
-          "url": "reparaturen"
+          "url": "/reparaturen"
         },
         {
           "title": "Spezialitäten",
-          "url": "spezialitaeten"
+          "url": "/spezialitaeten"
         },
         {
           "title": "Fassaden",
-          "url": "fassaden"
+          "url": "/fassaden"
         },
         {
           "title": "Innovationen",
-          "url": "innovationen"
+          "url": "/innovationen"
         }
       ]
     },
@@ -52,7 +52,7 @@
         },
         {
           "title": "Karriere",
-          "url": "karriere"
+          "url": "/karriere"
         }
       ]
     },
@@ -82,13 +82,13 @@
       "target": ""
     },
     {
-      "url": "/angebot",
+      "url": "/",
       "title": "Angebot",
       "target": ""
     },
     {
-      "url": "/refrenzen",
-      "title": "Refrenzen",
+      "url": "/referenzen",
+      "title": "Referenzen",
       "target": ""
     },
     {
