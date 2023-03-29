@@ -29,10 +29,8 @@ interface IMenuItem {
 
 const Menu = () => {
   const ctx: IAppContext = useContext(AppContext) as IAppContext;
-  const clsDefault = `menu-panel fixed flex flex-col justify-between top-0 left-0 z-[50] h-full w-full p-[20px] bg-beige transition-all duration-300 overflow-auto xl:px-[0] xl:py-[25px]`;
-  const clsState = `${
-    ctx?.isMenuOpen ? 'translate-x-[0]' : 'translate-x-[100%]'
-  }`;
+  const clsDefault = `menu-panel fixed flex flex-col justify-between top-0 left-0 z-[50] h-full w-full p-[20px] bg-beige transition-all duration-300 overflow-auto xl:px-[0] xl:py-[25px] translate-x-[100%]`;
+  const clsState = `${ctx?.isMenuOpen ? '!translate-x-[0]' : ''}`;
 
   const onClick = () => {
     ctx.updateState({

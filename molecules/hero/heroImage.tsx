@@ -13,7 +13,8 @@ const HeroImage = ({ image }: { image: Maybe<UploadFile> }) => {
             fill
             sizes={`100vw`}
             className={`object-cover object-center`}
-            priority
+            placeholder="blur"
+            blurDataURL={'/assets/img/blur-image.png'}
           />
         </div>
       )}

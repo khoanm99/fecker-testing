@@ -62,6 +62,7 @@ const PartnerSlider = ({
                     src={slide.image.data.attributes.url}
                     alt={`${slide.image.data.attributes.name}`}
                     fill
+                    sizes={'100%'}
                     className="object-cover object-center"
                     placeholder="blur"
                     blurDataURL={'/assets/img/blur-image.png'}

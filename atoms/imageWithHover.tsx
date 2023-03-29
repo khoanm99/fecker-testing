@@ -24,6 +24,8 @@ const ImageWithHover = ({
                 sizes={`"(max-width: 1023px) 100vw,
                 (min-width: 1024px) 50vw"`}
                 className={'object-cover object-center'}
+                placeholder="blur"
+                blurDataURL={'/assets/img/blur-image.png'}
               />
             </div>
           ) : (
@@ -33,6 +35,8 @@ const ImageWithHover = ({
               width={image.width ?? 0}
               height={image.height ?? 0}
               className={`h-auto w-full`}
+              placeholder="blur"
+              blurDataURL={'/assets/img/blur-image.png'}
             />
           )}
 
