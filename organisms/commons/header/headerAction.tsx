@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { IAppContext } from '@/types';
 import { useContext } from 'react';
 import AppContext from '@/contexts/appContext';
-import contactData from '@/data/contact.json';
 import PhoneSVG from '@/atoms/svg/phone';
+import Link from 'next/link';
 
 const HeaderAction = () => {
   const ctx: IAppContext = useContext(AppContext) as IAppContext;
@@ -23,9 +23,9 @@ const HeaderAction = () => {
         <span className="h-[2px] w-[20px] rounded-[2px] bg-white lg:w-[36px] lg:bg-primary lg:bg-primary"></span>
       </div>
       <div className="cta-phone-mail flex h-[36px] w-[36px] flex-col items-center justify-center lg:hidden">
-        <a href={`mailto:${contactData.contact[0].email}`}>
+        <Link href={`/kontakt`}>
           <PhoneSVG />
-        </a>
+        </Link>
       </div>
     </div>
   );

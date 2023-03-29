@@ -57,7 +57,7 @@ const HeroSection = ({
           modules={[Pagination, Navigation]}
           pagination={{
             el: '.fecker-pagination',
-            clickable: false
+            clickable: true
           }}
           navigation={{
             nextEl: '.fecker-button-next',
