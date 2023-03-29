@@ -2,6 +2,7 @@ import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import {
+  ComponentBasicSeo,
   TeamEntityResponseCollection,
   TeamSectionEntityResponse
 } from '@/graphql/generated';
@@ -15,8 +16,13 @@ interface Props {
   };
 }
 const Firma = ({ dataResponse }: Props) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse.teamSection?.data?.attributes?.seo || null;
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      title={seo?.title || 'Fecker Holzbau AG'}
+      description={seo?.description || ''}
+    >
       {dataResponse && <FirmaTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );

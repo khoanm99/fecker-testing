@@ -4,7 +4,10 @@ import HomeTemplate from '@/templates/HomeTemplate';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_HOME_SECTION } from '@/graphql/query/homeSection';
-import { HomeSectionEntityResponse } from '@/graphql/generated';
+import {
+  ComponentBasicSeo,
+  HomeSectionEntityResponse
+} from '@/graphql/generated';
 import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
@@ -14,8 +17,13 @@ interface Props {
 }
 
 const Home = ({ dataResponse }: Props) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse.homeSection.data?.attributes?.seo || null;
   return (
-    <DefaultLayout title={'Fecker Holzbau AG'} description={'Lorem Ipsum...'}>
+    <DefaultLayout
+      title={seo?.title || 'Fecker Holzbau AG'}
+      description={seo?.description || ''}
+    >
       {dataResponse && <HomeTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
