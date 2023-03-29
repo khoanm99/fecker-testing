@@ -59,8 +59,8 @@ const ProjectOverView = ({ listCategory }: Props) => {
                 title={itemProject.attributes?.name ?? ''}
                 layout={`Grid`}
                 image={
-                  itemProject?.attributes?.image?.data[0]?.attributes ??
-                  undefined
+                  itemProject?.attributes?.heroSlider?.image?.data[0]
+                    ?.attributes ?? null
                 }
                 content={itemProject?.attributes?.introContent?.content ?? ''}
                 index={key}

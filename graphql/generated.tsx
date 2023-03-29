@@ -982,7 +982,7 @@ export type PaginationArg = {
 
 export type Project = {
   __typename?: 'Project';
-  category?: Maybe<CategoryRelationResponseCollection>;
+  category?: Maybe<CategoryEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
   heroSlider: ComponentBasicHeroSlider;
   image: UploadFileRelationResponseCollection;
@@ -992,13 +992,6 @@ export type Project = {
   seo?: Maybe<ComponentBasicSeo>;
   slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type ProjectCategoryArgs = {
-  filters?: InputMaybe<CategoryFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ProjectImageArgs = {
@@ -1041,7 +1034,7 @@ export type ProjectFiltersInput = {
 };
 
 export type ProjectInput = {
-  category?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  category?: InputMaybe<Scalars['ID']>;
   heroSlider?: InputMaybe<ComponentBasicHeroSliderInput>;
   image?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   introContent?: InputMaybe<ComponentBasicIntroContentInput>;

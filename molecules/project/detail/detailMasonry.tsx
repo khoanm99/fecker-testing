@@ -44,7 +44,7 @@ const renderPopup = ({
 }) => {
   return (
     <>
-      {popupData && popupData.url && (
+      {popupData && popupData.url && popupData.width && popupData.height && (
         <div
           className={`fixed top-0 left-0 z-[51] h-screen w-full overflow-visible bg-black/60`}
         >
@@ -62,9 +62,9 @@ const renderPopup = ({
               <Image
                 src={popupData.url}
                 alt={popupData.alternativeText ?? ''}
-                width={popupData.width ?? 0}
-                height={popupData.height ?? 0}
-                className={`w-full object-contain lg:max-w-[50vw]`}
+                width={popupData.width}
+                height={popupData.height}
+                className={`h-[80vh] w-auto object-contain`}
               />
             </div>
           </div>

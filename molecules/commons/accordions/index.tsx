@@ -12,7 +12,7 @@ import AccordionHeader from './header';
 interface Props {
   title?: string;
   layout?: 'Collapse' | 'Grid' | 'Markdown';
-  image?: UploadFile;
+  image?: UploadFile | null;
   content?: string;
   index: number;
   url?: string;
@@ -37,6 +37,7 @@ const AccordionSection = ({
         <AccordionHeader
           index={index}
           title={title}
+          isHaveContent={!(content == null || content === '')}
           expanded={expanded}
           setExpand={setExpand}
         />
@@ -44,12 +45,13 @@ const AccordionSection = ({
 
       {
         <AccordionContent index={index} expanded={expanded}>
-          {image && layout != 'Collapse' && (
+          {layout != 'Collapse' && (
             <>
               <div className={`flex flex-wrap pb-[16px] lg:mx-10 xl:mx-12`}>
-                {renderImage({
-                  image: image
-                })}
+                {image &&
+                  renderImage({
+                    image: image
+                  })}
                 {layout == 'Grid' &&
                   content &&
                   renderGrid({
