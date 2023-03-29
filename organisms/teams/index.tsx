@@ -18,9 +18,7 @@ const TeamSection = ({
   }, [dataTeams]);
   let count = 0;
   return (
-    <div
-      className={`max-w-[1440px] 2xl:mx-auto 3xl:mx-auto 3xl:max-w-[1660px]`}
-    >
+    <div>
       <Heading
         size="h3"
         renderAs="h3"
