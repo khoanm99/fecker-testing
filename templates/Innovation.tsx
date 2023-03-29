@@ -14,12 +14,12 @@ interface Props {
 const InnovationTemplate = ({ dataResponse }: Props) => {
   const innovationSection = dataResponse.innovationSection;
   const introContent = innovationSection?.data?.attributes?.introContent;
-  const contents = innovationSection.data?.attributes?.contents;
+  const contents = innovationSection?.data?.attributes?.contents;
   return (
     <>
       {dataResponse && innovationSection && (
         <div className={'pb-[60px]'}>
-          {innovationSection.data?.attributes?.heroSlider && (
+          {innovationSection?.data?.attributes?.heroSlider && (
             <HeroSection
               heroSectionData={innovationSection?.data?.attributes?.heroSlider}
               templateName={`subPage`}
