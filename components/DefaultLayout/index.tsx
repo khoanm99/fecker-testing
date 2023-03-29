@@ -45,9 +45,9 @@ const DefaultLayout = ({
   return (
     <>
       <Header sticky={sticky} />
-      <NextSeo title={title} description={description ?? ''} />
+      <NextSeo title={title || ''} description={description ?? ''} />
       <main>{children}</main>
-      <ContactSticky template={templateName} />
+      <ContactSticky template={templateName || ''} />
       <BackToTop active={active} />
       <MenuPanel />
       <Footer />
