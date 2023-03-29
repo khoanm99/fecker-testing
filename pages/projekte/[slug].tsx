@@ -2,21 +2,19 @@ import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import {
-  CategoryEntity,
-  CategoryEntityResponseCollection,
   ProjectEntity,
-  ProjectEntityResponse
+  ProjectEntityResponse,
+  ProjectEntityResponseCollection
 } from '@/graphql/generated';
 import { GET_PROJECT_DETAIL } from '@/graphql/query/projectDetail';
 import { GET_PROJECT_LIST_SLUG } from '@/graphql/query/projectListSlug';
-import { GET_CATEGORY_LIST_SLUG } from '@/graphql/query/categoryBySlug';
 import ProjectDetailTemplate from '@/templates/ProjectDetailTemplate';
 import { getRevalidationTTL } from '@/utils/helpers';
 
 interface Props {
   dataResponse: {
     projectBySlug: ProjectEntityResponse;
-    listProjects: CategoryEntityResponseCollection;
+    listProjects: ProjectEntity[];
   };
 }
 
@@ -74,22 +72,10 @@ export const getStaticProps: GetStaticProps = async _context => {
     })
     .catch(e => {});
   const project: ProjectEntityResponse = rs?.data?.projectBySlug;
+  const listProjects =
+    project?.data?.attributes?.category?.data?.attributes?.project?.data || [];
+  console.log('listProjects', listProjects);
 
-  const listCategory = project?.data?.attributes?.category?.data.map(
-    (category: CategoryEntity) => {
-      return category?.attributes?.slug;
-    }
-  );
-  const rs2: any = await apolloClient
-    .query({
-      query: GET_CATEGORY_LIST_SLUG,
-      variables: {
-        slug: listCategory || []
-      }
-    })
-    .catch(e => {
-      console.log('rs2', e);
-    });
   if (!rs?.data) {
     return {
       notFound: true
@@ -99,7 +85,7 @@ export const getStaticProps: GetStaticProps = async _context => {
   return {
     props: {
       dataResponse: rs?.data || {},
-      listProjects: rs2?.data?.categoryBySlug || []
+      listProjects: listProjects
     },
     revalidate: getRevalidationTTL()
   };
