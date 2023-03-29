@@ -16,17 +16,17 @@ import { getRevalidationTTL } from '@/utils/helpers';
 interface Props {
   dataResponse: {
     projectBySlug: ProjectEntityResponse;
-    listProjects: CategoryEntityResponseCollection;
   };
+  listProjects: CategoryEntityResponseCollection;
 }
 
 const ProjectDetail = ({ dataResponse, listProjects }: any) => {
-  // console.log('listProjects', listProjects);
   return (
     <DefaultLayout>
       {dataResponse && (
         <ProjectDetailTemplate
           projectBySlug={dataResponse?.projectBySlug ?? null}
+          listProjectByCategory={listProjects}
         />
       )}
     </DefaultLayout>

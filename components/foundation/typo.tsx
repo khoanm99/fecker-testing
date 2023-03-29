@@ -24,11 +24,8 @@ const Typo = ({
       </Element>
     );
   return (
-    <Element
-      {...props}
-      className={twMerge(cls)}
-      dangerouslySetInnerHTML={{ __html: title }}
-    >
+    <Element {...props} className={twMerge(cls)}>
+      <span dangerouslySetInnerHTML={{ __html: title }}></span>
       {children && <>{children}</>}
     </Element>
   );

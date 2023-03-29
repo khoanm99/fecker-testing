@@ -35,20 +35,16 @@ const IntroContent = ({
           {templateName == 'subPage' && (
             <div className={defaultIntroText}>
               {introContent.title && (
-                <Heading
-                  size={`h2`}
-                  renderAs={`h2`}
-                  title={introContent.title}
-                  className={``}
-                />
-              )}
-              {introContent.description && (
-                <Heading
-                  size={`h2`}
-                  renderAs={`h3`}
-                  title={introContent.description}
-                  className={`pb-[30px] font-extralight lg:pb-[52px]`}
-                />
+                <Heading size={`h2`} renderAs={`h2`} title={introContent.title}>
+                  {introContent.description && (
+                    <span
+                      className={`block pb-[30px] font-extralight lg:pb-[52px]`}
+                      dangerouslySetInnerHTML={{
+                        __html: introContent.description
+                      }}
+                    />
+                  )}
+                </Heading>
               )}
               {introContent && (
                 <Collapse

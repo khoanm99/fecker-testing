@@ -12,7 +12,7 @@ import AccordionHeader from './header';
 interface Props {
   title?: string;
   layout?: 'Collapse' | 'Grid' | 'Markdown';
-  image?: UploadFile;
+  image?: UploadFile | null;
   content?: string;
   index: number;
   url?: string;
