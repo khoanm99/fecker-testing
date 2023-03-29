@@ -48,8 +48,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      dataResponse: rs?.data ?? {},
-      revalidate: getRevalidationTTL()
-    }
+      dataResponse: rs?.data ?? {}
+    },
+    revalidate: getRevalidationTTL()
   };
 };
