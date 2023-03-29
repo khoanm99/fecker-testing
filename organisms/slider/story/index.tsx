@@ -26,7 +26,7 @@ const StorySlider = ({
           className={'pb-[10px] lg:pb-[50px] lg:leading-[67px]'}
         />
         <span className="flex w-[100px] justify-end">
-          <NavigationSvg className="slider-prev-btn hidden md:h-[32px] md:w-[32px] lg:block lg:h-[65px] lg:w-[65px]" />
+          <NavigationSvg className="slider-prev-btn md:h-[32px] md:w-[32px] lg:block lg:h-[65px] lg:w-[65px]" />
           <NavigationSvg className="slider-next-btn ml-[5px] rotate-[180deg] md:h-[32px] md:w-[32px] lg:h-[65px] lg:w-[65px]" />
         </span>
       </div>
