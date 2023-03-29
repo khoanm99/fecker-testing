@@ -1,7 +1,10 @@
 import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
-import { ProjectSectionEntityResponse } from '@/graphql/generated';
+import {
+  ComponentBasicSeo,
+  ProjectSectionEntityResponse
+} from '@/graphql/generated';
 import { GET_PROJECT_SECTION } from '@/graphql/query/projectSection';
 import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
 import { getRevalidationTTL } from '@/utils/helpers';
@@ -13,17 +16,20 @@ interface Props {
 }
 
 const Project = ({ dataResponse }: Props) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse.projectSection.data?.attributes?.seo || null;
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      title={seo?.title || 'Fecker Holzbau AG'}
+      description={seo?.description || ''}
+    >
       {dataResponse && (
         <OverViewProjectTemplate
           heroSlider={
-            dataResponse.projectSection.data?.attributes?.heroSlider ??
-            undefined
+            dataResponse.projectSection.data?.attributes?.heroSlider ?? null
           }
           introContent={
-            dataResponse.projectSection.data?.attributes?.introContent ??
-            undefined
+            dataResponse.projectSection.data?.attributes?.introContent ?? null
           }
           content={dataResponse.projectSection.data?.attributes?.contents ?? []}
         />

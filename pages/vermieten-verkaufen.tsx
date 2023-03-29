@@ -2,6 +2,7 @@ import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import {
+  ComponentBasicSeo,
   ProjectSectionEntityResponse,
   RentSellSectionEntityResponse
 } from '@/graphql/generated';
@@ -16,8 +17,13 @@ interface Props {
 }
 
 const VermietenVerkaufen = ({ dataResponse }: Props) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse.rentSellSection.data?.attributes?.seo || null;
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      title={seo?.title || 'Fecker Holzbau AG'}
+      description={seo?.description || ''}
+    >
       {dataResponse && (
         <OverViewProjectTemplate
           heroSlider={

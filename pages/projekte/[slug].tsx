@@ -2,6 +2,7 @@ import DefaultLayout from 'components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import {
+  ComponentBasicSeo,
   ProjectEntity,
   ProjectEntityResponse,
   ProjectEntityResponseCollection
@@ -19,8 +20,17 @@ interface Props {
 }
 
 const ProjectDetail = ({ dataResponse, listProjects }: Props) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse?.projectBySlug?.data?.attributes?.seo || null;
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      title={
+        seo?.title ||
+        dataResponse?.projectBySlug?.data?.attributes?.name ||
+        'Fecker Holzbau AG'
+      }
+      description={seo?.description || ''}
+    >
       {dataResponse && (
         <ProjectDetailTemplate
           projectBySlug={dataResponse?.projectBySlug ?? null}
