@@ -1,17 +1,39 @@
 import ImageWithHover from '@/atoms/imageWithHover';
 import { UploadFile } from '@/graphql/generated';
+import { IMouseContext } from '@/types';
+import { MouseEvent, useContext } from 'react';
+import MouseContext from '@/contexts/mouseContext';
 
 const ProjectCard = ({
   dataImage,
   name
 }: {
-  dataImage?: UploadFile;
+  dataImage?: UploadFile | null;
   name?: string;
 }) => {
+  const ctx: IMouseContext = useContext(MouseContext) as IMouseContext;
+
+  const mouseMoveHandle = (e: MouseEvent) => {
+    ctx.updateState({
+      cursorVariant: 'projectCard',
+      cursorActive: true
+    });
+  };
+
+  const mouseLeaveHandle = () => {
+    ctx.updateState({
+      cursorVariant: 'default',
+      cursorActive: false
+    });
+  };
   return (
     <>
       {dataImage && (
-        <div className={`group relative`}>
+        <div
+          className={`group relative cursor-pointer`}
+          onMouseEnter={mouseMoveHandle}
+          onMouseLeave={mouseLeaveHandle}
+        >
           <ImageWithHover
             title={name ?? ''}
             description={''}

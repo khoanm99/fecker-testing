@@ -64,13 +64,15 @@ export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
       opacity: 1,
       height: 65,
       width: 65,
+      zIndex: 5,
       x: mouseRef.current.x ? mouseRef.current.x - 30 : 0,
       y: mouseRef.current.y ? mouseRef.current.y - 30 : 0
     },
     projectCard: {
       opacity: 1,
-      height: 100,
-      width: 100,
+      height: 101,
+      width: 101,
+      zIndex: 30,
       x: mouseRef.current.x ? mouseRef.current.x - 50 : 0,
       y: mouseRef.current.y ? mouseRef.current.y - 50 : 0
     }
@@ -88,17 +90,20 @@ export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
         {children}
         <motion.div
           variants={variants}
-          className={`mouse-circle hidden lg:block ${
+          className={`mouse-circle pointer-events-none hidden lg:block ${
             state.cursorActive ? 'h-[0] w-[0] overflow-hidden' : ''
           } bg-red fixed top-0 left-0`}
           animate={state.cursorVariant}
           transition={spring}
           style={{
-            zIndex: 5
+            pointerEvents: 'none'
           }}
         >
           {state.cursorActive && !touchDevice && (
-            <CursorIcon icon={'arrow-right'} className={`h-auto w-auto`} />
+            <CursorIcon
+              icon={state.cursorVariant}
+              className={`h-auto w-auto`}
+            />
           )}
         </motion.div>
       </div>
@@ -115,13 +120,13 @@ const CursorIcon = ({
 }) => {
   return (() => {
     switch (icon) {
-      case 'arrow-right':
+      case 'slider':
         return (
           <NavigationSvg
             className={`arrow-right rotate-[180deg] overflow-auto ${className}`}
           />
         );
-      case 'plus':
+      case 'projectCard':
         return <PlusCircleSvg className={`${className}`} />;
       default:
         return null;
