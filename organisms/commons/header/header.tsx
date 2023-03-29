@@ -7,7 +7,7 @@ import HeaderAction from '@/organisms/commons/header/headerAction';
 const Header = ({ sticky }: { sticky: Boolean }) => {
   // const { t } = useTranslation('common');
   const clsHeaderDefault =
-    'transition-all fixed top-0 left-0 z-50 w-full pl-[20px] lg:py-[13px]';
+    'transition-all fixed top-0 left-0 z-50 w-full pl-[20px] lg:py-[13px] lg:pl-[40px]';
 
   return (
     <header id="header" className={clsx(clsHeaderDefault)}>

@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="relative m-auto p-[20px] md:flex md:flex-row-reverse lg:flex lg:p-[30px] xl:max-w-[1120px] xl:px-[0px] 2xl:max-w-[1260px] 3xl:max-w-[1500px]"
+      className="relative m-auto mt-[60px] p-[20px] md:flex md:flex-row-reverse lg:mt-[60px] lg:flex lg:p-[30px] xl:max-w-[1120px] xl:px-[0px] 2xl:max-w-[1260px] 3xl:max-w-[1500px]"
     >
       <div className="py-[10px] md:flex md:w-1/2 md:flex-row md:flex-row-reverse md:justify-between md:pl-[20px] xl:pl-[65px]">
         <FooterMenu />
