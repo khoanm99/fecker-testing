@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { memo, useContext, useState, Fragment } from 'react';
+import { memo, useContext, useState, Fragment, useRef, useEffect } from 'react';
 import CloseSVG from 'atoms/svg/close';
 import LogoSVG from 'atoms/svg/logo';
 import PlusSVG from 'atoms/svg/plus';
@@ -117,13 +117,36 @@ const MenuBody = ({ onClick }: any) => {
 
 const MenuItem = ({ menuItem, id, onClick }: IMenuItem) => {
   const [open, setOpen] = useState<boolean>(false);
+  const divRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLSpanElement | null>(null);
+  const defaultHeightRef = useRef<number>(70);
+  const heightRef = useRef<number>(0);
+  useEffect(() => {
+    if (listRef.current && divRef.current) {
+      heightRef.current = listRef.current?.offsetHeight || 0;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (window && window.innerWidth < 769 && divRef.current) {
+      if (open) {
+        divRef.current.style.height = `${
+          defaultHeightRef.current + heightRef.current
+        }px`;
+      } else {
+        divRef.current.style.height = `${defaultHeightRef.current}px`;
+      }
+    }
+  }, [open]);
+
   const submenuHandle = (e: any) => {
     e.preventDefault();
     setOpen(!open);
   };
   return (
     <div
-      className={`relative border-b-[1px] border-black py-[12px] lg:border-transparent ${
+      ref={divRef}
+      className={`relative overflow-hidden border-b-[1px] border-black py-[12px] transition-all duration-300 max-lg:h-[70px] lg:border-transparent ${
         (id + 1) % 3 == 0 ? 'lg:w-6/12' : 'lg:w-3/12'
       }`}
     >
@@ -146,7 +169,7 @@ const MenuItem = ({ menuItem, id, onClick }: IMenuItem) => {
               }`}
             />
           </span>
-          <span className={`${open ? 'block' : 'hidden'} lg:block`}>
+          <span ref={listRef} className={`block`}>
             <ul className="pt-[10px]">
               {menuItem.list.map((item, key) => (
                 <li
