@@ -1,7 +1,10 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
-import { ReferenceSectionEntityResponse } from '@/graphql/generated';
+import {
+  ComponentBasicSeo,
+  ReferenceSectionEntityResponse
+} from '@/graphql/generated';
 import OverViewProjectTemplate from '@/templates/OverViewProjectTemplate';
 import { GET_REFERENCE_SECTION } from '@/graphql/query/referenceSection';
 import { getRevalidationTTL } from '@/utils/helpers';
@@ -13,8 +16,13 @@ interface Props {
 }
 
 const Referenzen = ({ dataResponse }: Props) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse?.referenceSection?.data?.attributes?.seo || null;
   return (
-    <DefaultLayout title={'Fecker Holzbau AG'} description={'Lorem Ipsum...'}>
+    <DefaultLayout
+      title={seo?.title || 'Fecker Holzbau AG'}
+      description={seo?.description || ''}
+    >
       {dataResponse && (
         <OverViewProjectTemplate
           heroSlider={
@@ -48,8 +56,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      dataResponse: rs?.data ?? {},
-      revalidate: getRevalidationTTL()
-    }
+      dataResponse: rs?.data ?? {}
+    },
+    revalidate: getRevalidationTTL()
   };
 };

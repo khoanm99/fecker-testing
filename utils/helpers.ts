@@ -80,5 +80,5 @@ export const validateGoogleRecaptcha = (
     });
 };
 export const getRevalidationTTL = () => {
-  return process.env.NODE_ENV === 'production' ? 10 : 20;
+  return process.env.NODE_ENV === 'production' ? 40 : 20;
 };

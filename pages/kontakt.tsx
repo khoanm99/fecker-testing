@@ -3,7 +3,10 @@ import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_KONTACKT_SECTION } from '@/graphql/query/contactSection';
 import ContactTemplate from '@/templates/ContactTemplate';
-import { ContactSectionEntityResponse } from '@/graphql/generated';
+import {
+  ComponentBasicSeo,
+  ContactSectionEntityResponse
+} from '@/graphql/generated';
 import { getRevalidationTTL } from '@/utils/helpers';
 
 interface IProps {
@@ -13,8 +16,13 @@ interface IProps {
 }
 
 const Kontakt = ({ dataResponse }: IProps) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse?.contactSection?.data?.attributes?.seo || null;
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      title={seo?.title || 'Fecker Holzbau AG'}
+      description={seo?.description || ''}
+    >
       {dataResponse && <ContactTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
@@ -31,8 +39,8 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch(() => {});
   return {
     props: {
-      dataResponse: rs?.data || {},
-      revalidate: getRevalidationTTL()
-    }
+      dataResponse: rs?.data || {}
+    },
+    revalidate: getRevalidationTTL()
   };
 };

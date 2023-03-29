@@ -2,7 +2,10 @@ import DefaultLayout from '@/components/DefaultLayout';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import { GET_INNOVATION_SECTION } from '@/graphql/query/innovationSection';
-import { InnovationSectionEntityResponse } from '@/graphql/generated';
+import {
+  ComponentBasicSeo,
+  InnovationSectionEntityResponse
+} from '@/graphql/generated';
 import InnovationTemplate from '@/templates/Innovation';
 import { getRevalidationTTL } from '@/utils/helpers';
 
@@ -12,8 +15,13 @@ interface Props {
   };
 }
 const Innovation = ({ dataResponse }: Props) => {
+  const seo: ComponentBasicSeo | null =
+    dataResponse.innovationSection.data?.attributes?.seo || null;
   return (
-    <DefaultLayout>
+    <DefaultLayout
+      title={seo?.title || 'Fecker Holzbau AG'}
+      description={seo?.description || ''}
+    >
       {dataResponse && <InnovationTemplate dataResponse={dataResponse} />}
     </DefaultLayout>
   );
@@ -39,8 +47,8 @@ export const getStaticProps: GetStaticProps = async () => {
   // }
   return {
     props: {
-      dataResponse: rs?.data ?? {},
-      revalidate: getRevalidationTTL()
-    }
+      dataResponse: rs?.data ?? {}
+    },
+    revalidate: getRevalidationTTL()
   };
 };
