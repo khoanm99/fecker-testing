@@ -8,23 +8,24 @@ import {
 } from '@/graphql/generated';
 import { getRevalidationTTL } from '@/utils/helpers';
 import { GET_IMPRESSUM_SECTION } from '@/graphql/query/impressumSection';
+import ImpressumTemplate from '@/templates/ImpressumTemplate';
 
 interface Props {
   dataResponse: {
-    immobilienSection: ImpressumSectionEntityResponse;
+    impressumSection: ImpressumSectionEntityResponse;
   };
 }
 
 const Impressum = ({ dataResponse }: Props) => {
   const seo: ComponentBasicSeo | null =
-    dataResponse.immobilienSection?.data?.attributes?.seo || null;
+    dataResponse.impressumSection?.data?.attributes?.seo || null;
   console.log('dataResponse', dataResponse);
   return (
     <DefaultLayout
       title={seo?.title || 'Fecker Holzbau AG'}
       description={seo?.description || ''}
     >
-      Impressum
+      <ImpressumTemplate dataResponse={dataResponse} />
     </DefaultLayout>
   );
 };
