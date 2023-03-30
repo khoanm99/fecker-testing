@@ -3,8 +3,17 @@ import Text from '@/atoms/typo/text';
 import { ProjectEntity } from '@/graphql/generated';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+
+interface Props {
+  type?: 'link';
+  cls?: string;
+  className?: string;
+  title?: string;
+  url: string;
+  navigate?: 'next' | 'prev';
+}
 
 const NavigatorSection = ({
   listProject,
@@ -37,14 +46,16 @@ const NavigatorSection = ({
     <>
       {listProject && listNavigateIndex && (
         <div className={`justify-between md:flex md:flex-row-reverse`}>
-          {listNavigateIndex.map((projectIndex, key) =>
-            renderTextWithNavigate({
-              url: `/projekte/${listProject[projectIndex]?.attributes?.slug}`,
-              title: listProject[projectIndex]?.attributes?.name,
-              navigate: key == 0 ? 'next' : 'prev',
-              className: key == 0 ? 'mb-3 md:mb-0' : ''
-            })
-          )}
+          {listNavigateIndex.map((projectIndex, key) => (
+            <Fragment key={key}>
+              {renderTextWithNavigate({
+                url: `/projekte/${listProject[projectIndex]?.attributes?.slug}`,
+                title: listProject[projectIndex]?.attributes?.name,
+                navigate: key == 0 ? 'next' : 'prev',
+                className: key == 0 ? 'mb-[25px] md:mb-0' : ''
+              })}
+            </Fragment>
+          ))}
         </div>
       )}
     </>
@@ -52,15 +63,6 @@ const NavigatorSection = ({
 };
 
 export default NavigatorSection;
-
-interface Props {
-  type?: 'link';
-  cls?: string;
-  className?: string;
-  title?: string;
-  url: string;
-  navigate?: 'next' | 'prev';
-}
 
 const renderTextWithNavigate = ({
   type = 'link',
@@ -78,7 +80,7 @@ const renderTextWithNavigate = ({
             title={title}
             className={twMerge(
               clsx(
-                `flex items-center justify-start gap-5 transition-transform duration-300 lg:justify-center`,
+                `flex items-center justify-start gap-5 transition-transform duration-300 md:w-[50%] lg:justify-center`,
                 {
                   'flex-row-reverse': navigate == 'prev'
                 },
@@ -104,7 +106,9 @@ const renderContentWithNavigator = ({
     <>
       <Text
         content={title}
-        className={`w-full font-bold lg:font-[16px]`}
+        className={`w-full font-bold lg:font-[16px] ${
+          navigate === 'next' ? 'text-right' : ''
+        }`}
         renderAs={`div`}
       />
       <NavigationSvg

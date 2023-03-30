@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Heading from 'atoms/typo/heading';
-import Text from 'atoms/typo/text';
 import NavigationSvg from '@/atoms/svg/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
@@ -51,24 +50,40 @@ const PartnerSlider = ({
         >
           {data.partners.map((slide, index: number) => (
             <SwiperSlide key={index}>
-              <a
-                className="relative block after:block after:pb-[100%] after:content-['']"
-                href={slide.link ? slide.link : '#'}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {slide?.image?.data?.attributes?.url && (
-                  <Image
-                    src={slide.image.data.attributes.url}
-                    alt={`${slide.image.data.attributes.name}`}
-                    fill
-                    sizes={'100%'}
-                    className="object-cover object-center"
-                    placeholder="blur"
-                    blurDataURL={'/assets/img/blur-image.png'}
-                  />
-                )}
-              </a>
+              {slide.link ? (
+                <a
+                  className="relative block after:block after:pb-[100%] after:content-['']"
+                  href={slide.link ? slide.link : '#'}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {slide?.image?.data?.attributes?.url && (
+                    <Image
+                      src={slide.image.data.attributes.url}
+                      alt={`${slide.image.data.attributes.name}`}
+                      fill
+                      sizes={'100%'}
+                      className="object-cover object-center"
+                      placeholder="blur"
+                      blurDataURL={'/assets/img/blur-image.png'}
+                    />
+                  )}
+                </a>
+              ) : (
+                <p className="relative block after:block after:pb-[100%] after:content-['']">
+                  {slide?.image?.data?.attributes?.url && (
+                    <Image
+                      src={slide.image.data.attributes.url}
+                      alt={`${slide.image.data.attributes.name}`}
+                      fill
+                      sizes={'100%'}
+                      className="object-cover object-center"
+                      placeholder="blur"
+                      blurDataURL={'/assets/img/blur-image.png'}
+                    />
+                  )}
+                </p>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

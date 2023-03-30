@@ -3,6 +3,9 @@ import DownloadSvg from '@/atoms/svg/download';
 import InstagramSvg from '@/atoms/svg/instagram';
 import ContactSvg from '@/atoms/svg/contact';
 
+// data
+import contactData from '../../data/contact.json';
+
 const Sidebar = ({ locate }: { locate?: string }) => {
   return (
     <>
@@ -16,11 +19,16 @@ const Sidebar = ({ locate }: { locate?: string }) => {
         <Link href={'#'} className="my-[8px]">
           <DownloadSvg className="h-[25px] w-[25px] lg:h-[33px] lg:w-[33px]" />
         </Link>
-        <Link href={'#'} className="my-[8px]">
+        <a
+          href={contactData.contact[0].instagram}
+          target="_blank"
+          rel="noreferrer"
+          className="my-[8px]"
+        >
           <InstagramSvg
             className={`h-[25px] w-[25px] lg:h-[33px] lg:w-[33px]`}
           />
-        </Link>
+        </a>
         <Link href={'#'} className="my-[8px] mb-[70px]">
           <ContactSvg className={'h-[25px] w-[25px] lg:h-[33px] lg:w-[33px]'} />
         </Link>

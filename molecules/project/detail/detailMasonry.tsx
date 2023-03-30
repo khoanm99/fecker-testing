@@ -46,19 +46,19 @@ const renderPopup = ({
     <>
       {popupData && popupData.url && popupData.width && popupData.height && (
         <div
-          className={`fixed top-0 left-0 z-[51] h-screen w-full overflow-visible bg-black/60`}
+          className={`fixed top-0 left-0 z-[51] h-screen w-full overflow-visible bg-black/80`}
         >
           <div
-            className={`relative flex h-full w-full items-center justify-center px-5 lg:px-0`}
+            className={`relative flex h-full w-full items-center justify-center px-5`}
           >
-            <div className={`relative py-7 lg:py-7 lg:px-7`}>
-              <Close
-                onClick={() => {
-                  setPopupData && setPopupData(null);
-                }}
-                className={`absolute top-0 right-0 h-[20px] w-[20px] cursor-pointer`}
-                color={`#39c66b`}
-              />
+            <Close
+              onClick={() => {
+                setPopupData && setPopupData(null);
+              }}
+              className={`absolute top-[20px] right-[20px] h-[26px] w-[26px] cursor-pointer lg:top-[25px] lg:right-[25px]`}
+              color={`#39c66b`}
+            />
+            <div className={`relative md:px-[40px]`}>
               <Image
                 src={popupData.url}
                 alt={popupData.alternativeText ?? ''}
