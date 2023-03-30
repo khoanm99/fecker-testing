@@ -7,6 +7,8 @@ import ContactSticky from '@/atoms/ContactSticky';
 import BackToTop from '@/atoms/backToTop';
 import { NextSeo } from 'next-seo';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { scrollToTarget } from '@/utils/helpers';
 
 export interface DefaultLayoutProps {
   title?: string;
@@ -24,7 +26,7 @@ const DefaultLayout = ({
   useResetState();
   const [active, setActive] = useState<Boolean>(false);
   const [sticky, setsticky] = useState<Boolean>(false);
-
+  const router = useRouter();
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let browser = window;
@@ -43,6 +45,17 @@ const DefaultLayout = ({
     }
   }, []);
 
+  useEffect(() => {
+    if (router?.asPath?.split(router.pathname)[1]?.trim().length < 1) return;
+
+    setTimeout(() => {
+      scrollToTarget(
+        router.asPath.split(router.pathname)[1]?.trim().replace('#', ''),
+        true
+      );
+    }, 300);
+  }, [router]);
+
   return (
     <>
       <Header sticky={sticky} />
@@ -51,7 +64,7 @@ const DefaultLayout = ({
         initial="hidden"
         animate="enter"
         variants={variants}
-        transition={{ type: 'ease', duration: 0.5, delay: 0.5 }}
+        transition={{ type: 'ease', duration: 0.5, delay: 0 }}
       >
         {children}
       </motion.main>

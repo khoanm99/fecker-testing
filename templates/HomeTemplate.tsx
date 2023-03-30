@@ -34,7 +34,7 @@ const HomeTemplate = ({ dataResponse }: Props) => {
                 itemContent.textBlocks
               ) {
                 return (
-                  <Container layout={'full'} key={key}>
+                  <Container layout={'full'} key={key} usingAnimation={false}>
                     <ListContentBlock textBlock={itemContent.textBlocks} />
                   </Container>
                 );
