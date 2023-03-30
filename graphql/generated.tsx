@@ -511,6 +511,7 @@ export type GenericMorph =
   | FassadenSection
   | HomeSection
   | ImmobilienSection
+  | ImpressumSection
   | InnovationSection
   | Project
   | ProjectSection
@@ -621,6 +622,34 @@ export type ImmobilienSectionInput = {
   seo?: InputMaybe<ComponentBasicSeoInput>;
 };
 
+export type ImpressumSection = {
+  __typename?: 'ImpressumSection';
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ImpressumSectionEntity = {
+  __typename?: 'ImpressumSectionEntity';
+  attributes?: Maybe<ImpressumSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ImpressumSectionEntityResponse = {
+  __typename?: 'ImpressumSectionEntityResponse';
+  data?: Maybe<ImpressumSectionEntity>;
+};
+
+export type ImpressumSectionInput = {
+  content?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type InnovationSection = {
   __typename?: 'InnovationSection';
   contents?: Maybe<Array<Maybe<InnovationSectionContentsDynamicZone>>>;
@@ -725,6 +754,7 @@ export type Mutation = {
   deleteFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   deleteHomeSection?: Maybe<HomeSectionEntityResponse>;
   deleteImmobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
+  deleteImpressumSection?: Maybe<ImpressumSectionEntityResponse>;
   deleteInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   deleteProject?: Maybe<ProjectEntityResponse>;
   deleteProjectSection?: Maybe<ProjectSectionEntityResponse>;
@@ -756,6 +786,7 @@ export type Mutation = {
   updateFileInfo: UploadFileEntityResponse;
   updateHomeSection?: Maybe<HomeSectionEntityResponse>;
   updateImmobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
+  updateImpressumSection?: Maybe<ImpressumSectionEntityResponse>;
   updateInnovationSection?: Maybe<InnovationSectionEntityResponse>;
   updateProject?: Maybe<ProjectEntityResponse>;
   updateProjectSection?: Maybe<ProjectSectionEntityResponse>;
@@ -900,6 +931,10 @@ export type MutationUpdateHomeSectionArgs = {
 
 export type MutationUpdateImmobilienSectionArgs = {
   data: ImmobilienSectionInput;
+};
+
+export type MutationUpdateImpressumSectionArgs = {
+  data: ImpressumSectionInput;
 };
 
 export type MutationUpdateInnovationSectionArgs = {
@@ -1102,6 +1137,7 @@ export type Query = {
   findSlug?: Maybe<FindSlugResponse>;
   homeSection?: Maybe<HomeSectionEntityResponse>;
   immobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
+  impressumSection?: Maybe<ImpressumSectionEntityResponse>;
   innovationSection?: Maybe<InnovationSectionEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
   project?: Maybe<ProjectEntityResponse>;
@@ -1159,6 +1195,10 @@ export type QueryHomeSectionArgs = {
 };
 
 export type QueryImmobilienSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type QueryImpressumSectionArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
 
