@@ -15,8 +15,8 @@ export const GET_REFERENCE_SECTION = gql`
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
   ${CATEGORY_CONTENT_FRAGMENT}
-  query getReferenceSection {
-    referenceSection {
+  query getReferenceSection($publicationState: PublicationState) {
+    referenceSection(publicationState: $publicationState) {
       data {
         id
         attributes {

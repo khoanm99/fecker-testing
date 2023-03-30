@@ -15,8 +15,8 @@ export const GET_RENT_SELL_SECTION = gql`
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
   ${CATEGORY_CONTENT_FRAGMENT}
-  query getRentSellSection {
-    rentSellSection {
+  query getRentSellSection($publicationState: PublicationState) {
+    rentSellSection(publicationState: $publicationState) {
       data {
         id
         attributes {

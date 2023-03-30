@@ -1171,6 +1171,7 @@ export type QueryProjectArgs = {
 };
 
 export type QueryProjectBySlugArgs = {
+  publicationState?: InputMaybe<PublicationState>;
   slug: Scalars['String'];
 };
 

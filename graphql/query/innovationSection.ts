@@ -13,8 +13,8 @@ export const GET_INNOVATION_SECTION = gql`
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
   ${ACCORDION_FRAGMENT}
-  query getInnovationSection {
-    innovationSection {
+  query getInnovationSection($publicationState: PublicationState) {
+    innovationSection(publicationState: $publicationState) {
       data {
         id
         attributes {
