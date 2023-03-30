@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import { ComponentStoryStory } from '@/graphql/generated';
+import { motion } from 'framer-motion';
 
 const StorySlider = ({
   data,
@@ -33,7 +34,7 @@ const StorySlider = ({
       <div className="slider-body relative">
         <Swiper
           modules={[Pagination, Navigation]}
-          spaceBetween={0}
+          spaceBetween={10}
           slidesPerView={1}
           threshold={20}
           navigation={{
@@ -52,45 +53,65 @@ const StorySlider = ({
         >
           {data.stories.map((slide, index: number) => (
             <SwiperSlide key={index}>
-              <div className="flex-row lg:flex">
-                <div className="relative h-[240px] w-full md:h-[450px] lg:min-h-[500px] lg:w-7/12 2xl:h-[560px] 3xl:h-[750px]">
-                  {slide?.image?.data?.attributes?.url && (
-                    <Image
-                      src={slide.image.data.attributes.url}
-                      alt={`${slide.image.data.attributes.name}`}
-                      fill
-                      sizes={'100%'}
-                      className="object-cover object-center"
-                      placeholder="blur"
-                      blurDataURL={'/assets/img/blur-image.png'}
+              {({ isActive }) => (
+                <div className="flex-row lg:flex">
+                  <div className="relative h-[240px] w-full md:h-[450px] lg:min-h-[500px] lg:w-7/12 2xl:h-[560px] 3xl:h-[750px]">
+                    {slide?.image?.data?.attributes?.url && (
+                      <Image
+                        src={slide.image.data.attributes.url}
+                        alt={`${slide.image.data.attributes.name}`}
+                        fill
+                        sizes={'100%'}
+                        className="object-cover object-center"
+                        placeholder="blur"
+                        blurDataURL={'/assets/img/blur-image.png'}
+                      />
+                    )}
+                    <Text
+                      renderAs={'p'}
+                      content={slide.year ?? ''}
+                      className="absolute bottom-[5px] right-[10px] text-[40px] font-bold leading-[40px] text-primary lg:hidden"
                     />
-                  )}
-                  <Text
-                    renderAs={'p'}
-                    content={slide.year ?? ''}
-                    className="absolute bottom-[5px] right-[10px] text-[40px] font-bold leading-[40px] text-primary lg:hidden"
-                  />
+                  </div>
+                  <div className="pt-[20px] lg:w-5/12 lg:pl-[70px]">
+                    <motion.div
+                      style={{
+                        transform: isActive ? 'none' : `translateX(200px)`,
+                        opacity: isActive ? 1 : 0,
+                        transition:
+                          'all 0.3s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s'
+                      }}
+                    >
+                      <Heading
+                        renderAs={'h3'}
+                        title={slide.year ?? ''}
+                        className="hidden text-right font-bold text-primary lg:block lg:pb-[45px] lg:text-[120px] lg:leading-[120px]"
+                      />
+                    </motion.div>
+                    <motion.div
+                      style={{
+                        transform: isActive ? 'none' : `translateY(200px)`,
+                        opacity: isActive ? 1 : 0,
+                        transition:
+                          'all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
+                      }}
+                    >
+                      <Heading
+                        renderAs="h4"
+                        title={slide.title}
+                        className={
+                          'pb-[8px] text-[16px] font-bold uppercase leading-[24px] text-black lg:pb-[22px] lg:text-[20px] lg:leading-[30px]'
+                        }
+                      />
+                      <Text
+                        renderAs={'p'}
+                        content={slide.description}
+                        size={'bodyText'}
+                      />
+                    </motion.div>
+                  </div>
                 </div>
-                <div className="pt-[20px] lg:w-5/12 lg:pl-[70px]">
-                  <Heading
-                    renderAs={'h3'}
-                    title={slide.year ?? ''}
-                    className="hidden text-right font-bold text-primary lg:block lg:pb-[45px] lg:text-[120px] lg:leading-[120px]"
-                  />
-                  <Heading
-                    renderAs="h4"
-                    title={slide.title}
-                    className={
-                      'pb-[8px] text-[16px] font-bold uppercase leading-[24px] text-black lg:pb-[22px] lg:text-[20px] lg:leading-[30px]'
-                    }
-                  />
-                  <Text
-                    renderAs={'p'}
-                    content={slide.description}
-                    size={'bodyText'}
-                  />
-                </div>
-              </div>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

@@ -25,13 +25,7 @@ const ContentBlock = ({
       <div
         className="relative w-full lg:h-[705px] 2xl:h-[calc(100vh_-_106px)]"
         style={{
-          transform: isInView
-            ? 'none'
-            : `${
-                state == 'layout-right'
-                  ? 'translateX(-200px)'
-                  : `translateX(200px)`
-              }`,
+          transform: isInView ? 'none' : `translateY(200px)`,
           opacity: isInView ? 1 : 0,
           transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
         }}
