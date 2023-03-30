@@ -25,12 +25,18 @@ const ContactInfo = () => {
       ></p>
       <ul className="pb-[25px]">
         <li>
-          <a href={`tel: ${contactData.contact[0].phone}`}>
-            tel:{contactData.contact[0].phone}
+          <a
+            href={`tel: ${contactData.contact[0].phone}`}
+            className="transition-all duration-300 hover:text-primary"
+          >
+            Tel. {contactData.contact[0].phone}
           </a>
         </li>
         <li>
-          <a href={`mailto:${contactData.contact[0].email}`}>
+          <a
+            href={`mailto:${contactData.contact[0].email}`}
+            className="transition-all duration-300 hover:text-primary"
+          >
             {contactData.contact[0].email}
           </a>
         </li>
@@ -40,7 +46,7 @@ const ContactInfo = () => {
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://instagram.com"
+          href={contactData.contact[0].instagram}
           className="inline-block lg:h-[33px] lg:w-[33px]"
         >
           <InstagramSvg className="inline" />

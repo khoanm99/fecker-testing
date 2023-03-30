@@ -15,6 +15,6 @@ export const rePosition = ({
         left: 0,
         behavior: 'smooth'
       });
-    }, 500);
+    }, 300);
   }
 };
