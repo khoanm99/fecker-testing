@@ -43,12 +43,15 @@ const Referenzen = ({ dataResponse }: Props) => {
 
 export default Referenzen;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async _context => {
   const apolloClient = initializeApollo();
 
   const rs: any = await apolloClient
     .query({
-      query: GET_REFERENCE_SECTION
+      query: GET_REFERENCE_SECTION,
+      variables: {
+        publicationState: _context.preview ? 'PREVIEW' : 'LIVE'
+      }
     })
     .catch(e => {
       console.log('e', e);

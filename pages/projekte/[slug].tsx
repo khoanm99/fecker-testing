@@ -73,11 +73,13 @@ export const getStaticPaths = async (_context: any) => {
 
 export const getStaticProps: GetStaticProps = async _context => {
   const apolloClient = initializeApollo();
+  console.log('_context?.params?.slug', _context?.params?.slug);
   const rs: any = await apolloClient
     .query({
       query: GET_PROJECT_DETAIL,
       variables: {
-        slug: _context?.params?.slug ? _context?.params?.slug : ''
+        slug: _context?.params?.slug ? _context?.params?.slug : '',
+        publicationState: _context.preview ? 'PREVIEW' : 'LIVE'
       }
     })
     .catch(e => {});

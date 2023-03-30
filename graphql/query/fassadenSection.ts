@@ -13,8 +13,8 @@ export const GET_FASSADEN_SECTION = gql`
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
   ${ACCORDION_FRAGMENT}
-  query getFassadenSection {
-    fassadenSection {
+  query getFassadenSection($publicationState: PublicationState) {
+    fassadenSection(publicationState: $publicationState) {
       data {
         id
         attributes {

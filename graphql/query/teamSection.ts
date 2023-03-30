@@ -15,8 +15,8 @@ export const GET_TEAM_SECTION = gql`
   ${TEAM_FRAGMENT}
   ${PARTNER_FRAGMENT}
   ${STORY_FRAGMENT}
-  query getTeamSection {
-    teamSection {
+  query getTeamSection($publicationState: PublicationState) {
+    teamSection(publicationState: $publicationState) {
       data {
         id
         attributes {
