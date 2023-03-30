@@ -55,7 +55,9 @@ const StorySlider = ({
             <SwiperSlide key={index}>
               {({ isActive }) => (
                 <div className="flex-row lg:flex">
-                  <div className="relative h-[240px] w-full md:h-[450px] lg:min-h-[500px] lg:w-7/12 2xl:h-[560px] 3xl:h-[750px]">
+                  <div
+                    className={`relative h-[240px] w-full md:h-[450px] lg:min-h-[500px] lg:w-7/12 2xl:h-[560px] 3xl:h-[750px]`}
+                  >
                     {slide?.image?.data?.attributes?.url && (
                       <Image
                         src={slide.image.data.attributes.url}
@@ -76,10 +78,10 @@ const StorySlider = ({
                   <div className="pt-[20px] lg:w-5/12 lg:pl-[70px]">
                     <motion.div
                       style={{
-                        transform: isActive ? 'none' : `translateX(200px)`,
+                        transform: isActive ? 'none' : `translateY(100px)`,
                         opacity: isActive ? 1 : 0,
                         transition:
-                          'all 0.3s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s'
+                          'all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s'
                       }}
                     >
                       <Heading
@@ -90,10 +92,10 @@ const StorySlider = ({
                     </motion.div>
                     <motion.div
                       style={{
-                        transform: isActive ? 'none' : `translateY(200px)`,
+                        transform: isActive ? 'none' : `translateY(100px)`,
                         opacity: isActive ? 1 : 0,
                         transition:
-                          'all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
+                          'all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s'
                       }}
                     >
                       <Heading
