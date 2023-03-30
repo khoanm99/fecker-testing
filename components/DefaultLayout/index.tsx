@@ -64,7 +64,7 @@ const DefaultLayout = ({
         initial="hidden"
         animate="enter"
         variants={variants}
-        transition={{ type: 'ease', duration: 0.5, delay: 0 }}
+        transition={{ type: 'ease', duration: 0.5 }}
       >
         {children}
       </motion.main>
