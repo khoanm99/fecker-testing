@@ -107,7 +107,9 @@ const ContactForm = ({
           {resultSend !== null && (
             <Text
               content={
-                resultSend ? `Email erfolgreich senden` : 'E-Mail senden fehl'
+                resultSend
+                  ? `E-Mail erfolgreich versendet.`
+                  : 'Die Nachricht konnte nicht gesendet werden, bitte versuche es erneut.'
               }
               className={`py-0 ${resultSend ? 'text-primary' : 'text-[red]'}`}
               size={`bodyTextSmall`}

@@ -35,8 +35,8 @@
       ]
     },
     {
-      "url": "/firma",
       "title": "Firma",
+      "url": "/firma",
       "list": [
         {
           "title": "Team",
@@ -57,12 +57,12 @@
       ]
     },
     {
-      "url": "/referenzen",
-      "title": "Referenzen"
+      "title": "Referenzen",
+      "url": "/referenzen"
     },
     {
-      "url": "/immobilien",
       "title": "Immobilien",
+      "url": "/immobilien",
       "list": [
         {
           "title": "Projekte",
@@ -77,36 +77,36 @@
   ],
   "footer": [
     {
-      "url": "/firma",
       "title": "Firma",
+      "url": "/firma",
       "target": ""
     },
     {
-      "url": "/",
       "title": "Angebot",
+      "url": "/",
       "target": ""
     },
     {
-      "url": "/referenzen",
       "title": "Referenzen",
+      "url": "/referenzen",
       "target": ""
     },
     {
-      "url": "/immobilien",
       "title": "Immobilien",
+      "url": "/immobilien",
       "target": ""
     },
     {
-      "url": "/downloads",
       "title": "Downloads",
+      "url": "/downloads",
       "target": "",
       "mobile": {
         "hidden": true
       }
     },
     {
-      "url": "/impressum",
       "title": "Impressum",
+      "url": "/impressum",
       "target": "",
       "mobile": {
         "hidden": true

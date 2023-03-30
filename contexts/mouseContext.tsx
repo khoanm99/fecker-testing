@@ -91,7 +91,7 @@ export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
         <motion.div
           variants={variants}
           className={`mouse-circle pointer-events-none hidden lg:block ${
-            state.cursorActive ? 'h-[0] w-[0] overflow-hidden' : ''
+            state.cursorActive ? 'h-[0] w-[0]' : ''
           } bg-red fixed top-0 left-0`}
           animate={state.cursorVariant}
           transition={spring}
