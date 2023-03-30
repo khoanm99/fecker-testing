@@ -94,7 +94,7 @@ const MenuBody = ({ onClick }: any) => {
               href={`tel: ${contactData.contact[0].phone}`}
               className="font-extralight text-black hover:text-primary"
             >
-              tel: {contactData.contact[0].phone}
+              Tel. {contactData.contact[0].phone}
             </a>
           </p>
           <p className="text-[16px] leading-[24px]">
