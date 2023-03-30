@@ -6,6 +6,7 @@ import useResetState from '@/hooks/useResetState';
 import ContactSticky from '@/atoms/ContactSticky';
 import BackToTop from '@/atoms/backToTop';
 import { NextSeo } from 'next-seo';
+import { motion } from 'framer-motion';
 
 export interface DefaultLayoutProps {
   title?: string;
@@ -46,7 +47,14 @@ const DefaultLayout = ({
     <>
       <Header sticky={sticky} />
       <NextSeo title={title || ''} description={description ?? ''} />
-      <main>{children}</main>
+      <motion.main
+        initial="hidden"
+        animate="enter"
+        variants={variants}
+        transition={{ type: 'ease', duration: 0.5, delay: 0.5 }}
+      >
+        {children}
+      </motion.main>
       <ContactSticky template={templateName || ''} />
       <BackToTop active={active} />
       <MenuPanel />
@@ -56,3 +64,8 @@ const DefaultLayout = ({
 };
 
 export default DefaultLayout;
+
+const variants = {
+  hidden: { opacity: 0, x: 0, y: 200 },
+  enter: { opacity: 1, x: 0, y: 0 }
+};

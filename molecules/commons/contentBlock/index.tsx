@@ -2,8 +2,10 @@ import PrimaryButton from '@/atoms/button';
 import Heading from '@/atoms/typo/heading';
 import Text from '@/atoms/typo/text';
 import { IContentBlock } from '@/types';
+import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
 
 const ContentBlock = ({
   textBlockData,
@@ -11,13 +13,29 @@ const ContentBlock = ({
   state = 'layout-right'
 }: IContentBlock) => {
   const imageData = textBlockData?.image?.data?.attributes;
+  const refContainer = useRef<HTMLDivElement>(null);
+  const isInView = useInView(refContainer, { once: true });
   return (
     <div
       className={`mx-auto flex flex-wrap overflow-hidden px-5 lg:px-0 ${
         state == 'layout-right' ? '' : 'justify-end lg:pt-[60px]'
       }`}
+      ref={refContainer}
     >
-      <div className="relative w-full lg:h-[705px] 2xl:h-[calc(100vh_-_106px)]">
+      <div
+        className="relative w-full lg:h-[705px] 2xl:h-[calc(100vh_-_106px)]"
+        style={{
+          transform: isInView
+            ? 'none'
+            : `${
+                state == 'layout-right'
+                  ? 'translateX(-200px)'
+                  : `translateX(200px)`
+              }`,
+          opacity: isInView ? 1 : 0,
+          transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
+        }}
+      >
         {imageData && imageData.url && imageData.width && imageData.height && (
           <div
             className={`absolute top-0 w-full pt-[93%] lg:w-[58%] lg:pt-[55%] ${
