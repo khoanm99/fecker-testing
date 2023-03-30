@@ -13,8 +13,8 @@ export const GET_HOME_SECTION = gql`
   ${ACCORDION_FRAGMENT}
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
-  query getHomeSection {
-    homeSection {
+  query getHomeSection($publicationState: PublicationState) {
+    homeSection(publicationState: $publicationState) {
       data {
         id
         attributes {

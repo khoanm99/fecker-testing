@@ -15,8 +15,8 @@ export const GET_PROJECT_SECTION = gql`
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
   ${CATEGORY_CONTENT_FRAGMENT}
-  query getProjectSection {
-    projectSection {
+  query getProjectSection($publicationState: PublicationState) {
+    projectSection(publicationState: $publicationState) {
       data {
         id
         attributes {

@@ -13,8 +13,8 @@ export const GET_IMMOBILIEN_SECTION = gql`
   ${ACCORDION_FRAGMENT}
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
-  query immobilienSection {
-    immobilienSection {
+  query immobilienSection($publicationState: PublicationState) {
+    immobilienSection(publicationState: $publicationState) {
       data {
         id
         attributes {

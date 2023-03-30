@@ -13,8 +13,8 @@ export const GET_KONTACKT_SECTION = gql`
   ${ACCORDION_FRAGMENT}
   ${SEO_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
-  query getContactSection {
-    contactSection {
+  query getContactSection($publicationState: PublicationState) {
+    contactSection(publicationState: $publicationState) {
       data {
         id
         attributes {

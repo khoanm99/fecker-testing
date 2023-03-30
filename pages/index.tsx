@@ -31,12 +31,15 @@ const Home = ({ dataResponse }: Props) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async _context => {
   const apolloClient = initializeApollo();
 
   const rs: any = await apolloClient
     .query({
-      query: GET_HOME_SECTION
+      query: GET_HOME_SECTION,
+      variables: {
+        publicationState: _context.preview ? 'PREVIEW' : 'LIVE'
+      }
     })
     .catch(() => {});
 

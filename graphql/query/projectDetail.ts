@@ -8,8 +8,8 @@ export const GET_PROJECT_DETAIL = gql`
   ${HERO_SLIDER_FRAGMENT}
   ${INTRO_CONTENT_FRAGMENT}
   ${PROJECT_WITHOUT_CATEGORY_FRAGMENT}
-  query getProjectBySlug($slug: String!) {
-    projectBySlug(slug: $slug) {
+  query getProjectBySlug($slug: String!, $publicationState: PublicationState) {
+    projectBySlug(slug: $slug, publicationState: $publicationState) {
       data {
         attributes {
           ...ProjectWithoutCategoryData

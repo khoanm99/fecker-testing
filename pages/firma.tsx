@@ -30,11 +30,14 @@ const Firma = ({ dataResponse }: Props) => {
 
 export default Firma;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async _context => {
   const apolloClient = initializeApollo();
   const rs: any = await apolloClient
     .query({
-      query: GET_TEAM_SECTION
+      query: GET_TEAM_SECTION,
+      variables: {
+        publicationState: _context.preview ? 'PREVIEW' : 'LIVE'
+      }
     })
     .catch(() => {});
   return {

@@ -12,7 +12,8 @@ const nextConfig = {
   },
   images: {
     domains: [
-      'localhost',
+      'localhost:3000',
+      'next.khoahuynh.tk',
       'fecker-holzbau-cms.absolutagentur.ch',
       'storage.googleapis.com'
     ],
