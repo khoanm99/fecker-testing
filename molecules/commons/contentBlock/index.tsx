@@ -32,7 +32,7 @@ const ContentBlock = ({
       >
         {imageData && imageData.url && imageData.width && imageData.height && (
           <div
-            className={`relative top-0 w-full pt-[93%] lg:w-[58%] lg:pt-[66%] 2xl:pt-[calc(50%_-_100px)] ${
+            className={`relative top-0 w-full pt-[93%] lg:w-[58%] lg:pt-[66%] 2xl:pt-[calc(50%_-_105px)] ${
               state == 'layout-right' ? '' : 'mr-0 ml-auto'
             }`}
           >
