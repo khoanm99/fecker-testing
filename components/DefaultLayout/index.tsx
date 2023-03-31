@@ -49,10 +49,13 @@ const DefaultLayout = ({
     if (router?.asPath?.split(router.pathname)[1]?.trim().length < 1) return;
 
     setTimeout(() => {
-      scrollToTarget(
-        router.asPath.split(router.pathname)[1]?.trim().replace('#', ''),
-        true
-      );
+      const targetId = router.asPath
+        .split(router.pathname)[1]
+        ?.trim()
+        .replace('#', '');
+      if (targetId.length > 0) {
+        scrollToTarget(targetId, true);
+      }
     }, 300);
   }, [router]);
 

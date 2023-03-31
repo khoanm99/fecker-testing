@@ -16,7 +16,7 @@ const Sidebar = ({ locate }: { locate?: string }) => {
             : 'top-[0] lg:hidden'
         }`}
       >
-        <Link href={'#'} className="my-[8px]">
+        <Link href={'/downloads'} className="my-[8px]">
           <DownloadSvg className="h-[25px] w-[25px] lg:h-[33px] lg:w-[33px]" />
         </Link>
         <a
