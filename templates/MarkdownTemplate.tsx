@@ -22,7 +22,7 @@ const MarkdownTemplate = ({ title, content }: Props) => {
           {content && (
             <Markdown
               content={content}
-              className={`mt-[40px] w-full space-y-0 lg:ml-[150px] lg:max-w-[770px] xl:ml-[250px] 3xl:max-w-[60%] [&>a.underline]:underline`}
+              className={`mt-[40px] w-full space-y-0 lg:mt-[80px] lg:ml-[150px] lg:max-w-[770px] xl:ml-[250px] 3xl:max-w-[60%] [&>a.underline]:underline`}
             />
           )}
         </Container>
