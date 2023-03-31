@@ -409,6 +409,34 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
 
+export type DownloadSection = {
+  __typename?: 'DownloadSection';
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentBasicSeo>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type DownloadSectionEntity = {
+  __typename?: 'DownloadSectionEntity';
+  attributes?: Maybe<DownloadSection>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type DownloadSectionEntityResponse = {
+  __typename?: 'DownloadSectionEntityResponse';
+  data?: Maybe<DownloadSectionEntity>;
+};
+
+export type DownloadSectionInput = {
+  content?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentBasicSeoInput>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export enum Enum_Componentaccordionaccordion_Layout {
   Collapse = 'Collapse',
   Grid = 'Grid',
@@ -508,6 +536,7 @@ export type GenericMorph =
   | ComponentStoryStory
   | ComponentTextBlockTextBlock
   | ContactSection
+  | DownloadSection
   | FassadenSection
   | HomeSection
   | ImmobilienSection
@@ -751,6 +780,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteContactSection?: Maybe<ContactSectionEntityResponse>;
+  deleteDownloadSection?: Maybe<DownloadSectionEntityResponse>;
   deleteFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   deleteHomeSection?: Maybe<HomeSectionEntityResponse>;
   deleteImmobilienSection?: Maybe<ImmobilienSectionEntityResponse>;
@@ -782,6 +812,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateContactSection?: Maybe<ContactSectionEntityResponse>;
+  updateDownloadSection?: Maybe<DownloadSectionEntityResponse>;
   updateFassadenSection?: Maybe<FassadenSectionEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHomeSection?: Maybe<HomeSectionEntityResponse>;
@@ -914,6 +945,10 @@ export type MutationUpdateCategoryArgs = {
 
 export type MutationUpdateContactSectionArgs = {
   data: ContactSectionInput;
+};
+
+export type MutationUpdateDownloadSectionArgs = {
+  data: DownloadSectionInput;
 };
 
 export type MutationUpdateFassadenSectionArgs = {
@@ -1133,6 +1168,7 @@ export type Query = {
   category?: Maybe<CategoryEntityResponse>;
   categoryBySlug?: Maybe<CategoryEntityResponseCollection>;
   contactSection?: Maybe<ContactSectionEntityResponse>;
+  downloadSection?: Maybe<DownloadSectionEntityResponse>;
   fassadenSection?: Maybe<FassadenSectionEntityResponse>;
   findSlug?: Maybe<FindSlugResponse>;
   homeSection?: Maybe<HomeSectionEntityResponse>;
@@ -1177,6 +1213,10 @@ export type QueryCategoryBySlugArgs = {
 };
 
 export type QueryContactSectionArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type QueryDownloadSectionArgs = {
   publicationState?: InputMaybe<PublicationState>;
 };
 
