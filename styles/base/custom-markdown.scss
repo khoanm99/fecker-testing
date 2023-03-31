@@ -3,4 +3,8 @@
   ul {
     @apply list-disc list-inside pl-[10px] font-bold;
   }
+
+  h2 {
+    @apply text-[20px] font-bold;
+  }
 }
