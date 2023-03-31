@@ -35,6 +35,7 @@ const ProjectDetail = ({ dataResponse, listProjects }: Props) => {
         <ProjectDetailTemplate
           projectBySlug={dataResponse?.projectBySlug ?? null}
           listProject={listProjects}
+          key={dataResponse?.projectBySlug.data?.attributes?.slug ?? null}
         />
       )}
     </DefaultLayout>
