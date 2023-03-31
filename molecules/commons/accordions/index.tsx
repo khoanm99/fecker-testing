@@ -1,4 +1,5 @@
 import PrimaryButton from '@/atoms/button';
+import Markdown from '@/atoms/markdown';
 import Text from '@/atoms/typo/text';
 import { UploadFile } from '@/graphql/generated';
 import Collapse from '@/molecules/collapse';
@@ -58,9 +59,9 @@ const AccordionSection = ({
                     content: content,
                     url: url ?? ''
                   })}
-                {layout == 'Markdown' &&
-                  content &&
-                  renderMarkdown({ content: content })}
+                {layout == 'Markdown' && content && (
+                  <Markdown content={content} />
+                )}
               </div>
             </>
           )}
@@ -109,8 +110,4 @@ const renderGrid = ({ content, url }: { content: string; url: string }) => {
       )}
     </div>
   );
-};
-
-const renderMarkdown = ({ content }: { content: string }) => {
-  return <ReactMarkdown className="custom-markdown">{content}</ReactMarkdown>;
 };

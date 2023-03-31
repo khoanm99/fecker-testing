@@ -5,6 +5,7 @@ import {
   ImpressumSectionEntityResponse,
   Maybe
 } from '@/graphql/generated';
+import Markdown from '@/atoms/markdown';
 
 interface Props {
   dataResponse: {
@@ -17,17 +18,20 @@ const ImpressumTemplate = ({ dataResponse }: Props) => {
     dataResponse?.impressumSection?.data?.attributes;
   console.log('sectionData', sectionData);
   return (
-    <div className={'pb-[60px]'}>
-      <Container id={'impressum'} layout={'full'}>
+    <div className={'mt-[100px] pb-[60px]'}>
+      <Container id={sectionData?.title ?? ''} layout={'full'}>
         {!sectionData ||
           (sectionData.title && (
             <Heading
               size={`h1`}
               renderAs={`h1`}
               title={sectionData.title}
-              className={`z-10 max-w-[195px] pb-6 pl-5 text-white lg:max-w-[630px] lg:pl-0`}
+              className={`z-10 max-w-[195px] pl-5 lg:max-w-[870px] lg:pl-0`}
             />
           ))}
+      </Container>
+      <Container layout="grid">
+        {sectionData?.content && <Markdown content={sectionData?.content} />}
       </Container>
     </div>
   );
