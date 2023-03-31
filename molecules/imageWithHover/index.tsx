@@ -1,7 +1,7 @@
+import Text from '@/atoms/typo/text';
 import { ISiteImage } from '@/types';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
-import Text from './typo/text';
 
 const ImageWithHover = ({
   title,

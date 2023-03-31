@@ -1,4 +1,4 @@
-import ImageWithHover from '@/atoms/imageWithHover';
+import ImageWithHover from '../imageWithHover';
 import { UploadFile } from '@/graphql/generated';
 import { IMouseContext } from '@/types';
 import { MouseEvent, useContext } from 'react';
