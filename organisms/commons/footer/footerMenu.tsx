@@ -74,7 +74,9 @@ const Menu = () => {
             <Link
               href={item.url}
               className={`text-[16px] font-extrabold uppercase leading-[24px] text-black transition-all  duration-300 hover:text-primary ${
-                router.asPath === item.url ? 'underline underline-offset-4' : ''
+                router.pathname === item.url
+                  ? 'underline underline-offset-4'
+                  : ''
               }`}
             >
               {item.title}

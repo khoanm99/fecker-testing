@@ -53,7 +53,7 @@ const DefaultLayout = ({
         .split(router.pathname)[1]
         ?.trim()
         .replace('#', '');
-      if (targetId.length > 0) {
+      if (targetId && targetId.length > 0) {
         scrollToTarget(targetId, true);
       }
     }, 300);

@@ -103,6 +103,7 @@ const ContactForm = ({
           <Text
             content={`Mit dem Senden akzeptieren Sie die Datenschutzerklärung`}
             size={`bodyTextSmall`}
+            className={`lg:max-w-[240px]`}
           />
           {resultSend !== null && (
             <Text

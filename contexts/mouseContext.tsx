@@ -4,6 +4,7 @@ import useMouse from '@react-hook/mouse-position';
 import { motion, Variants } from 'framer-motion';
 import NavigationSvg from '@/atoms/svg/navigation';
 import PlusCircleSvg from '@/atoms/svg/plusCircle';
+import { useRouter } from 'next/router';
 
 const mouseState: IMouseState = {
   cursorVariant: 'default',
@@ -15,6 +16,7 @@ const MouseContext = createContext<any | undefined>(undefined);
 export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, setState] = useState({ ...mouseState });
   const [touchDevice, setTouchDevice] = useState<boolean>(true);
+  const router = useRouter();
 
   const mouseRef = React.useRef<{ x: null | number; y: null | number }>({
     x: null,
@@ -37,6 +39,13 @@ export const MouseProvider = ({ children }: { children: React.ReactNode }) => {
       setTouchDevice(true);
     };
   }, []);
+
+  useEffect(() => {
+    updateState({
+      cursorVariant: 'default',
+      cursorActive: false
+    });
+  }, [router]);
 
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {
