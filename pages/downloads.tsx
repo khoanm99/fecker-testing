@@ -1,16 +1,13 @@
 import DefaultLayout from 'components/DefaultLayout';
-import ImmobilienTemplate from 'templates/ImmobilienTemplate';
 import { GetStaticProps } from 'next';
 import { initializeApollo } from '@/utils/apolloClient';
 import {
   ComponentBasicSeo,
-  DownloadSectionEntityResponse,
-  ImpressumSectionEntityResponse
+  DownloadSectionEntityResponse
 } from '@/graphql/generated';
 import { getRevalidationTTL } from '@/utils/helpers';
-import { GET_IMPRESSUM_SECTION } from '@/graphql/query/impressumSection';
-import ImpressumTemplate from '@/templates/ImpressumTemplate';
 import { GET_DOWNLOAD_SECTION } from '@/graphql/query/downloadSection';
+import MarkdownTemplate from '@/templates/MarkdownTemplate';
 
 interface Props {
   dataResponse: {
@@ -21,13 +18,18 @@ interface Props {
 const Download = ({ dataResponse }: Props) => {
   const seo: ComponentBasicSeo | null =
     dataResponse.downloadSection?.data?.attributes?.seo || null;
-  console.log('dataResponse', dataResponse);
+  const sectionData = dataResponse?.downloadSection?.data?.attributes ?? null;
   return (
     <DefaultLayout
       title={seo?.title || 'Fecker Holzbau AG'}
       description={seo?.description || ''}
     >
-      Download
+      {sectionData && (
+        <MarkdownTemplate
+          title={sectionData.title ?? null}
+          content={sectionData.content ?? null}
+        />
+      )}
     </DefaultLayout>
   );
 };

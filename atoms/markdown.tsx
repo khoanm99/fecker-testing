@@ -1,7 +1,22 @@
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import { twMerge } from 'tailwind-merge';
 
-const Markdown = ({ content }: { content: string }) => {
-  return <ReactMarkdown className="custom-markdown">{content}</ReactMarkdown>;
+const Markdown = ({
+  content,
+  className
+}: {
+  content: string;
+  className?: string;
+}) => {
+  return (
+    <ReactMarkdown
+      className={twMerge('custom-markdown', className)}
+      rehypePlugins={[rehypeRaw]}
+    >
+      {content}
+    </ReactMarkdown>
+  );
 };
 
 export default Markdown;
