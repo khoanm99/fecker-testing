@@ -2,6 +2,7 @@ import PrimaryButton from '@/atoms/button';
 import Heading from '@/atoms/typo/heading';
 import Text from '@/atoms/typo/text';
 import { IContentBlock } from '@/types';
+import { convertToNormalText } from '@/utils/helpers';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -29,6 +30,11 @@ const ContentBlock = ({
           opacity: isInView ? 1 : 0,
           transition: 'all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
         }}
+        id={
+          textBlockData?.title
+            ? `${convertToNormalText(textBlockData.title)}`
+            : ''
+        }
       >
         {imageData && imageData.url && imageData.width && imageData.height && (
           <div

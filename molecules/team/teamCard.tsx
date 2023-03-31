@@ -1,4 +1,4 @@
-import ImageWithHover from '@/atoms/imageWithHover';
+import ImageWithHover from '../imageWithHover';
 import { Team } from '@/graphql/generated';
 import useWindowSize from '@/hooks/useWindowSize';
 import { Maybe } from 'graphql/jsutils/Maybe';
