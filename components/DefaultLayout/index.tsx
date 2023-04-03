@@ -9,6 +9,9 @@ import { NextSeo } from 'next-seo';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { scrollToTarget } from '@/utils/helpers';
+import { useContext } from 'react';
+import AppContext from '@/contexts/appContext';
+import { IAppContext } from '@/types';
 
 export interface DefaultLayoutProps {
   title?: string;
@@ -27,6 +30,8 @@ const DefaultLayout = ({
   const [active, setActive] = useState<Boolean>(false);
   const [sticky, setsticky] = useState<Boolean>(false);
   const router = useRouter();
+  const ctx: IAppContext = useContext(AppContext) as IAppContext;
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let browser = window;
@@ -58,6 +63,15 @@ const DefaultLayout = ({
       }
     }, 300);
   }, [router]);
+
+  // Disable scrolling in body when opening the menu
+  useEffect(() => {
+    if (ctx?.isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'initial';
+    }
+  }, [ctx.isMenuOpen]);
 
   return (
     <>

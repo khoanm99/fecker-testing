@@ -69,8 +69,14 @@ const MenuHeader = () => {
 };
 
 const MenuBody = ({ onClick }: any) => {
+  const ctx: IAppContext = useContext(AppContext) as IAppContext;
   return (
-    <div className="menu-panel-body flex-row flex-wrap lg:flex xl:px-[75px] xl:pt-[20px] 2xl:mx-auto 2xl:max-w-[1680px]">
+    <div
+      className={`menu-panel-body flex-row flex-wrap lg:flex xl:px-[75px] xl:pt-[20px] 2xl:mx-auto 2xl:max-w-[1680px] ${
+        ctx.isMenuOpen ? 'lg:animate-fadeIn-up lg:opacity-0' : ''
+      }`}
+      style={{ animationDelay: '500ms' }}
+    >
       {menuData.main.map((item, index) => (
         <Fragment key={index}>
           <MenuItem menuItem={item} id={index} onClick={onClick} />

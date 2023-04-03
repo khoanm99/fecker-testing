@@ -80,7 +80,7 @@ const renderTextWithNavigate = ({
             title={title}
             className={twMerge(
               clsx(
-                `flex items-center justify-start gap-5 transition-transform duration-300 md:w-[50%] lg:justify-center`,
+                `flex items-center justify-start gap-5 transition-transform duration-300 md:w-[auto] md:max-w-[50%] lg:justify-center`,
                 {
                   'flex-row-reverse': navigate == 'prev'
                 },

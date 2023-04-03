@@ -2,7 +2,7 @@ type Props = {
   name: string;
   errors: any;
 };
-const InputError = ({ name, errors }: Props) => {
+const MessageError = ({ name, errors }: Props) => {
   return (
     <>
       {errors && errors[name] && (
@@ -15,4 +15,4 @@ const InputError = ({ name, errors }: Props) => {
     </>
   );
 };
-export default InputError;
+export default MessageError;

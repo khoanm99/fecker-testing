@@ -3,7 +3,7 @@ import Text from '@/atoms/typo/text';
 import PrimaryButton from '@/atoms/button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import useSubmit from '@/hooks/useSubmit';
-import InputError from '@/atoms/inputError';
+import MessageError from '@/atoms/MessageError';
 import { useState } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
@@ -68,7 +68,7 @@ const ContactForm = ({
           {...register('name', { required: true })}
           disabled={loading}
         />
-        <InputError name={'name'} errors={errors} />
+        <MessageError name={'name'} errors={errors} />
       </div>
       <div className="mb-[14px]">
         <Input
@@ -78,7 +78,7 @@ const ContactForm = ({
           disabled={loading}
           {...register('email', { required: true })}
         />
-        <InputError name={'email'} errors={errors} />
+        <MessageError name={'email'} errors={errors} />
       </div>
       <div className="mb-[14px]">
         <Input
@@ -86,7 +86,7 @@ const ContactForm = ({
           {...register('message', { required: true })}
           disabled={loading}
         />
-        <InputError name={'message'} errors={errors} />
+        <MessageError name={'message'} errors={errors} />
       </div>
       <div
         className={`lg:pt-[30px] lg:pb-[20px] ${
