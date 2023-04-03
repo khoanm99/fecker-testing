@@ -10,10 +10,6 @@ const ContactSvg = ({
     'h-[30px] w-[30px] cursor-pointer fill-black transition-all duration-500 hover:fill-primary';
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      id="Ebene_1"
       x="0px"
       y="0px"
       viewBox="0 0 32 30"

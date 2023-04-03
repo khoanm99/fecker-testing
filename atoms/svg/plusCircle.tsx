@@ -5,7 +5,6 @@ const PlusCircle = ({ className }: { className: string }) => {
       height="101"
       viewBox="0 0 101 101"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
       <circle cx="50.5" cy="50.5" r="49.5" stroke="#39C66B" strokeWidth="2" />

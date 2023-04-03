@@ -6,7 +6,6 @@ const NavigationSvg = ({ className = '', ...props }: SVGProps) => {
     'w-8 h-8 cursor-pointer transition-color duration-300 fill-transparent hover:fill-primary [&_path]:transition-color [&_path]:duration-300 [&_path]:fill-primary [&_path]:hover:fill-white md:w-[65px] md:h-[65px]';
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       width="33"
       height="33"
       viewBox="0 0 33 33"

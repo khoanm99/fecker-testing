@@ -7,7 +7,6 @@ const Close = ({ color = '#000', className = '', ...props }: SVGProps) => {
       height="100%"
       viewBox="0 0 29 28"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       {...props}
       className={className}
     >
