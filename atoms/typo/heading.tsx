@@ -1,5 +1,6 @@
 import Typo from '@/components/foundation/typo';
 import { Items } from '@/types';
+import clsx from 'clsx';
 import { HTMLAttributes, memo } from 'react';
 import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { twMerge } from 'tailwind-merge';
@@ -8,6 +9,7 @@ interface Props extends HTMLAttributes<ReactElement> {
   renderAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   size?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   className?: string;
+  variant?: 'hover-green' | 'hover-white' | '';
   title: string;
 }
 
@@ -15,6 +17,7 @@ const Heading = ({
   renderAs = 'h1',
   size = 'h1',
   className = '',
+  variant = '',
   title = '',
   ...props
 }: Props) => {
@@ -33,7 +36,17 @@ const Heading = ({
       {...props}
       title={title}
       renderAs={renderAs}
-      cls={twMerge(defaultCls, listSize[size], className)}
+      cls={twMerge(
+        clsx(
+          defaultCls,
+          listSize[size],
+          {
+            ' hover:text-primary': variant == 'hover-green',
+            ' hover:text-white': variant == 'hover-white'
+          },
+          className
+        )
+      )}
     />
   );
 };

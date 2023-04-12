@@ -9,7 +9,9 @@
     "lint": "next lint",
     "postinstall": "husky install",
     "lint-staged": "lint-staged --config .lintstagedrc.js",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
@@ -47,6 +49,13 @@
     "vs-email-template-typescript-package": "^1.1.8"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.0-rc.8",
+    "@storybook/addon-interactions": "^7.0.0-rc.8",
+    "@storybook/addon-links": "^7.0.0-rc.8",
+    "@storybook/blocks": "^7.0.0-rc.8",
+    "@storybook/nextjs": "^7.0.0-rc.8",
+    "@storybook/react": "^7.0.0-rc.8",
+    "@storybook/testing-library": "^0.0.14-next.1",
     "@graphql-codegen/cli": "^3.2.2",
     "@graphql-codegen/client-preset": "^2.1.1",
     "@tailwindcss/typography": "^0.5.8",
@@ -67,6 +76,8 @@
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.4",
     "swiper": "^9.1.1",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "eslint-plugin-storybook": "^0.6.11",
+    "storybook": "^7.0.0-rc.8"
   }
 }
